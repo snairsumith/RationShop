@@ -35,8 +35,11 @@
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Shop Owner Name" id="txtShopOwnerName" class="form-control" />
                             </div>
-                             <div class="form-group">
+                            <div class="form-group">
                                 <input type="text" placeholder="Enter Shop Owner ARD Number" id="txtShopOwnerARDNumber" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <input type="Password" placeholder="Enter Password Here" id="txtPassword" class="form-control" />
                             </div>
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Shop Owner Address" id="txtShopOwnerAddress" class="form-control" />
@@ -50,6 +53,46 @@
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Shop Owner Contact" id="txtShopOwnerContact" class="form-control" />
                             </div>
+                            <div class="row">
+                                <div class="form-group ">
+                                    <label class="col-md-2 control-label nopaddingtop">Gender <span class="text-danger">*</span></label>
+                                    <div class="col-md-2">
+                                        <label class="radiobox ">
+                                            <input id="gender" type="radio" name="gender" value="Male" required>
+                                            <span>Male</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="radiobox">
+                                            <input type="radio" name="gender" value="Female">
+                                            <span>Female</span>
+                                        </label>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                <label class="col-md-2 control-label nopaddingtop">Status <span class="text-danger">*</span></label>
+                                <div class="col-md-2">
+                                    <label class="radiobox">
+                                        <input id="Status" type="radio" name="Status" value="Verified" required>
+                                        <span>Verified</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="radiobox">
+                                        <input type="radio" name="Status" value="Not Verified">
+                                        <span>Not Verified</span>
+                                    </label>
+                                    
+                                </div>
+
+                            </div>
+                            </div>
+
+                            
                             <div class="row">
                                 <div class="col-sm-9 col-sm-offset-3">
                                     <button class="btn btn-success btn-quirk btn-wide mr5">Submit</button>

@@ -26,9 +26,7 @@ public class CommonController {
      public String test(){
          return "register";
      }
-     @RequestMapping(value="/shopowner",method = RequestMethod.GET)
-     public String shopowner(){
-         return "shopowner";
-     }
+     
+    
     
 }
