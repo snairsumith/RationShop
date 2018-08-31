@@ -41,4 +41,24 @@ public class AdminController {
      public String notifications(){
          return "notifications";
 }
+       @RequestMapping(value="/additem",method = RequestMethod.GET)
+     public String additem(){
+         return "additem";
+}
+       @RequestMapping(value="/itemdetails",method = RequestMethod.GET)
+     public String itemdetails(){
+         return "itemdetails";
+}
+      @RequestMapping(value="/addsuppliers",method = RequestMethod.GET)
+     public String addsuppliers(){
+         return "addsuppliers";
+}
+      @RequestMapping(value="/suppliersdetails",method = RequestMethod.GET)
+     public String suppliersdetails(){
+         return "suppliersdetails";
+}
+     @RequestMapping(value="/purchaseentry",method = RequestMethod.GET)
+     public String purchaseentry(){
+         return "purchaseentry";
+}
 }
