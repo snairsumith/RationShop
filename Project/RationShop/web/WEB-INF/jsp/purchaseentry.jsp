@@ -21,7 +21,7 @@
 
     </head>
     <body>
-       <div class="mainpanel">
+        <div class="mainpanel">
 
             <div class="contentpanel">
                 <ol class="breadcrumb breadcrumb-quirk">
@@ -35,5 +35,44 @@
                                 <h4 class="panel-title">Purchase Entry</h4>
                                 <p>Enter Purchase Details Here</p>
                             </div>
-    </body>
-</html>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Enter Invoice Number" id="txtInvoiceNumber" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Enter Invoice Date" id="txtInvoiceDate" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Enter Invoice Due Date" id="txtInvoiceDueDate" class="form-control" />
+                                </div>
+                                <div class="mainpanel">
+                                    <div class="contentpanel">
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel">
+
+                                                    <div class="panel-body">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <input type="text" placeholder="Enter Item Name" id="txtItemName" class="form-control" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" placeholder="Enter Rate Tax" id="txtRateTax" class="form-control" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" placeholder="Enter Price" id="txtPrice" class="form-control" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" placeholder="Enter Quantity" id="txtQuantity" class="form-control" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" placeholder="Enter Discount" id="txtDiscount" class="form-control" />
+                                                            </div>
+
+                                                        </div>
+                                                        </body>
+                                                        </body>
+                                                        </body>
+                                                        </html>
