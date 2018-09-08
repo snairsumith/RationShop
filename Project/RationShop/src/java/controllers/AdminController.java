@@ -61,4 +61,26 @@ public class AdminController {
      public String purchaseentry(){
          return "purchaseentry";
 }
+     
+     @RequestMapping(value="/myprofile",method = RequestMethod.GET)
+     public String myprofile(){
+         return "myprofile";
+}
+      
+     @RequestMapping(value="/salesreport",method = RequestMethod.GET)
+     public String salesreport(){
+         return "salesreport";
+}
+      @RequestMapping(value="/purchasereport",method = RequestMethod.GET)
+     public String purchasereport(){
+         return "purchasereport";
+}
+      @RequestMapping(value="/stockreport",method = RequestMethod.GET)
+     public String stockreport(){
+         return "stockreport";
+}
+     @RequestMapping(value="/stockassign",method = RequestMethod.GET)
+     public String stockassign(){
+         return "stockassign";
+}
 }

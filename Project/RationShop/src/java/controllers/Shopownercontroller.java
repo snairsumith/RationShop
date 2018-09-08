@@ -21,4 +21,17 @@ public class Shopownercontroller {
      public String allowdedquota(){
          return "allowdedquota";
      }
+          
+     @RequestMapping(value="/shopsalesreport",method = RequestMethod.GET)
+     public String salesreport(){
+         return "shopsalesreport";
+}
+      @RequestMapping(value="/customerwisereport",method = RequestMethod.GET)
+     public String customerwisereport(){
+         return "customerwisereport";
+}
+      @RequestMapping(value="/shopstockreport",method = RequestMethod.GET)
+     public String stockreport(){
+         return "shopstockreport";
+}
 }

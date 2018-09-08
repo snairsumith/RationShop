@@ -1,17 +1,18 @@
 <%-- 
-    Document   : allowded quota
-    Created on : Aug 31, 2018, 2:51:54 AM
+    Document   : customerwisereport
+    Created on : Sep 8, 2018, 3:29:19 AM
     Author     : MinusBugspc1
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>shopowner</title>
+        <title>Shopowner</title>
 
         <spring:url value="/resources/css/quirk.css" var="rationCss" />
         <spring:url value="/resources/lib/modernizr/modernizr.js" var="rationJS"/>
@@ -29,46 +30,33 @@
                 <div class="contentpanel">
                     <ol class="breadcrumb breadcrumb-quirk">
                         <li><a href="index-2.html"><i class="fa fa-home mr5"></i> Home</a></li>
-                        <li class="active">Alloted Quota</li>
+                        <li class="active">Customer Wise Report</li>
                     </ol>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">Alloted Quota</h4>
-                                    <p>View Your Quota Here</p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Select Month" id="txtMonth" class="form-control" />
+                                    <h4 class="panel-title">Customer Wise Report</h4>
+                                    <p>View Your Customer Wise Report Here</p>
                                 </div>
                                 <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table nomargin">
-                                            <thead>
-                                                <tr>
-
-                                                    <th>Item Name</th>
-                                                    <th>Quantity</th>
-                                                    <th>Rate</th>
-
-
-
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>sugar</td>
-                                                    <td>2kg</td>
-                                                    <td>2</td>
-
-
-
-                                                </tr>
-                                            </tbody>
-
-                                        </table>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Customer Name" id="txtcustomername" class="form-control" />
                                     </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Item" id="txtitem" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Quantity" id="txtquantity" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Amount" id="txtamount" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Date" id="txtdate" class="form-control" />
+                                    </div>
+
+
                                 </div>
                             </div>
                             <div class="row">
@@ -80,3 +68,4 @@
                             </section>
                             </body>
                             </html>
+

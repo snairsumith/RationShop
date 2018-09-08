@@ -21,6 +21,9 @@
 
 </head>
 <body>
+    <jsp:include page="inc/admin_top.jsp" /> 
+    <section>
+      <jsp:include page="inc/adminsidebar.jsp" />
     <div class="mainpanel">
 
         <div class="contentpanel">
@@ -70,6 +73,7 @@
             </</body>
         </div>
 
+</section>
 
-</body>
+    </body>
 </html>
