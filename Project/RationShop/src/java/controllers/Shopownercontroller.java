@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author MinusBugspc1
  */
 @Controller
-@RequestMapping("/Shopowner")
+@RequestMapping("/shopowner")
 public class Shopownercontroller {
     
     @RequestMapping(value="/allowdedquota",method = RequestMethod.GET)
