@@ -31,9 +31,6 @@ public class CustomerController {
      public String customerregistration(){
          return "customeregistration";
      }
-      @RequestMapping(value="/customerverification",method = RequestMethod.GET)
-     public String customerverification(){
-         return "customerverification";
-     }
+    
         
 }

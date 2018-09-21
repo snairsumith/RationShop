@@ -34,4 +34,32 @@ public class Shopownercontroller {
      public String stockreport(){
          return "shopstockreport";
 }
+     @RequestMapping(value="/shopownerfeedback",method = RequestMethod.GET)
+     public String shopownerfeedback(){
+         return "shopownerfeedback";
+}
+       @RequestMapping(value="/customerverification",method = RequestMethod.GET)
+     public String customerverification(){
+         return "customerverification";
+     }
+       @RequestMapping(value="/shopownermyprofile",method = RequestMethod.GET)
+     public String shopownermyprofile(){
+         return "shopownermyprofile";
+     }
+     @RequestMapping(value="/shopownernotification",method = RequestMethod.GET)
+     public String shopownernotification(){
+         return "shopownernotification";
+     }
+      @RequestMapping(value="/shopsales",method = RequestMethod.GET)
+     public String shopsales(){
+         return "shopsales";
+     }
+     @RequestMapping(value="/shopcustomerlist",method = RequestMethod.GET)
+     public String shopcustomerlist(){
+         return "shopcustomerlist";
+     }
+     @RequestMapping(value="/shopstockupdation",method = RequestMethod.GET)
+     public String shopstockupdation(){
+         return "shopstockupdation";
+     }
 }
