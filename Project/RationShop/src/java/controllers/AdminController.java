@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    
+    @RequestMapping(value="/adminhome",method = RequestMethod.GET)
+     public String adminHome(){
+         return "adminhome";
+     }
     @RequestMapping(value="/shopownerregister",method = RequestMethod.GET)
      public String test(){
          return "register";

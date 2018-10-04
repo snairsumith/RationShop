@@ -7,6 +7,7 @@ package controllers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import org.springframework.stereotype.Controller;
@@ -22,24 +23,48 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/adminapi")
 public class AdminAPIController {
+    
+    @RequestMapping(value="/adminlogin",method = RequestMethod.GET)
+    @ResponseBody
+    public String AdminLogin(
+                    @RequestParam("username") String username,
+                    @RequestParam("password") String password
+                    ) throws ClassNotFoundException, SQLException{
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con=(Connection) DriverManager.getConnection(  
+            "jdbc:mysql://localhost:3306/rationshop","root","");
+        String sql="select * from login where username='"+username+"' and password ='"+password+"' and role=1";
+        Statement st=con.createStatement();
+        ResultSet rs=st.executeQuery(sql);
+        if(rs.next()){
+            return "sucess";
+        }else{
+            return "fail";
+        }
+        
+        
+       
+        
+        
+    }
     @RequestMapping(value="/additem",method = RequestMethod.GET)
     @ResponseBody
-   
     public String insertdata(
-            @RequestParam("name") String Name,
-            @RequestParam("age") String Age,
-            @RequestParam("cls") String clss ) 
+            @RequestParam("itemname") String itmName,
+            @RequestParam("itemdesc") String desc,
+            @RequestParam("itemprice") int price,
+            @RequestParam("itemquantity") int quty) 
             throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con=(Connection) DriverManager.getConnection(  
-            "jdbc:mysql://localhost:3306/mydb","root","");
+            "jdbc:mysql://localhost:3306/rationshop","root","");
         Statement st=con.createStatement();
-        String sql="insert into newtbl(Name,age,cls)values('sumith','"+Age+"','"+clss+"')";
+        String sql="INSERT INTO `item` (`ItemName`, `ItemDescription`, `IteamPrice`, `ItemQuantity`, `ItemStatus`) VALUES ('"+itmName+"', '"+desc+"', "+price+", "+quty+", '1');";
         int  i= st.executeUpdate(sql);
         if(i>0){
-            return "sucess";
+            return "1";
         }else{
-            return "faill";
+            return "2";
         }
     }
             
