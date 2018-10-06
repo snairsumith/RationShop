@@ -17,8 +17,15 @@ function login(){
     
     var url=baseurl+"/adminlogin?username="+username+"&password="+password;
     $.ajax({url: url, success: function(result){
-        if(result=="sucess"){
-            window.location.href="/RationShop/admin/adminhome";
+        if(result!="fail"){
+            if(result==1){
+                 window.location.href="/RationShop/admin/adminhome";
+            }else if(result==2){
+                window.location.href="/RationShop/shopowner/shopowner";
+            }else if(result==3){
+                window.location.href="/RationShop/customer/customermyprofile";
+            }
+           
         }else{
             alert("Incorrect username and passwor");
         }

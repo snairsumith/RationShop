@@ -20,7 +20,7 @@
                             <div class="panel">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">Feedbacks</h4>
-                                    <p>Enter Your Feedbacks Here</p>
+                                    <p>View Your Feedbacks Here</p>
                                 </div>
                                 <div class="panel-body">
                                     <div class="table-responsive">

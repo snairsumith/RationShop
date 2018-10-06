@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/adminapi")
 public class AdminAPIController {
     
-    @RequestMapping(value="/adminlogin",method = RequestMethod.GET)
+    @RequestMapping(value="/commonlogin",method = RequestMethod.GET)
     @ResponseBody
     public String AdminLogin(
                     @RequestParam("username") String username,
@@ -33,11 +33,11 @@ public class AdminAPIController {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con=(Connection) DriverManager.getConnection(  
             "jdbc:mysql://localhost:3306/rationshop","root","");
-        String sql="select * from login where username='"+username+"' and password ='"+password+"' and role=1";
+        String sql="select * from login where username='"+username+"' and password ='"+password+"'";
         Statement st=con.createStatement();
         ResultSet rs=st.executeQuery(sql);
         if(rs.next()){
-            return "sucess";
+            return rs.getString("Role");
         }else{
             return "fail";
         }

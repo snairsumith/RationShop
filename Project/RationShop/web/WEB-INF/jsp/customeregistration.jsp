@@ -4,25 +4,7 @@
     Author     : Sumith
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Customer</title>
-
-    <spring:url value="/resources/css/quirk.css" var="rationCss" />
-    <spring:url value="/resources/lib/modernizr/modernizr.js" var="rationJS"/>
-    <spring:url value="/resources/lib/modernizr/modernizr.js" var="rationJS"/>
-    <link href="${rationCss}" rel="stylesheet" />
-    <script src="${rationJS}"></script>
-
-
-</head>
-<body>
     <div class="mainpanel">
 
         <div class="contentpanel">

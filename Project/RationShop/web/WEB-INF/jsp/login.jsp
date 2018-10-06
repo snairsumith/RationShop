@@ -43,7 +43,7 @@
   <div class="panel signin">
     <div class="panel-heading">
       <h1>E-Ration Shop</h1>
-      <h4 class="panel-title">Welcome! Please signin.</h4>
+      <h4 class="panel-title">Welcome! Please Sign in.</h4>
     </div>
     
       <form>
