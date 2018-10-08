@@ -23,7 +23,7 @@ public class AdminController {
      }
     @RequestMapping(value="/shopownerregister",method = RequestMethod.GET)
      public String test(){
-         return "register";
+         return "shopownerregister";
      }
      
     @RequestMapping(value="/quotasetting",method = RequestMethod.GET)

@@ -32,7 +32,7 @@ public class AdminAPIController {
                     ) throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
         Connection con=(Connection) DriverManager.getConnection(  
-            "jdbc:mysql://localhost:3306/rationshop","root","");
+            "jdbc:mysql://localhost:3306/rationdb","root","");
         String sql="select * from login where username='"+username+"' and password ='"+password+"'";
         Statement st=con.createStatement();
         ResultSet rs=st.executeQuery(sql);
@@ -57,7 +57,7 @@ public class AdminAPIController {
             throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con=(Connection) DriverManager.getConnection(  
-            "jdbc:mysql://localhost:3306/rationshop","root","");
+            "jdbc:mysql://localhost:3306/rationdb","root","");
         Statement st=con.createStatement();
         String sql="INSERT INTO `item` (`ItemName`, `ItemDescription`, `IteamPrice`, `ItemQuantity`, `ItemStatus`) VALUES ('"+itmName+"', '"+desc+"', "+price+", "+quty+", '1');";
         int  i= st.executeUpdate(sql);
@@ -68,13 +68,28 @@ public class AdminAPIController {
         }
     }
             
-     public String additem(){
-         return "HI";
-     }
-      @RequestMapping(value="/addsuppliers",method = RequestMethod.GET)
-      @ResponseBody
-     public String addsuppliers(){
-         return "H";
+    
+     @RequestMapping(value="/shopowner_reg",method = RequestMethod.GET)
+     @ResponseBody
+     public String addsuppliers(@RequestParam("name") String name,
+            @RequestParam("password") String password,
+            @RequestParam("address") String address,
+            @RequestParam("dob") String dob,
+            @RequestParam("email") String email,
+            @RequestParam("contactno") String contactno,
+            @RequestParam("gender") String gender,
+            @RequestParam("status") String status) throws ClassNotFoundException, SQLException{
+         Class.forName("com.mysql.jdbc.Driver");
+        Connection con=(Connection) DriverManager.getConnection(  
+            "jdbc:mysql://localhost:3306/rationdb","root","");
+        Statement st=con.createStatement();
+        String sql="INSERT INTO `shopownerregistration` (`Password`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`, `Status`) VALUES ( '"+password+"', '"+name+"', '"+address+"', '"+dob+"', '"+gender+"', '"+contactno+"', '"+email+"', '"+status+"');";
+        int  i= st.executeUpdate(sql);
+        if(i>0){
+            return "1";
+        }else{
+            return "0";
+        }
      }
      @RequestMapping(value="/allowdedquota",method = RequestMethod.GET)
      @ResponseBody

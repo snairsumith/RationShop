@@ -15,14 +15,14 @@ function login(){
     }else{
         
     
-    var url=baseurl+"/adminlogin?username="+username+"&password="+password;
+    var url=baseurl+"/commonlogin?username="+username+"&password="+password;
     $.ajax({url: url, success: function(result){
         if(result!="fail"){
-            if(result==1){
+            if(result==2){
                  window.location.href="/RationShop/admin/adminhome";
-            }else if(result==2){
-                window.location.href="/RationShop/shopowner/shopowner";
             }else if(result==3){
+                window.location.href="/RationShop/shopowner/shopowner";
+            }else if(result==1){
                 window.location.href="/RationShop/customer/customermyprofile";
             }
            
@@ -45,6 +45,26 @@ function addItem(){
     $.ajax({url: url, success: function(result){
         if(result=="1"){
             alert("Item added sucessfully ")
+            window.location.reload()
+        }else{
+            alert("Error occoured.Please try again after some time ");
+        }
+    }});
+}
+
+function shopowner_reg(){
+    var name=$("#txtShopOwnerName").val();
+    var password=$("#txtPassword").val();
+    var address=$("#txtShopOwnerAddress").val();
+    var dob=$("#txtShopOwnerDOB").val();
+    var email=$("#txtShopOwnerEmailId").val();
+    var contactno=$("#txtShopOwnerContact").val();
+    var gender=$("#rdgender").val();
+    var status=$("#cmdSatus").val();
+    var url=baseurl+"/shopowner_reg?name="+name+"&password="+password+"&address="+address+"&dob="+dob+"&email="+email+"&contactno="+contactno+"&gender="+gender+"&status="+status;
+    $.ajax({url: url, success: function(result){
+        if(result=="1"){
+            alert("Shop owner added sucessfully ")
             window.location.reload()
         }else{
             alert("Error occoured.Please try again after some time ");
