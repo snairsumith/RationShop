@@ -84,6 +84,8 @@ public class AdminAPIController {
             "jdbc:mysql://localhost:3306/rationdb","root","");
         Statement st=con.createStatement();
         String sql="INSERT INTO `shopownerregistration` (`Password`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`, `Status`) VALUES ( '"+password+"', '"+name+"', '"+address+"', '"+dob+"', '"+gender+"', '"+contactno+"', '"+email+"', '"+status+"');";
+        String sql1="insert into login(UserName,Password,Role)values('"+email+"','"+password+"','3')";
+        int j=  st.executeUpdate(sql1);
         int  i= st.executeUpdate(sql);
         if(i>0){
             return "1";

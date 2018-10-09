@@ -28,12 +28,7 @@
                                     <div class="form-group">
                                         <input type="text" placeholder="Enter Item Description" id="txtItemDescription" class="form-control" />
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" placeholder="Enter Item Price" id="txtItemPrice" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" placeholder="Enter Item Quantity" id="txtItemQuantity" class="form-control" />
-                                    </div>
+                                    
                                     <div class="row">
                                         <div class="col-sm-9 col-sm-offset-3">
                                             <button class="btn btn-success btn-quirk btn-wide mr5" onclick="addItem()" type="button">Submit</button>

@@ -21,7 +21,7 @@ function login(){
             if(result==2){
                  window.location.href="/RationShop/admin/adminhome";
             }else if(result==3){
-                window.location.href="/RationShop/shopowner/shopowner";
+                window.location.href="/RationShop/shopowner/shophome";
             }else if(result==1){
                 window.location.href="/RationShop/customer/customermyprofile";
             }

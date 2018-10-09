@@ -1,4 +1,4 @@
-<d<div class="leftpanel">
+<div class="leftpanel">
     <div class="leftpanelinner">
 
         <!-- ################## LEFT PANEL PROFILE ################## -->

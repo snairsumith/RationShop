@@ -24,6 +24,9 @@
                                 <input type="Password" placeholder="Enter Password Here" id="txtPassword" class="form-control" />
                             </div>
                             <div class="form-group">
+                                 <div class="form-group">
+                                <input type="number" placeholder="Enter Shop Owner ARD Number" id="txtShopOwnerContact" class="form-control" />
+                            </div>
                                 <input type="textarea" placeholder="Enter Shop Owner Address" id="txtShopOwnerAddress" class="form-control" />
                             </div>
                             <div class="form-group">
@@ -35,14 +38,22 @@
                             <div class="form-group">
                                 <input type="number" placeholder="Enter Shop Owner Contact" id="txtShopOwnerContact" class="form-control" />
                             </div>
+                             <div class="form-group">
+                                <input type="number" placeholder="Enter Pin Code" id="txtShopOwnerpincode" class="form-control" />
+                            </div>
+                             <div class="form-group">
+                                <input type="text" placeholder="Enter Shop Owner District" id="txtShopOwnerdistrict" class="form-control" />
+                            </div>
+                             <div class="form-group">
+                                <input type="text" placeholder="Enter Shop Owner Location" id="txtShopOwnerlocation" class="form-control" />
+                            </div>
+                             <div class="form-group">
+                                <input type="text" placeholder="Enter Shop Owner State" id="txtShopOwnerstate" class="form-control" />
+                            </div>
+                            
                             <div class="form-group">
                                 <label class="col-md-2 control-label nopaddingtop">Status <span class="text-danger">*</span></label>
-                                <div class="col-md-2">
-                                    <select class="form-control"  id="cmdSatus">
-                                        <option value="1">Verified</option>
-                                        <option value="0">Not Verified</option>
-                                    </select>
-                                </div>
+                                
                                
 
                             </div>

@@ -50,10 +50,7 @@
                                             <a href="myprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
                     
                                         </li>-->
-                    <li >
-                        <a href="customerregistration"><i class="fa fa-check-square"></i> <span>Registration</span></a>
-
-                    </li>
+                   
                     <li >
                         <a href="customermyprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
 
