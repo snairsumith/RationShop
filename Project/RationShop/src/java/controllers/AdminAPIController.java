@@ -78,12 +78,14 @@ public class AdminAPIController {
             @RequestParam("email") String email,
             @RequestParam("contactno") String contactno,
             @RequestParam("gender") String gender,
-            @RequestParam("status") String status) throws ClassNotFoundException, SQLException{
+            @RequestParam("ardNo") String ardno,
+            @RequestParam("location")String location,
+            @RequestParam("pincode")String pincode) throws ClassNotFoundException, SQLException{
          Class.forName("com.mysql.jdbc.Driver");
         Connection con=(Connection) DriverManager.getConnection(  
             "jdbc:mysql://localhost:3306/rationdb","root","");
         Statement st=con.createStatement();
-        String sql="INSERT INTO `shopownerregistration` (`Password`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`, `Status`) VALUES ( '"+password+"', '"+name+"', '"+address+"', '"+dob+"', '"+gender+"', '"+contactno+"', '"+email+"', '"+status+"');";
+        String sql="INSERT INTO `shopownerregistration` (ARDNumber,Location,`Password`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`,`PinCode`) VALUES ( '"+ardno+"','"+location+"','"+password+"', '"+name+"', '"+address+"', '"+dob+"', '"+gender+"', '"+contactno+"', '"+email+"','"+pincode+"');";
         String sql1="insert into login(UserName,Password,Role)values('"+email+"','"+password+"','3')";
         int j=  st.executeUpdate(sql1);
         int  i= st.executeUpdate(sql);

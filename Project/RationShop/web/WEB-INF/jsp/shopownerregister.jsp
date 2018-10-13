@@ -1,6 +1,6 @@
- <jsp:include page="inc/admin_top.jsp" /> 
-        <section>
-            <jsp:include page="inc/adminsidebar.jsp" />
+<jsp:include page="inc/admin_top.jsp" /> 
+<section>
+    <jsp:include page="inc/adminsidebar.jsp" />
     <div class="mainpanel">
 
         <div class="contentpanel">
@@ -18,67 +18,85 @@
                         <div class="panel-body">
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Shop Owner Name" id="txtShopOwnerName" class="form-control" />
+                                <label id="err_shopname" class="text-danger"></label> 
                             </div>
-                            
+
                             <div class="form-group">
                                 <input type="Password" placeholder="Enter Password Here" id="txtPassword" class="form-control" />
+                                <label id="err_shoppass" class="text-danger"></label>
                             </div>
                             <div class="form-group">
-                                 <div class="form-group">
-                                <input type="number" placeholder="Enter Shop Owner ARD Number" id="txtShopOwnerContact" class="form-control" />
-                            </div>
-                                <input type="textarea" placeholder="Enter Shop Owner Address" id="txtShopOwnerAddress" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <input type="date" placeholder="Enter Shop Owner Date Of Birth" id="txtShopOwnerDOB" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <input type="email" placeholder="Enter Shop Owner Email Id" id="txtShopOwnerEmailId" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <input type="number" placeholder="Enter Shop Owner Contact" id="txtShopOwnerContact" class="form-control" />
-                            </div>
-                             <div class="form-group">
-                                <input type="number" placeholder="Enter Pin Code" id="txtShopOwnerpincode" class="form-control" />
-                            </div>
-                             <div class="form-group">
-                                <input type="text" placeholder="Enter Shop Owner District" id="txtShopOwnerdistrict" class="form-control" />
-                            </div>
-                             <div class="form-group">
-                                <input type="text" placeholder="Enter Shop Owner Location" id="txtShopOwnerlocation" class="form-control" />
-                            </div>
-                             <div class="form-group">
-                                <input type="text" placeholder="Enter Shop Owner State" id="txtShopOwnerstate" class="form-control" />
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="col-md-2 control-label nopaddingtop">Status <span class="text-danger">*</span></label>
-                                
-                               
+                                <div class="form-group">
+                                    <input type="number" placeholder="Enter Shop Owner ARD Number" id="txtShopOwnerard" class="form-control" />
+                                    <label id="err_shopard" class="text-danger"></label>
+                                </div>
+                                <div class="form-group">
+
+                                    <select id="txtShopOwnerstate" class="form-control">
+                                        <option>Kerala</option>
+                                        <option>Karnataka</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+
+                                    <select id="txtShopOwnerdistrict" class="form-control">
+                                        <option>Ernakulam</option>
+                                        <option>Thrissur</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <select id="txtShopOwnerlocation" class="form-control">
+                                        <option>Pazhamthottam</option>
+                                        <option>Kadayiruppu</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <input type="textarea" placeholder="Enter Shop Owner Address" id="txtShopOwnerAddress" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" placeholder="Enter Shop Owner Date Of Birth" id="txtShopOwnerDOB" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" placeholder="Enter Shop Owner Contact" id="txtShopOwnercontact" class="form-control" />
+                                    <label id="err_shopcontact" class="text-danger"></label>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" placeholder="Enter Shop Owner Email Id" id="txtShopOwnerEmailId" class="form-control" />
+                                    <label id="err_shopemail" class="text-danger"></label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="number" placeholder="Enter Pin Code" id="txtShopOwnerpincode" class="form-control" />
+                                    <label id="err_shoppin" class="text-danger"></label>
+
+                                </div>
 
                             </div>
                             <br/><br/>
                             <div class="form-group ">
-                                    <label class="col-md-2 control-label nopaddingtop">Gender <span class="text-danger">*</span></label>
-                                    <div class="col-md-2">
-                                        <label class="radiobox ">
-                                            <input id="rdgender" type="radio" name="gender" value="Male" required>
-                                            <span>Male</span>
-                                        </label>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="radiobox">
-                                            <input id="rdgender" type="radio" name="gender" value="Female">
-                                            <span>Female</span>
-                                        </label>
-
-                                    </div>
+                                <label class="col-md-2 control-label nopaddingtop">Gender <span class="text-danger">*</span></label>
+                                <div class="col-md-2">
+                                    <label class="radiobox ">
+                                        <input id="rdgender" type="radio" name="gender" value="Male" required>
+                                        <span>Male</span>
+                                    </label>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="radiobox">
+                                        <input id="rdgender" type="radio" name="gender" value="Female">
+                                        <span>Female</span>
+                                    </label>
 
                                 </div>
-                            
-                           
 
-                            
+                            </div>
+
+
+
+
                             <div class="row">
                                 <div class="col-sm-9 col-sm-offset-3">
                                     <button class="btn btn-success btn-quirk btn-wide mr5" type="button" onclick="shopowner_reg()">Submit</button>
