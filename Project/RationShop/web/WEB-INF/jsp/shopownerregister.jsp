@@ -1,6 +1,6 @@
-<jsp:include page="inc/admin_top.jsp" /> 
-<section>
-    <jsp:include page="inc/adminsidebar.jsp" />
+ <jsp:include page="inc/admin_top.jsp" /> 
+        <section>
+            <jsp:include page="inc/adminsidebar.jsp" />
     <div class="mainpanel">
 
         <div class="contentpanel">

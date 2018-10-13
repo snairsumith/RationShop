@@ -51,13 +51,17 @@
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input type="text" class="form-control" placeholder="Enter Username" id="txtUsername">
+            
           </div>
+            <label id="err_uname" class="text-danger"></label>
         </div>
         <div class="form-group nomargin">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
             <input type="password"  class="form-control" placeholder="Enter Password" id="txtPassword">
+            
           </div>
+            <label id="err_pwd" class="text-danger"></label>
         </div>
         <div><a href="#" class="forgot">Forgot password?</a></div>
         <div class="form-group">

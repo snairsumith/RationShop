@@ -130,4 +130,28 @@ public class AdminAPIController {
      public String stockassign(){
          return "jhm";
      }
+         @RequestMapping(value = "/addsuppliers", method = RequestMethod.GET)
+    @ResponseBody
+    public String supplier(@RequestParam("name") String name,
+            @RequestParam("address") String address,
+            @RequestParam("email") String email,
+            @RequestParam("contact") String contact,
+            @RequestParam("state") String state
+    )
+            throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con = (Connection) DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/rationdb", "root", "");
+        Statement st = con.createStatement();
+        String sql = "insert into `supplier` ( `suppliername`, `supplieraddress`, `contact`, `emailid`,`supplierstate`) VALUES ( '" + name + "', '" + address + "','" + contact + "', '" + email + "', '" + state + "');";
+
+        int j = st.executeUpdate(sql);
+       // int i = st.executeUpdate(sql);
+        if (j > 0) {
+            return "1";
+        } else {
+            return "0";
+        }
+    }
 }
+
