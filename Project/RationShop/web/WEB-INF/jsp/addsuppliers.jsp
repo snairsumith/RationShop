@@ -35,7 +35,7 @@
                                         <input type="text" placeholder="Enter Supplier State" id="txtSupplierState" class="form-control" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" placeholder="Enter Supplier Email-Id" id="txtSupplierEmailId" class="form-control" />
+                                         <input type="text" placeholder="Enter Supplier Email-Id" id="txtSupplierEmailId" class="form-control" />
                                          <label id="err_email" class="text-danger"></label>
                                     </div>
                                     <div class="form-group">
