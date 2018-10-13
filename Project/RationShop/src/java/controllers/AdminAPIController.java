@@ -96,7 +96,7 @@ public class AdminAPIController {
      @RequestMapping(value="/allowdedquota",method = RequestMethod.GET)
      @ResponseBody
      public String allowdedquota(){
-         return "kj";
+         return "kjsd";
      }
       @RequestMapping(value="/myprofile",method = RequestMethod.GET)
       @ResponseBody
