@@ -40,10 +40,10 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Gothambu</td>
-                                                    <td>Good Quality</td>
-                                                    <td>120</td>
-                                                    <td>45</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
 
                                                 </tr>
                                             </tbody>

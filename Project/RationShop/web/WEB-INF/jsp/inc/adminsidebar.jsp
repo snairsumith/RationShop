@@ -18,7 +18,7 @@
         <div class="leftpanel-userinfo collapse" id="loguserinfo">
             <h5 class="sidebar-title">Address</h5>
             <address>
-                4975 Cambridge Road
+                 4975 Cambridge Road
                 Miami Gardens, FL 33056
             </address>
             <h5 class="sidebar-title">Contact</h5>

@@ -30,10 +30,11 @@
 
                                                     <th>Suppliers Name</th>
                                                     <th>Suppliers Address</th>
-                                                    <th>Suppliers City</th>
                                                     <th>Suppliers State</th>
-                                                    <th>Suppliers Email-Id</th>
+                                                    <th>Suppliers City</th>
                                                     <th>Suppliers Contact</th>
+                                                    <th>Suppliers Email-Id</th>
+                                                    
 
 
 
@@ -42,12 +43,12 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Jaimon</td>
-                                                    <td>hjki</td>
-                                                    <td>mattakus</td>
-                                                    <td>hjk</td>
-                                                    <td>45</td>
-                                                    <td>45</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
 
 
                                                 </tr>

@@ -36,9 +36,9 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Sugar</td>
-                                                    <td>2kg</td>
-                                                    <td>2</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
 
 
 

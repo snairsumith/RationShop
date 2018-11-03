@@ -85,7 +85,7 @@ public class AdminAPIController {
         Connection con=(Connection) DriverManager.getConnection(  
             "jdbc:mysql://localhost:3306/rationdb","root","");
         Statement st=con.createStatement();
-        String sql="INSERT INTO `shopownerregistration` (ARDNumber,Location,`Password`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`,`PinCode`) VALUES ( '"+ardno+"','"+location+"','"+password+"', '"+name+"', '"+address+"', '"+dob+"', '"+gender+"', '"+contactno+"', '"+email+"','"+pincode+"');";
+        String sql="INSERT INTO `shopownerregistration` (ARDNumber,Locationid,`Password`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`,`PinCode`) VALUES ( '"+ardno+"','"+location+"','"+password+"', '"+name+"', '"+address+"', '"+dob+"', '"+gender+"', '"+contactno+"', '"+email+"','"+pincode+"');";
         String sql1="insert into login(UserName,Password,Role)values('"+email+"','"+password+"','3')";
         int j=  st.executeUpdate(sql1);
         int  i= st.executeUpdate(sql);
@@ -130,7 +130,7 @@ public class AdminAPIController {
      public String stockassign(){
          return "jhm";
      }
-         @RequestMapping(value = "/addsuppliers", method = RequestMethod.GET)
+    @RequestMapping(value = "/addsuppliers", method = RequestMethod.GET)
     @ResponseBody
     public String supplier(@RequestParam("name") String name,
             @RequestParam("address") String address,

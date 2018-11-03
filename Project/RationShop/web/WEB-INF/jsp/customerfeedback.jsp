@@ -40,10 +40,10 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>HAri</td>
-                                                    <td>gggk</td>
-                                                    <td>ajsggjag</td>
-                                                    <td>45</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
 
                                                 </tr>
                                             </tbody>

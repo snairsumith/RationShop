@@ -13,13 +13,13 @@
         <div class="contentpanel">
             <ol class="breadcrumb breadcrumb-quirk">
                 <li><a href="index-2.html"><i class="fa fa-home mr5"></i> Home</a></li>
-                <li class="active">Ration Allotment</li>
+                <li class="active">Quota Setting</li>
             </ol>
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Ration Allotment</h4>
+                            <h4 class="panel-title">Quota Setting</h4>
                             <p>Quota Details </p>
                         </div>
                         <div class="panel-body">

@@ -1,6 +1,6 @@
- <jsp:include page="inc/admin_top.jsp" /> 
-        <section>
-            <jsp:include page="inc/adminsidebar.jsp" />
+<jsp:include page="inc/admin_top.jsp" /> 
+<section>
+    <jsp:include page="inc/adminsidebar.jsp" />
     <div class="mainpanel">
 
         <div class="contentpanel">
@@ -33,22 +33,22 @@
                                 <div class="form-group">
 
                                     <select id="txtShopOwnerstate" class="form-control">
-                                        <option>Kerala</option>
-                                        <option>Karnataka</option>
+                                        <option>Select State</option>
+
                                     </select>
                                 </div>
                                 <div class="form-group">
 
                                     <select id="txtShopOwnerdistrict" class="form-control">
-                                        <option>Ernakulam</option>
-                                        <option>Thrissur</option>
+                                        <option>Select District</option>
+
                                     </select>
 
                                 </div>
                                 <div class="form-group">
                                     <select id="txtShopOwnerlocation" class="form-control">
-                                        <option>Pazhamthottam</option>
-                                        <option>Kadayiruppu</option>
+                                        <option>Select Location</option>
+
                                     </select>
                                 </div>
 
@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <input type="number" placeholder="Enter Shop Owner Contact" id="txtShopOwnercontact" class="form-control" />
                                     <label id="err_shopcontact" class="text-danger"></label>
-                                    
+
                                 </div>
                                 <div class="form-group">
                                     <input type="email" placeholder="Enter Shop Owner Email Id" id="txtShopOwnerEmailId" class="form-control" />

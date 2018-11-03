@@ -60,10 +60,10 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>Jaimon</td>
-                                                        <td>hjki</td>
-                                                        <td>500</td>
-                                                        <td>456</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
 
 
                                                     </tr>

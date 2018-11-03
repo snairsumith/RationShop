@@ -32,33 +32,37 @@
                                             <th>Name</th>
                                             <th>ARD Number</th>
 
-                                            <th>DOB</th>
-                                            <th>E-mail</th>
                                             <th>State</th>
                                             <th>District</th>
                                             <th>Panchayath</th>
-                                            <th>Pin Code</th>
                                             <th>Location</th>
+                                            <th>Pin Code</th>
 
 
-                                            <th class="text-center">Address</th>
-                                            <th class="text-right">Gender</th>
-                                            <th class="text-right">Contact</th>
+
+
+                                            <th> Address</th>
+                                            <th>DOB</th>
+                                            <th>Gender</th>
+                                            <th>Contact</th>
+
+                                            <th>E-mail</th>
+
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>HAri</td>
+                                            <td></td>
 
-                                            <td>gggk</td>
-                                            <td>HAri</td>
-                                            <td>HAri</td>
-                                            <td>ajsggjag</td>
-                                            <td>45</td>
-                                            <td>52</td>
-                                            <td>682308</td>
-                                            <td>sadkg</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
 
                                         </tr>
                                     </tbody>

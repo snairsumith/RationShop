@@ -39,10 +39,10 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>sugar</td>
-                                                    <td>50</td>
-                                                    <td>2kg</td>
-                                                    <td>asdfg</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
 
                                                 </tr>
                                             </tbody>

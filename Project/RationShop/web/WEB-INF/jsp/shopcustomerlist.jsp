@@ -44,13 +44,13 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>HAri</td>
-                                                    <td>gggk</td>
-                                                    <td>ajsggjag</td>
-                                                    <td>45</td>
-                                                    <td>52</td>
-                                                    <td>sadkg</td>
-                                                    <td>sadkg</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
 
 
                                                 </tr>
