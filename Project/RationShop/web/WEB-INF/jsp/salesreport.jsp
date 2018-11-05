@@ -20,7 +20,7 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <h4 class="panel-title">Sales Report</h4>
-                            <p>View Your Sales Report Here</p>
+                            <p>View Reports Here</p>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
@@ -40,7 +40,10 @@
 
                                                 <th>Sales Id</th>
                                                 <th>Sales Date</th>
-                                                <th>Suppliers Name</th>
+                                                <th>Location</th>
+                                                <th>Shop</th>
+
+                                                <th>Owner </th>
                                                 <th>Amount</th>
 
 
@@ -54,6 +57,9 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
+                                                <td></td>
+                                                <td></td>
+
 
 
                                             </tr>

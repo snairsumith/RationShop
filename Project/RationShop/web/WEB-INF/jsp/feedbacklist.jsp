@@ -27,7 +27,7 @@
                                 <table class="table nomargin">
                                     <thead>
                                         <tr>
-
+                                            <th>Category</th>
                                             <th>Name</th>
                                             <th>Address</th>
                                             <th>Title</th>
@@ -35,10 +35,12 @@
                                             <th>Date</th>
 
 
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>

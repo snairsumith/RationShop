@@ -19,7 +19,7 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <h4 class="panel-title">Stock Report</h4>
-                            <p>View Your Stock Report Here</p>
+                            <p>View Reports Here</p>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
@@ -40,11 +40,11 @@
                                                 <th>Item Id</th>
                                                 <th>Item Name</th>
                                                 <th>Quantity</th>
-                                                <th>Amount</th>
 
 
 
-                                                <th></th>
+
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -52,7 +52,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td></td>
+
 
 
                                             </tr>

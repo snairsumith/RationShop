@@ -48,6 +48,11 @@ public class ShopownerAPIController {
      public String report(){
          return "Are";
      }
+     @RequestMapping(value="/customeregistration",method = RequestMethod.GET)
+     @ResponseBody
+     public String registration(){
+         return "How";
+     }
      @RequestMapping(value="/customerwisereport",method = RequestMethod.GET)
      @ResponseBody
      public String customer(){

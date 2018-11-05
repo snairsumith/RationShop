@@ -36,9 +36,11 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="text" placeholder="Enter Email-Id" id="txtEmailId" class="form-control" />
+                                        <label id="err_email" class="text-danger"></label>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" placeholder="Enter Contact" id="txtContact" class="form-control" />
+                                        <label id="err_contact" class="text-danger"></label>
                                     </div>
                                     <div class="row">
                                         <div class="form-group ">
@@ -66,7 +68,7 @@
 
                             <div class="row">
                                 <div class="col-sm-9 col-sm-offset-3">
-                                    <button class="btn btn-success btn-quirk btn-wide mr5">Submit</button>
+                                    <button class="btn btn-success btn-quirk btn-wide mr5" onclick="shopownermyprofiles()">Submit</button>
                                     <button type="reset" class="btn btn-quirk btn-wide btn-default">Reset</button>
                                 </div>
                             </div>

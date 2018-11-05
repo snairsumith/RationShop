@@ -19,6 +19,7 @@
                         <div class="col-md-12">
                             <div class="panel">
                                 <div class="panel-heading">
+                                    <a href="additem" class="btn btn-primary pull-right">Add New</a>
                                     <h4 class="panel-title">Item Details</h4>
                                     <p>View Your Items Here</p>
                                 </div>

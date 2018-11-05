@@ -19,6 +19,7 @@
                         <div class="col-md-12">
                             <div class="panel">
                                 <div class="panel-heading">
+                                    <a href="addsuppliers" class="btn btn-primary pull-right">Add New</a>
                                     <h4 class="panel-title">Suppliers Details</h4>
                                     <p>View Your Suppliers Here</p>
                                 </div>

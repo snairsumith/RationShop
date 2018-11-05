@@ -100,7 +100,7 @@ function addsuppliers() {
     var email = $("#txtSupplierEmailId").val();
     var contact = $("#txtSupplierContact").val();
     if (!emailValidation(email)) {
-        $("#err_email").text("email not valid required");
+        $("#err_email").text("Required Valid Email");
         isValid = false;
     } else {
         $("#err_email").text("");
@@ -108,7 +108,7 @@ function addsuppliers() {
     }
 
     if (contact.length < 10 || contact.length > 11) {
-        $("#err_contact").text("contact not valid");
+        $("#err_contact").text("Required Valid Contact");
         isValid = false;
     } else {
         $("#err_contact").text("");
@@ -229,7 +229,7 @@ function cust_reg() {
     }
 
     if (!emailValidation(email)) {
-        $("#err_email").text("Required valid Email");
+        $("#err_email").text("Required valid Email ");
         isValid = false;
     } else {
         $("#err_email").text("");
@@ -255,4 +255,27 @@ function emailValidation(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
 }
+function shopownermyprofiles() {
+    var name = $("#txtName").val();
+    var address = $("#txtAddress").val();
+  
+    var email = $("#txtEmailId").val();
+    var contact = $("#txtContact").val();
+    if (!emailValidation(email)) {
+        $("#err_email").text("Required Valid Email");
+        isValid = false;
+    } else {
+        $("#err_email").text("");
+        isValid = true;
+    }
 
+    if (contact.length < 10 || contact.length > 11) {
+        $("#err_contact").text("Required Valid Contact");
+        isValid = false;
+    } else {
+        $("#err_contact").text("");
+        isValid = true;
+    }
+    
+    }
+    

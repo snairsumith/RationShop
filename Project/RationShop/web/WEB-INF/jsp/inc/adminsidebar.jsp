@@ -50,19 +50,8 @@
                         <a href="myprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
 
                     </li>-->
-                    <li >
-                        <a href="additem"><i class="fa fa-check-square"></i> <span>Add Item</span></a>
-
-                    </li>
-                    <li >
-                        <a href="shopownerregister"><i class="fa fa-check-square"></i> <span>Shop Owner Register</span></a>
-
-                    </li>
-                    <li >
-                        <a href="addsuppliers"><i class="fa fa-check-square"></i> <span>Add Suppliers</span></a>
-
-                    </li>
-
+                    
+                   
                     <li >
                         <a href="quotalist"><i class="fa fa-check-square"></i> <span>Ration Allotment</span></a>
 
@@ -111,11 +100,7 @@
                         <a href="stockreport"><i class="fa fa-check-square"></i> <span>Stock Report</span></a>
 
                     </li>
-                    <li >
-                        <a href="quotasetting"><i class="fa fa-check-square"></i> <span>Quota Setting</span></a>
-
-                    </li>
-
+                    
                 </ul>
             </div><!-- tab-pane -->
 

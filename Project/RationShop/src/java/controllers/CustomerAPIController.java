@@ -39,11 +39,7 @@ public class CustomerAPIController {
      public String profile(){
          return "Hai";
      }
-     @RequestMapping(value="/customeregistration",method = RequestMethod.GET)
-     @ResponseBody
-     public String registration(){
-         return "How";
-     }
+     
      @RequestMapping(value="/customernotification",method = RequestMethod.GET)
      @ResponseBody
      public String notification(){

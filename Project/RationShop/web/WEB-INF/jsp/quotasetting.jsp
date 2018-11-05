@@ -38,12 +38,19 @@
                                     <label class="error" for="Category"></label>
                                 </div>
                             </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Item" id="txtItem" class="form-control" />
+                            </div>
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Quantity" id="txtQuantity" class="form-control" />
                             </div>
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Rate" id="txtRate" class="form-control" />
                             </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Date" id="txtDate" class="form-control" />
+                            
                             <div class="row">
                                 <div class="col-sm-9 col-sm-offset-3">
                                     <button class="btn btn-success btn-quirk btn-wide mr5">Submit</button>

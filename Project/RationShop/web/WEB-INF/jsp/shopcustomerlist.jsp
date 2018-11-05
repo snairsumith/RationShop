@@ -15,16 +15,17 @@
                         <li><a href="index-2.html"><i class="fa fa-home mr5"></i> Home</a></li>
                         <li class="active">List Of Customers</li>
                     </ol>
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel">
                                 <div class="panel-heading">
+                                     <a href="customeregistration" class="btn btn-primary pull-right">Add New</a>
                                     <h4 class="panel-title">Shop Owners</h4>
                                     <p>List The Customers Here</p>
                                 </div>
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table nomargin">
                                             <thead>
                                                 <tr>
 

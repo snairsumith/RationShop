@@ -19,6 +19,7 @@
                 <div class="col-md-12">
                     <div class="panel">
                         <div class="panel-heading">
+                            <a href="quotasetting" class="btn btn-primary pull-right">Add New</a>
                             <h4 class="panel-title">Quota List</h4>
                             <p>View Your Quota Here</p>
                         </div>

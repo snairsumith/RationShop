@@ -14,7 +14,7 @@
                             <div class="panel">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">Alloted Quota</h4>
-                                    <p>View Your Quota Here</p>
+                                    <p>View Your Allotments Here</p>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" placeholder="Select Month" id="txtMonth" class="form-control" />

@@ -16,12 +16,17 @@
                 <li><a href="index-2.html"><i class="fa fa-home mr5"></i> Home</a></li>
                 <li class="active">List Of Shop Owners</li>
             </ol>
+           
             <div class="row">
                 <div class="col-md-12">
+                     
                     <div class="panel">
+                        
                         <div class="panel-heading">
+                            <a href="shopownerregister" class="btn btn-primary pull-right">Add New</a>
                             <h4 class="panel-title">Shop Owners</h4>
-                            <p>List The Shop Owners Here</p>
+                            <p>List Of Owners </p>
+                            
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">

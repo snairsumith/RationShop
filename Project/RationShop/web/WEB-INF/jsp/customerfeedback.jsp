@@ -28,20 +28,18 @@
                                             <thead>
                                                 <tr>
 
-                                                    <th>Name</th>
-                                                    <th>Address</th>
+                                                   
                                                     <th>Title</th>
                                                     <th>Description</th>
 
                                                     <th>Date</th>
 
-                                                    <th></th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td></td>
-                                                    <td></td>
+                                                   <td></td>
                                                     <td></td>
                                                     <td></td>
 

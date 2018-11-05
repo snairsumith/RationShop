@@ -50,6 +50,8 @@
                                             <a href="myprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
                     
                                         </li>-->
+                   
+                    
                     <li >
                         <a href="allowdedquota"><i class="fa fa-check-square"></i> <span>Alloted Quota</span></a>
 
@@ -71,10 +73,7 @@
                         <a href="shopownerfeedback"><i class="fa fa-check-square"></i> <span>Feedbacks</span></a>
 
                     </li>
-                    <li >
-                        <a href="customerverification"><i class="fa fa-check-square"></i> <span>Customer Verification</span></a>
-
-                    </li>
+                    
                     <li >
                         <a href="shopownermyprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
 
@@ -90,16 +89,11 @@
                     <li >
                         <a href="shopcustomerlist"><i class="fa fa-check-square"></i> <span>Customer List</span></a>
 
-                    </li>
+                    
 
 
 
-
-                    <li >
-                        <a href="shopstockupdation"><i class="fa fa-check-square"></i> <span>Stock Updation</span></a>
-
-                    </li>
-                    <
+                   
                 </ul>
             </div><!-- tab-pane -->
 

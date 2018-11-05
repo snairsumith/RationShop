@@ -20,7 +20,7 @@
                             <div class="panel">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">Notifications</h4>
-                                    <p>View Your Notifications Here</p>
+                                    <p>View Notifications Here</p>
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group">
@@ -30,7 +30,11 @@
 
                                     <div class="form-group">
                                         <input type="text" placeholder="Enter Description" id="txtDescription" class="form-control" />
-                                    </div
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Date" id="txtDate" class="form-control" />
+                                    </div>
+                                    
                                     <div class="row">
                                         <div class="col-sm-9 col-sm-offset-3">
                                             <button class="btn btn-success btn-quirk btn-wide mr5">Submit</button>

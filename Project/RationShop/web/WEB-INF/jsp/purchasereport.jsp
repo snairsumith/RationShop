@@ -20,7 +20,7 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <h4 class="panel-title">Purchase Report</h4>
-                            <p>View Your Purchase Report Here</p>
+                            <p>View Reports Here</p>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">

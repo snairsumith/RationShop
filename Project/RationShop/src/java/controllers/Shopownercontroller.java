@@ -43,10 +43,7 @@ public class Shopownercontroller {
      public String shopownerfeedback(){
          return "shopownerfeedback";
 }
-       @RequestMapping(value="/customerverification",method = RequestMethod.GET)
-     public String customerverification(){
-         return "customerverification";
-     }
+      
        @RequestMapping(value="/shopownermyprofile",method = RequestMethod.GET)
      public String shopownermyprofile(){
          return "shopownermyprofile";
