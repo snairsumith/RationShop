@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import LiibraryFunction.DBFunctions;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,19 +24,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/adminapi")
 public class AdminAPIController {
-    
+    DBFunctions db=new DBFunctions();
     @RequestMapping(value="/commonlogin",method = RequestMethod.GET)
     @ResponseBody
     public String AdminLogin(
                     @RequestParam("username") String username,
                     @RequestParam("password") String password
                     ) throws ClassNotFoundException, SQLException{
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con=(Connection) DriverManager.getConnection(  
-            "jdbc:mysql://localhost:3306/rationdb","root","");
+       
         String sql="select * from login where username='"+username+"' and password ='"+password+"'";
-        Statement st=con.createStatement();
-        ResultSet rs=st.executeQuery(sql);
+       
+        ResultSet rs=db.SelectQuery(sql);
         if(rs.next()){
             return rs.getString("Role");
         }else{
@@ -55,12 +54,10 @@ public class AdminAPIController {
             @RequestParam("itemprice") int price,
             @RequestParam("itemquantity") int quty) 
             throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con=(Connection) DriverManager.getConnection(  
-            "jdbc:mysql://localhost:3306/rationdb","root","");
-        Statement st=con.createStatement();
+       
         String sql="INSERT INTO `item` (`ItemName`, `ItemDescription`, `IteamPrice`, `ItemQuantity`, `ItemStatus`) VALUES ('"+itmName+"', '"+desc+"', "+price+", "+quty+", '1');";
-        int  i= st.executeUpdate(sql);
+        
+        int  i= db.InsetQuery(sql);
         if(i>0){
             return "1";
         }else{
@@ -81,19 +78,29 @@ public class AdminAPIController {
             @RequestParam("ardNo") String ardno,
             @RequestParam("location")String location,
             @RequestParam("pincode")String pincode) throws ClassNotFoundException, SQLException{
-         Class.forName("com.mysql.jdbc.Driver");
-        Connection con=(Connection) DriverManager.getConnection(  
-            "jdbc:mysql://localhost:3306/rationdb","root","");
-        Statement st=con.createStatement();
+        
         String sql="INSERT INTO `shopownerregistration` (ARDNumber,Locationid,`Password`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`,`PinCode`) VALUES ( '"+ardno+"','"+location+"','"+password+"', '"+name+"', '"+address+"', '"+dob+"', '"+gender+"', '"+contactno+"', '"+email+"','"+pincode+"');";
         String sql1="insert into login(UserName,Password,Role)values('"+email+"','"+password+"','3')";
-        int j=  st.executeUpdate(sql1);
-        int  i= st.executeUpdate(sql);
+        
+        int j=  db.InsetQuery(sql1);
+        int  i= db.InsetQuery(sql);
         if(i>0){
             return "1";
         }else{
             return "0";
         }
+     }
+     @RequestMapping(value="/qutosettings",method = RequestMethod.GET)
+     @ResponseBody
+     public int qutosettings(
+            @RequestParam("categoryId") int categoryId,
+            @RequestParam("itemId") int itemId,
+            @RequestParam("itemQuantity") int itemQuantity,
+            @RequestParam("itemRate") int itemRate,
+            @RequestParam("date")String date) throws SQLException{
+         String sql="INSERT INTO `rationallotment` (`CategoryId`, `ItemId`, `Quantity`, `Rate`, `date`) VALUES ("+categoryId+", "+itemId+", "+itemQuantity+", "+itemRate+", '"+date+"')";
+         int i=db.InsetQuery(sql);
+         return i;
      }
      @RequestMapping(value="/allowdedquota",method = RequestMethod.GET)
      @ResponseBody

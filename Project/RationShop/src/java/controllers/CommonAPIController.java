@@ -12,30 +12,32 @@ import java.util.ArrayList;
 import java.util.List;
 import models.CategoryModel;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author MinusBugspc1
+ * @author minusbug
  */
 @Controller
-@RequestMapping("/common")
-public class CommonController {
-    @RequestMapping(method = RequestMethod.GET)
-    public String login(ModelMap modelMap) {
-        
-        return "login";
-    }
-     @RequestMapping(value="/shopownerregister",method = RequestMethod.GET)
-     public String test(){
-         return "register";
-     }
-     
+@RequestMapping("/commonApi")
+public class CommonAPIController {
 
-     
-    
-    
+    @RequestMapping(value = "/getallcategory", method = RequestMethod.GET)
+    public @ResponseBody
+    List<CategoryModel> getAllCategory() throws SQLException {
+        List<CategoryModel> cat = new ArrayList<CategoryModel>();
+        cat.add(new CategoryModel(1, "name"));
+        String sql = "select * from category";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            cat.add(new CategoryModel(rs.getInt("CategoryId"), rs.getString("CategoryName")));
+        }
+
+        return cat;
+
+    }
 }

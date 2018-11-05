@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="LiibraryFunction.DBFunctions"%>
 <jsp:include page="inc/admin_top.jsp" /> 
 <section>
     <jsp:include page="inc/adminsidebar.jsp" />
@@ -12,7 +14,7 @@
 
         <div class="contentpanel">
             <ol class="breadcrumb breadcrumb-quirk">
-                <li><a href="index-2.html"><i class="fa fa-home mr5"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-home mr5"></i> Home</a></li>
                 <li class="active">Quota List</li>
             </ol>
             <div class="row">
@@ -33,32 +35,38 @@
                                             <th>Item</th>
                                             <th>Quantity</th>
                                             <th>Rate</th>
-
                                             <th>Date</th>
 
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                        <%
+                                            DBFunctions db = new DBFunctions();
+                                            String sql = "select category.CategoryName,item.ItemName,rationallotment.Quantity,rationallotment.Rate,rationallotment.date from rationallotment inner join category on category.CategoryId=rationallotment.CategoryId inner join item on item.ItemId=rationallotment.ItemId ORDER BY rationallotment.AllotmentId desc";
+                                            ResultSet rs = db.SelectQuery(sql);
+                                            while (rs.next()) {
 
+
+                                        %>
+                                        <tr>
+                                            <td><%= rs.getString("CategoryName")%></td>
+
+                                            <td><%= rs.getString("ItemName")%></td>
+                                            <td><%= rs.getInt("Quantity")%></td>
+                                            <td><%= rs.getInt("Rate")%></td>
+                                            <td><%= rs.getString("date")%></td>
                                         </tr>
+                                        <%
+                                            }
+                                        %>
                                     </tbody>
 
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-9 col-sm-offset-3">
-                            <button class="btn btn-success btn-quirk btn-wide mr5">Submit</button>
-                            <button type="reset" class="btn btn-quirk btn-wide btn-default">Reset</button>
-                        </div>
-                    </div>
+                  
 
                     </section>
                     </body>

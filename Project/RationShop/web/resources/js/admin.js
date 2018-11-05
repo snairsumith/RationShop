@@ -251,6 +251,23 @@ function cust_reg() {
 }
 
 
+function quotasetting_add(){
+    var categoryId = $("#CmbCategory").val();
+    var itemId = $("#CmbItem").val();
+    var quantity = $("#txtQuantity").val();
+    var price = $("#txtRate").val();
+    var date = $("#txtDate").val();
+     var url = baseurl + "/qutosettings?categoryId="+categoryId+"&itemId="+itemId+"&itemQuantity="+quantity+"&itemRate="+price+"&date="+date;
+        $.ajax({url: url, success: function (result) {
+                if (result == 1) {
+                    alert("Quota Settings Allowed")
+                    window.location.href="quotalist"
+                } else {
+                    alert("Error occured.Please try again after some time ");
+                }
+            }});
+}
+
 function emailValidation(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);

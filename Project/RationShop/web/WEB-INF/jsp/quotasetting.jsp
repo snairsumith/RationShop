@@ -5,9 +5,11 @@
 --%>
 
 
-    <jsp:include page="inc/admin_top.jsp" /> 
-    <section>
-      <jsp:include page="inc/adminsidebar.jsp" />
+<%@page import="java.sql.ResultSet"%>
+<%@page import="LiibraryFunction.DBFunctions"%>
+<jsp:include page="inc/admin_top.jsp" /> 
+<section>
+    <jsp:include page="inc/adminsidebar.jsp" />
     <div class="mainpanel">
 
         <div class="contentpanel">
@@ -26,37 +28,61 @@
 
 
                             <div class="form-group">
-                                <label class="col-sm-8 control-label">Category <span class="text-danger">*</span></label>
-                                <div class="col-sm-8">
-                                    <select id="Category" class="select2" name="Category" style="width: 100%" data-placeholder="Choose Any One Category" required>
-                                        <option value="">&nbsp;</option>
-                                        <option value="apple">Anthodya Annayojana</option>
-                                        <option value="orange">Priority</option>
-                                        <option value="grapes">Non Priority Subsidy</option>
-                                        <option value="strawberry">Non Priority</option>
-                                    </select>
-                                    <label class="error" for="Category"></label>
-                                </div>
+
+
+                                <select id="CmbCategory" name="Category" class="form-control select2">
+                                    <option value="0">Select Category</option>
+                                    <%
+                                        String sql = "select * from Category";
+                                        DBFunctions db = new DBFunctions();
+                                        ResultSet rs = db.SelectQuery(sql);
+                                        while (rs.next()) {
+                                    %>
+                                    <option value=<%= rs.getString("CategoryId")%>><%= rs.getString("CategoryName")%></option>
+                                    <%
+                                        }
+                                    %>
+                                </select>
+                                <label class="error" for="Category"></label>
+
                             </div>
+
+                            <div class="form-group">
+                                 <select id="CmbItem" name="txtItem" class="form-control select2">
+                                    <option value="0">Select Item</option>
+                                    <%
+                                        String sql1 = "select * from item";
+                                        
+                                        ResultSet rs1 = db.SelectQuery(sql1);
+                                        while (rs1.next()) {
+                                    %>
+                                    <option value=<%= rs1.getString("ItemId")%>><%= rs1.getString("ItemName")%></option>
+                                    <%
+                                        }
+                                    %>
+                                </select>
+                                
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Item" id="txtItem" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Enter Quantity" id="txtQuantity" class="form-control" />
+                                <input type="text" placeholder="Enter Quantity/Litter" id="txtQuantity" class="form-control" />
                             </div>
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Rate" id="txtRate" class="form-control" />
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Date" id="txtDate" class="form-control" />
-                            
+                                <input type="Date" placeholder="Date" id="txtDate" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+
                             <div class="row">
-                                <div class="col-sm-9 col-sm-offset-3">
-                                    <button class="btn btn-success btn-quirk btn-wide mr5">Submit</button>
+                                <div class="col-sm-9">
+                                    <button class="btn btn-success btn-quirk btn-wide mr5" onclick="quotasetting_add()" >Submit</button>
                                     <button type="reset" class="btn btn-quirk btn-wide btn-default">Reset</button>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -66,5 +92,5 @@
 
 </section>
 
-    </body>
+</body>
 </html>
