@@ -6,6 +6,8 @@
 
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="LiibraryFunction.DBFunctions"%>
 <jsp:include page="inc/admin_top.jsp" /> 
 <section>
     <jsp:include page="inc/adminsidebar.jsp" />
@@ -36,52 +38,46 @@
 
                                             <th>Name</th>
                                             <th>ARD Number</th>
-
-                                            <th>State</th>
-                                            <th>District</th>
-                                            <th>Panchayath</th>
                                             <th>Location</th>
                                             <th>Pin Code</th>
-
-
-
-
                                             <th> Address</th>
                                             <th>DOB</th>
                                             <th>Gender</th>
                                             <th>Contact</th>
-
                                             <th>E-mail</th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <%
+                                            DBFunctions db = new DBFunctions();
+                                            String sql = "select shopownerregistration.*,location.LocationName from shopownerregistration inner join location on shopownerregistration.Locationid=location.LocationId";
+                                            ResultSet rs = db.SelectQuery(sql);
+                                            while (rs.next()) {
+                                        %>
                                         <tr>
+                                            <td><%= rs.getString("Name")%></td>
+                                            <td><%= rs.getString("ARDNumber")%></td>
+                                            <td><%= rs.getString("LocationName")%></td>
+                                             <td><%= rs.getString("PinCode")%></td>
+                                            <td><%= rs.getString("Address")%></td>
+                                            <td><%= rs.getString("DateOfBirth")%></td>
+                                            <td><%= rs.getString("Gender")%></td>
+                                            <td><%= rs.getString("Contact")%></td>
+                                            <td><%= rs.getString("Email")%></td>
                                             <td></td>
-
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-
                                         </tr>
+                                        <%
+                                            }
+                                        %>
                                     </tbody>
+                            
 
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-9 col-sm-offset-3">
-                            <button class="btn btn-success btn-quirk btn-wide mr5">Submit</button>
-                            <button type="reset" class="btn btn-quirk btn-wide btn-default">Reset</button>
-                        </div>
-                    </div>
+                   
                     </section>
 
                     </body>

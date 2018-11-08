@@ -47,10 +47,7 @@
 
         <div class="searchpanel">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-            </span>
+           
           </div><!-- input-group -->
         </div>
 
@@ -66,7 +63,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-justified" role="tablist">
                       <li class="active"><a data-target="#notification" data-toggle="tab" aria-expanded="true">Notifications (2)</a></li>
-                      <li class=""><a data-target="#reminders" data-toggle="tab" aria-expanded="false">Reminders (4)</a></li>
+                      
                     </ul>
 
                     <!-- Tab panes -->
@@ -90,31 +87,7 @@
                         <a class="btn-more" href="">View More Notifications <i class="fa fa-long-arrow-right"></i></a>
                       </div><!-- tab-pane -->
 
-                      <div role="tabpanel" class="tab-pane" id="reminders">
-                        <h1 id="todayDay" class="today-day">Thursday</h1>
-                        <h3 id="todayDate" class="today-date">4th October 2018</h3>
-
-                        <h5 class="today-weather"><i class="wi wi-hail"></i> Cloudy 77 Degree</h5>
-                        <p>Thunderstorm in the area this afternoon through this evening</p>
-
-                        <h4 class="panel-title">Upcoming Events</h4>
-                        <ul class="list-group">
-                          <li class="list-group-item">
-                            <div class="row">
-                              <div class="col-xs-2">
-                                <h4>20</h4>
-                                <p>Aug</p>
-                              </div>
-                              <div class="col-xs-10">
-                                <h5><a href="">HTML5/CSS3 Live! United States</a></h5>
-                                <small>San Francisco, CA</small>
-                              </div>
-                            </div>
-                          </li>
-                          
-                        </ul>
-                        <a class="btn-more" href="">View More Events <i class="fa fa-long-arrow-right"></i></a>
-                      </div>
+                     
                     </div>
                   </div>
                 </div>
@@ -129,7 +102,7 @@
                 </button>
                 <ul class="dropdown-menu pull-right">
                  
-                  <li><a href="../common/"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
+                  <li><a href="../"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
                 </ul>
               </div>
             </li>

@@ -11,9 +11,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import models.CategoryModel;
+import models.LocationModel;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -40,4 +43,24 @@ public class CommonAPIController {
         return cat;
 
     }
+    @RequestMapping(value = "/getalllocation", method = RequestMethod.GET)
+    public @ResponseBody
+    List<LocationModel> getAllLocation(
+    @RequestParam("ParentId") int ParentId) throws SQLException {
+        List<LocationModel> loc = new ArrayList<LocationModel>();
+       
+        String sql = "select * from location where ParentId="+ParentId;
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            loc.add(new LocationModel(rs.getInt("LocationId"), rs.getString("LocationName")));
+        }
+
+        return loc;
+
+    }
+    
+        
+
 }

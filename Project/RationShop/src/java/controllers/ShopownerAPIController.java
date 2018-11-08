@@ -1,9 +1,15 @@
 package controllers;
 
+import LiibraryFunction.DBFunctions;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import models.AllowedQuotaModel;
+import models.SupplierModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,68 +40,26 @@ public class ShopownerAPIController {
             return "faill";
         }
     }
+    
+    
+    @RequestMapping(value = "/getallowedquota", method = RequestMethod.GET)
+    public @ResponseBody
+    List<AllowedQuotaModel> getAllowQota(
+    @RequestParam("shopusername") String shopusername,
+     @RequestParam("month") int month    ) throws SQLException {
+        List<AllowedQuotaModel> quota = new ArrayList<AllowedQuotaModel>();
+       
+        String sql = "select stockassign.*,item.ItemName from stockassign inner join item on stockassign.ItemId=item.ItemId where stockassign.shopownerId='"+shopusername+"'and month(month)="+month;
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
 
-     public String profile(){
-         return "Hai";
-     }
-     @RequestMapping(value="/allowdedquota",method = RequestMethod.GET)
-     @ResponseBody
-     public String alloted(){
-         return "How";
-     }
-     @RequestMapping(value="/shopsalesreport",method = RequestMethod.GET)
-     @ResponseBody
-     public String report(){
-         return "Are";
-     }
-     @RequestMapping(value="/customeregistration",method = RequestMethod.GET)
-     @ResponseBody
-     public String registration(){
-         return "How";
-     }
-     @RequestMapping(value="/customerwisereport",method = RequestMethod.GET)
-     @ResponseBody
-     public String customer(){
-         return "you";
-     }
-      @RequestMapping(value="/shopownernotification",method = RequestMethod.GET)
-     @ResponseBody
-     public String notification(){
-         return "you";
-     }
-      @RequestMapping(value="/shopsales",method = RequestMethod.GET)
-     @ResponseBody
-     public String sales(){
-         return "you";
-     }
-      @RequestMapping(value="/shopstockreport",method = RequestMethod.GET)
-     @ResponseBody
-     public String stock(){
-         return "you";
-     }
-      @RequestMapping(value="/shopownerfeedback",method = RequestMethod.GET)
-     @ResponseBody
-     public String feedback(){
-         return "you";
-     }
-      @RequestMapping(value="/customerverification",method = RequestMethod.GET)
-     @ResponseBody
-     public String verification(){
-         return "you";
-     }
-      @RequestMapping(value="/shopownermyprofile",method = RequestMethod.GET)
-     @ResponseBody
-     public String myprofile(){
-         return "you";
-     }
-     @RequestMapping(value="/shopcustomerlist",method = RequestMethod.GET)
-     @ResponseBody
-     public String list(){
-         return "you";
-     }
-     @RequestMapping(value="/shopstockupdation",method = RequestMethod.GET)
-     @ResponseBody
-     public String updation(){
-         return "you";
-     }
+            quota.add(new AllowedQuotaModel(rs.getString("ItemName"), rs.getInt("quota"), rs.getFloat("amount")));
+        }
+
+        return quota;
+
+    }
+
+     
 }

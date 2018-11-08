@@ -5,7 +5,9 @@
 --%>
 
 
-        <jsp:include page="inc/admin_top.jsp" /> 
+        <%@page import="java.sql.ResultSet"%>
+<%@page import="LiibraryFunction.DBFunctions"%>
+<jsp:include page="inc/admin_top.jsp" /> 
         <section>
             <jsp:include page="inc/adminsidebar.jsp" />
             <div class="mainpanel">
@@ -28,43 +30,41 @@
                                         <table class="table nomargin">
                                             <thead>
                                                 <tr>
-
                                                     <th>Suppliers Name</th>
                                                     <th>Suppliers Address</th>
                                                     <th>Suppliers State</th>
-                                                    <th>Suppliers City</th>
                                                     <th>Suppliers Contact</th>
                                                     <th>Suppliers Email-Id</th>
-                                                    
-
-
-
                                                     <th></th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-
-
-                                                </tr>
-                                            </tbody>
+                                              <tbody>
+                                        <%
+                                            DBFunctions db = new DBFunctions();
+                                            String sql = "select supplier.*,location.LocationName from supplier inner join location on supplier.LocationId=location.LocationId";
+                                            ResultSet rs = db.SelectQuery(sql);
+                                            while (rs.next()) {
+                                        %>
+                                        <tr>
+                                            <td><%= rs.getString("suppliername")%></td>
+                                            <td><%= rs.getString("supplieraddress")%></td>
+                                            <td><%= rs.getString("LocationName")%></td>
+                                            <td><%= rs.getString("contact")%></td>
+                                             <td><%= rs.getString("emailid")%></td>
+                                            
+                                            
+                                            <td></td>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
+                                    </tbody>
 
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-9 col-sm-offset-3">
-                                    <button class="btn btn-success btn-quirk btn-wide mr5">Submit</button>
-                                    <button type="reset" class="btn btn-quirk btn-wide btn-default">Reset</button>
-                                </div>
-                            </div>
+                           
                             </section>
                             </body>
                             </html>

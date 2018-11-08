@@ -11,6 +11,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import models.PurchaseItemModel;
+import models.SupplierModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,6 +40,7 @@ public class AdminAPIController {
        
         ResultSet rs=db.SelectQuery(sql);
         if(rs.next()){
+            
             return rs.getString("Role");
         }else{
             return "fail";
@@ -50,12 +55,11 @@ public class AdminAPIController {
     @ResponseBody
     public String insertdata(
             @RequestParam("itemname") String itmName,
-            @RequestParam("itemdesc") String desc,
-            @RequestParam("itemprice") int price,
-            @RequestParam("itemquantity") int quty) 
+            @RequestParam("itemdesc") String desc
+            ) 
             throws ClassNotFoundException, SQLException {
        
-        String sql="INSERT INTO `item` (`ItemName`, `ItemDescription`, `IteamPrice`, `ItemQuantity`, `ItemStatus`) VALUES ('"+itmName+"', '"+desc+"', "+price+", "+quty+", '1');";
+        String sql="INSERT INTO `item` (`ItemName`, `ItemDescription`) VALUES ('"+itmName+"', '"+desc+"');";
         
         int  i= db.InsetQuery(sql);
         if(i>0){
@@ -102,41 +106,7 @@ public class AdminAPIController {
          int i=db.InsetQuery(sql);
          return i;
      }
-     @RequestMapping(value="/allowdedquota",method = RequestMethod.GET)
-     @ResponseBody
-     public String allowdedquota(){
-         return "kj";
-     }
-      @RequestMapping(value="/myprofile",method = RequestMethod.GET)
-      @ResponseBody
-     public String myprofile(){
-         return "jh";
-     }
-     @RequestMapping(value="/notifications",method = RequestMethod.GET)
-     @ResponseBody
-     public String notifications(){
-         return "HaaI";
-     }
-      @RequestMapping(value="/purchaseentry",method = RequestMethod.GET)
-      @ResponseBody
-     public String purchaseentry(){
-         return "Hoo";
-     }
-     @RequestMapping(value="/quotasetting",method = RequestMethod.GET)
-     @ResponseBody
-     public String quotasetting(){
-         return "kjl";
-     }
-      @RequestMapping(value="/register",method = RequestMethod.GET)
-      @ResponseBody
-     public String register(){
-         return "jhl";
-     }
-     @RequestMapping(value="/stockassign",method = RequestMethod.GET)
-     @ResponseBody
-     public String stockassign(){
-         return "jhm";
-     }
+    
     @RequestMapping(value = "/addsuppliers", method = RequestMethod.GET)
     @ResponseBody
     public String supplier(@RequestParam("name") String name,
@@ -150,7 +120,7 @@ public class AdminAPIController {
         Connection con = (Connection) DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/rationdb", "root", "");
         Statement st = con.createStatement();
-        String sql = "insert into `supplier` ( `suppliername`, `supplieraddress`, `contact`, `emailid`,`supplierstate`) VALUES ( '" + name + "', '" + address + "','" + contact + "', '" + email + "', '" + state + "');";
+        String sql = "insert into `supplier` ( `suppliername`, `supplieraddress`, `contact`, `emailid`,`LocationId`) VALUES ( '" + name + "', '" + address + "','" + contact + "', '" + email + "', '" + state + "');";
 
         int j = st.executeUpdate(sql);
        // int i = st.executeUpdate(sql);
@@ -160,5 +130,95 @@ public class AdminAPIController {
             return "0";
         }
     }
+    @RequestMapping(value = "/insertpurchseItem", method = RequestMethod.GET)
+    @ResponseBody
+    public String insertPurchaseItem(@RequestParam("itemId") int itemId,
+            @RequestParam("price") int price,
+            @RequestParam("qty") int qty,
+            @RequestParam("purchaseid") String purchaseid)
+            throws ClassNotFoundException, SQLException {
+            String sql="INSERT INTO `purchaseitem` (`PurchaseId`, `Quantity`, `ItemId`, `Rate`, `TotalAmount`) VALUES ('"+purchaseid+"', "+qty+", "+itemId+", "+price+", "+(qty*price)+")";
+            int j=  db.InsetQuery(sql);
+       
+                if (j > 0) {
+                    return "1";
+                } else {
+                    return "0";
+                }
+    }
+    @RequestMapping(value = "/insertpurchse", method = RequestMethod.GET)
+    @ResponseBody
+    public String insertpurchse(@RequestParam("supplierId") int supplierId,
+            @RequestParam("invoicedate") String invoicedate,
+            @RequestParam("invoiceduedate") String invoiceduedate,
+            @RequestParam("purchaseid") String purchaseid)
+            throws ClassNotFoundException, SQLException {
+            String sql="INSERT INTO `purchase` (`PurchaseId`, `SupplierId`, `InvoiceDate`, `DueDate`) VALUES ('"+purchaseid+"', "+supplierId+", '"+invoicedate+"', '"+invoiceduedate+"')";
+            int j=  db.InsetQuery(sql);
+       
+                if (j > 0) {
+                    return "1";
+                } else {
+                    return "0";
+                }
+    }
+   @RequestMapping(value = "/getsupplier", method = RequestMethod.GET)
+    public @ResponseBody
+    List<SupplierModel> getallSupplier(
+    @RequestParam("supplierid") int supplierid) throws SQLException {
+        List<SupplierModel> sup = new ArrayList<SupplierModel>();
+       
+        String sql = "select * from supplier where supplierid="+supplierid;
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            sup.add(new SupplierModel(rs.getInt("supplierid"), rs.getString("suppliername"), rs.getString("supplieraddress"), rs.getString("contact")));
+        }
+
+        return sup;
+
+    }
+    
+   
+    @RequestMapping(value = "/getpurItem", method = RequestMethod.GET)
+    public @ResponseBody
+    List<PurchaseItemModel> getitempur(
+    @RequestParam("purchaseid") int purchaseid) throws SQLException {
+        List<PurchaseItemModel> pur_item = new ArrayList<PurchaseItemModel>();
+        pur_item.add(new PurchaseItemModel("Itms", 25, 25, 25));
+//        String sql = "select purchaseitem.*,item.ItemName from purchaseitem inner join item on item.ItemId=purchaseitem.ItemId where purchaseitem.PurchaseId="+purchaseid;
+//        DBFunctions db = new DBFunctions();
+//        ResultSet rs = db.SelectQuery(sql);
+//        while (rs.next()) {
+//
+//            pur_item.add(new PurchaseItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), rs.getInt("TotalAmount")));
+//        }
+
+        return pur_item;
+
+    }
+    
+      @RequestMapping(value = "/insertstockassing", method = RequestMethod.GET)
+    @ResponseBody
+    public String InsertStock(@RequestParam("shopownerId") int shopownerId,
+            @RequestParam("itemId") int itemId,
+            @RequestParam("quota") int quota,
+            @RequestParam("amount") float amount,
+            @RequestParam("month") String month)
+            throws ClassNotFoundException, SQLException {
+            String sql="INSERT INTO `stockassign` (`shopownerId`, `itemId`, `quota`, `amount`, `month`) VALUES ('"+shopownerId+"', '"+itemId+"', '"+quota+"', '"+amount+"', '"+month+"')";
+            int j=  db.InsetQuery(sql);
+       
+                if (j > 0) {
+                    return "1";
+                } else {
+                    return "0";
+                }
+    }
+
+    
+
+    
 }
 

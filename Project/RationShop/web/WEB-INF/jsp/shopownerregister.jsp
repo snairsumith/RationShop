@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="LiibraryFunction.DBFunctions"%>
 <jsp:include page="inc/admin_top.jsp" /> 
 <section>
     <jsp:include page="inc/adminsidebar.jsp" />
@@ -16,6 +18,7 @@
                             <p>Add New Owners here </p>
                         </div>
                         <div class="panel-body">
+                            
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Shop Owner Name" id="txtShopOwnerName" class="form-control" />
                                 <label id="err_shopname" class="text-danger"></label> 
@@ -32,14 +35,23 @@
                                 </div>
                                 <div class="form-group">
 
-                                    <select id="txtShopOwnerstate" class="form-control">
+                                    <select id="txtShopOwnerstate" class="form-control" onchange="getalldistrict()">
                                         <option>Select State</option>
-
+                                        <%
+                                        String sql = "select * from location where ParentId=1";
+                                        DBFunctions db = new DBFunctions();
+                                        ResultSet rs = db.SelectQuery(sql);
+                                        while (rs.next()) {
+                                    %>
+                                    <option value=<%= rs.getString("LocationId")%>><%= rs.getString("LocationName")%></option>
+                                    <%
+                                        }
+                                    %>
                                     </select>
                                 </div>
                                 <div class="form-group">
 
-                                    <select id="txtShopOwnerdistrict" class="form-control">
+                                    <select id="txtShopOwnerdistrict" class="form-control" onchange="getallocation()">
                                         <option>Select District</option>
 
                                     </select>
@@ -52,7 +64,7 @@
                                     </select>
                                 </div>
 
-                                <div>
+                                <div class="form-group">
                                     <input type="textarea" placeholder="Enter Shop Owner Address" id="txtShopOwnerAddress" class="form-control" />
                                 </div>
                                 <div class="form-group">

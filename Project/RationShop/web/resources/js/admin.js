@@ -5,6 +5,7 @@
  * and open the template in the editor.
  */
 var baseurl = "http://localhost:8080/RationShop/adminapi";
+var commonurl="http://localhost:8080/RationShop/commonApi/";
 $(document).ready(function () {
 
 });
@@ -34,8 +35,10 @@ function login() {
         $.ajax({url: url, success: function (result) {
                 if (result != "fail") {
                     if (result == 2) {
+                        
                         window.location.href = "/RationShop/admin/adminhome";
                     } else if (result == 3) {
+                        localStorage.setItem("username", username);
                         window.location.href = "/RationShop/shopowner/shophome";
                     } else if (result == 1) {
                         window.location.href = "/RationShop/customer/customermyprofile";
@@ -66,7 +69,7 @@ function addItem() {
         $.ajax({url: url, success: function (result) {
                 if (result == "1") {
                     alert("Item added sucessfully ")
-                    window.location.reload()
+                    window.location.href="itemdetails";
                 } else {
                     alert("Error occoured.Please try again after some time ");
                 }
@@ -96,7 +99,7 @@ function shopowner_reg() {
 function addsuppliers() {
     var name = $("#txtSupplierName").val();
     var address = $("#txtSupplierAddress").val();
-    var state = $("#txtSupplierState").val();
+    var state = $("#txtShopOwnerstate").val();
     var email = $("#txtSupplierEmailId").val();
     var contact = $("#txtSupplierContact").val();
     if (!emailValidation(email)) {
@@ -121,7 +124,7 @@ function addsuppliers() {
         $.ajax({url: url, success: function (result) {
                 if (result == "1") {
                     alert("Supplier added sucessfully ")
-                    window.location.reload()
+                    window.location.href="suppliersdetails";
                 } else {
                     alert("Error occoured.Please try again after some time ");
                 }
@@ -138,7 +141,7 @@ function shopowner_reg() {
     var dob = $("#txtShopOwnerDOB").val();
     var email = $("#txtShopOwnerEmailId").val();
     var pincode = $("#txtShopOwnerpincode").val();
-    var location="1";
+    var location=$("#txtShopOwnerdistrict").val();
     var ardNo=$("#txtShopOwnerard").val();
     
 
@@ -193,7 +196,7 @@ function shopowner_reg() {
         $.ajax({url: url, success: function (result) {
                 if (result == "1") {
                     alert("Shop Owner Added Sucessfully ")
-                    window.location.reload()
+                    window.location.href="shopownerslist";
                 } else {
                     alert("Error occured.Please try again after some time ");
                 }
@@ -268,6 +271,109 @@ function quotasetting_add(){
             }});
 }
 
+function getalldistrict(){
+    var parentid=$("#txtShopOwnerstate").val();
+    var url = commonurl + "/getalllocation?ParentId="+parentid;
+        $.ajax({url: url, success: function (result) {
+                $.each( result, function( key, val ) {
+                    $('#txtShopOwnerdistrict')
+                        .append($("<option></option>")
+                        .attr("value",val.locationId)
+                        .text(val.locationName)); 
+                    
+                });
+            }});
+        
+}
+function getallocation(){
+    var parentid=$("#txtShopOwnerdistrict").val();
+    var url = commonurl + "/getalllocation?ParentId="+parentid;
+    $('#txtShopOwnerlocation')
+            .empty()
+        $.ajax({url: url, success: function (result) {
+                $.each( result, function( key, val ) {
+                    $('#txtShopOwnerlocation')
+                        .append($("<option></option>")
+                        .attr("value",val.locationId)
+                        .text(val.locationName)); 
+                    
+                });
+            }});
+        
+}
+
+function getsupplier(){
+    var id=$("#cmbSupplier").val();
+    var url = baseurl + "/getsupplier?supplierid="+id;
+       $.ajax({url: url, success: function (result) {
+                $.each( result, function( key, val ) {
+                   $("#h3_custname").text(val.suppliername);
+                   $("#p_address").text(val.supplieraddress);
+                   $("#p_phone").text("PH No: "+val.contact);
+                });
+            }});
+     
+     
+}
+
+function insertPurchaseItem(){
+    var itemid=$("#cmbItem").val();
+    var price=$("#txtPrice").val();
+    var qty=$("#txtQuantity").val();
+    var purchaseid=$("#txtInvoiceNumber").val();
+    var url = baseurl + "/insertpurchseItem?itemId="+itemid+"&price="+price+"&qty="+qty+"&purchaseid="+purchaseid;
+    $.ajax({url: url, success: function (result) {
+                if (result == "1") {
+                    
+                } else {
+                    alert("Error occured.Please try again after some time ");
+                }
+            }});
+    
+}
+
+function insertPurchase(){
+     var supplierId=$("#cmbSupplier").val();
+    var invoicedate=$("#txtInvoiceDate").val();
+    var invoiceduedate=$("#txtInvoiceDueDate").val();
+    var purchaseid=$("#txtInvoiceNumber").val();
+    var url = baseurl + "/insertpurchse?supplierId="+supplierId+"&invoicedate="+invoicedate+"&invoiceduedate="+invoiceduedate+"&purchaseid="+purchaseid;
+    $.ajax({url: url, success: function (result) {
+                if (result == "1") {
+                     alert("Items Purchased Sucessfully")
+                    window.location.reload()
+                } else {
+                    alert("Error occured.Please try again after some time ");
+                }
+            }});
+}
+
+function getAllPurchaseItem(){
+    var id=$("#txtInvoiceNumber").val();
+    var url = baseurl + "/getAllPurchaseItem?id="+id;
+    var htm="";
+       $.ajax({url: url, success: function (result) {
+                $.each( result, function( key, val ) {
+                    htm=htm+"<tr><td>"+val.ItemName+"</td><td>"+val.Qty+"</td><td>"+val.Price;
+                });
+            }});
+}
+function insertstockassing(){
+    var shopownerId=$("#txtselectshopowner").val();
+    var itemId=$("#cmbItem").val();
+    var quota=$("#txtassignedquota").val();
+    var amount=$("#txtamount").val();
+     var month=$("#txtmonth").val();
+    var url = baseurl + "/insertstockassing?shopownerId="+shopownerId+"&itemId="+itemId+"&quota="+quota+"&amount="+amount+"&month="+month;
+    $.ajax({url: url, success: function (result) {
+                if (result == "1") {
+                     alert("Quota Assigned Sucessfully")
+                    window.location.reload()
+                } else {
+                    alert("Error occured.Please try again after some time ");
+                }
+            }});
+}
 function emailValidation(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);

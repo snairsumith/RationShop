@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author MinusBugspc1
  */
 @Controller
-@RequestMapping("/common")
+@RequestMapping("/")
 public class CommonController {
     @RequestMapping(method = RequestMethod.GET)
     public String login(ModelMap modelMap) {

@@ -5,7 +5,9 @@
 --%>
 
 
-        <jsp:include page="inc/admin_top.jsp" /> 
+        <%@page import="java.sql.ResultSet"%>
+<%@page import="LiibraryFunction.DBFunctions"%>
+<jsp:include page="inc/admin_top.jsp" /> 
         <section>
             <jsp:include page="inc/adminsidebar.jsp" />
             <div class="mainpanel">
@@ -32,7 +34,19 @@
                                     </div>
                                    
                                     <div class="form-group">
-                                        <input type="text" placeholder="Enter Supplier State" id="txtSupplierState" class="form-control" />
+                                         <select id="txtShopOwnerstate" class="form-control">
+                                        <option>Select State</option>
+                                        <%
+                                        String sql = "select * from location where ParentId=1";
+                                        DBFunctions db = new DBFunctions();
+                                        ResultSet rs = db.SelectQuery(sql);
+                                        while (rs.next()) {
+                                    %>
+                                    <option value=<%= rs.getString("LocationId")%>><%= rs.getString("LocationName")%></option>
+                                    <%
+                                        }
+                                    %>
+                                    </select>
                                     </div>
                                     <div class="form-group">
                                          <input type="text" placeholder="Enter Supplier Email-Id" id="txtSupplierEmailId" class="form-control" />
