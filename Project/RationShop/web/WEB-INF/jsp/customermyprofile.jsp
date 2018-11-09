@@ -12,7 +12,7 @@
 
                 <div class="contentpanel">
                     <ol class="breadcrumb breadcrumb-quirk">
-                        <li><a href="index-2.html"><i class="fa fa-home mr5"></i> Home</a></li>
+                        <li><a href="#"><i class="fa fa-home mr5"></i> Home</a></li>
                         <li class="active">My Profile</li>
                     </ol>
                     <div class="row">

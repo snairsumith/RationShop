@@ -51,7 +51,7 @@
                     
                                         </li>-->
                    
-                    
+                     
                     <li >
                         <a href="allowdedquota"><i class="fa fa-check-square"></i> <span>Alloted Quota</span></a>
 

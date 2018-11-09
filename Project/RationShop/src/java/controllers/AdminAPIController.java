@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import models.FeedBackModel;
+import models.LocationModel;
 import models.PurchaseItemModel;
 import models.SupplierModel;
 import org.springframework.stereotype.Controller;
@@ -28,51 +30,49 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/adminapi")
 public class AdminAPIController {
-    DBFunctions db=new DBFunctions();
-    @RequestMapping(value="/commonlogin",method = RequestMethod.GET)
+
+    DBFunctions db = new DBFunctions();
+
+    @RequestMapping(value = "/commonlogin", method = RequestMethod.GET)
     @ResponseBody
     public String AdminLogin(
-                    @RequestParam("username") String username,
-                    @RequestParam("password") String password
-                    ) throws ClassNotFoundException, SQLException{
-       
-        String sql="select * from login where username='"+username+"' and password ='"+password+"'";
-       
-        ResultSet rs=db.SelectQuery(sql);
-        if(rs.next()){
-            
+            @RequestParam("username") String username,
+            @RequestParam("password") String password
+    ) throws ClassNotFoundException, SQLException {
+
+        String sql = "select * from login where username='" + username + "' and password ='" + password + "'";
+
+        ResultSet rs = db.SelectQuery(sql);
+        if (rs.next()) {
+
             return rs.getString("Role");
-        }else{
+        } else {
             return "fail";
         }
-        
-        
-       
-        
-        
+
     }
-    @RequestMapping(value="/additem",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/additem", method = RequestMethod.GET)
     @ResponseBody
     public String insertdata(
             @RequestParam("itemname") String itmName,
             @RequestParam("itemdesc") String desc
-            ) 
+    )
             throws ClassNotFoundException, SQLException {
-       
-        String sql="INSERT INTO `item` (`ItemName`, `ItemDescription`) VALUES ('"+itmName+"', '"+desc+"');";
-        
-        int  i= db.InsetQuery(sql);
-        if(i>0){
+
+        String sql = "INSERT INTO `item` (`ItemName`, `ItemDescription`) VALUES ('" + itmName + "', '" + desc + "');";
+
+        int i = db.InsetQuery(sql);
+        if (i > 0) {
             return "1";
-        }else{
+        } else {
             return "2";
         }
     }
-            
-    
-     @RequestMapping(value="/shopowner_reg",method = RequestMethod.GET)
-     @ResponseBody
-     public String addsuppliers(@RequestParam("name") String name,
+
+    @RequestMapping(value = "/shopowner_reg", method = RequestMethod.GET)
+    @ResponseBody
+    public String addsuppliers(@RequestParam("name") String name,
             @RequestParam("password") String password,
             @RequestParam("address") String address,
             @RequestParam("dob") String dob,
@@ -80,33 +80,34 @@ public class AdminAPIController {
             @RequestParam("contactno") String contactno,
             @RequestParam("gender") String gender,
             @RequestParam("ardNo") String ardno,
-            @RequestParam("location")String location,
-            @RequestParam("pincode")String pincode) throws ClassNotFoundException, SQLException{
-        
-        String sql="INSERT INTO `shopownerregistration` (ARDNumber,Locationid,`Password`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`,`PinCode`) VALUES ( '"+ardno+"','"+location+"','"+password+"', '"+name+"', '"+address+"', '"+dob+"', '"+gender+"', '"+contactno+"', '"+email+"','"+pincode+"');";
-        String sql1="insert into login(UserName,Password,Role)values('"+email+"','"+password+"','3')";
-        
-        int j=  db.InsetQuery(sql1);
-        int  i= db.InsetQuery(sql);
-        if(i>0){
+            @RequestParam("location") String location,
+            @RequestParam("pincode") String pincode) throws ClassNotFoundException, SQLException {
+
+        String sql = "INSERT INTO `shopownerregistration` (ARDNumber,Locationid,`Password`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`,`PinCode`) VALUES ( '" + ardno + "','" + location + "','" + password + "', '" + name + "', '" + address + "', '" + dob + "', '" + gender + "', '" + contactno + "', '" + email + "','" + pincode + "');";
+        String sql1 = "insert into login(UserName,Password,Role)values('" + email + "','" + password + "','3')";
+
+        int j = db.InsetQuery(sql1);
+        int i = db.InsetQuery(sql);
+        if (i > 0) {
             return "1";
-        }else{
+        } else {
             return "0";
         }
-     }
-     @RequestMapping(value="/qutosettings",method = RequestMethod.GET)
-     @ResponseBody
-     public int qutosettings(
+    }
+
+    @RequestMapping(value = "/qutosettings", method = RequestMethod.GET)
+    @ResponseBody
+    public int qutosettings(
             @RequestParam("categoryId") int categoryId,
             @RequestParam("itemId") int itemId,
             @RequestParam("itemQuantity") int itemQuantity,
             @RequestParam("itemRate") int itemRate,
-            @RequestParam("date")String date) throws SQLException{
-         String sql="INSERT INTO `rationallotment` (`CategoryId`, `ItemId`, `Quantity`, `Rate`, `date`) VALUES ("+categoryId+", "+itemId+", "+itemQuantity+", "+itemRate+", '"+date+"')";
-         int i=db.InsetQuery(sql);
-         return i;
-     }
-    
+            @RequestParam("date") String date) throws SQLException {
+        String sql = "INSERT INTO `rationallotment` (`CategoryId`, `ItemId`, `Quantity`, `Rate`, `date`) VALUES (" + categoryId + ", " + itemId + ", " + itemQuantity + ", " + itemRate + ", '" + date + "')";
+        int i = db.InsetQuery(sql);
+        return i;
+    }
+
     @RequestMapping(value = "/addsuppliers", method = RequestMethod.GET)
     @ResponseBody
     public String supplier(@RequestParam("name") String name,
@@ -123,13 +124,14 @@ public class AdminAPIController {
         String sql = "insert into `supplier` ( `suppliername`, `supplieraddress`, `contact`, `emailid`,`LocationId`) VALUES ( '" + name + "', '" + address + "','" + contact + "', '" + email + "', '" + state + "');";
 
         int j = st.executeUpdate(sql);
-       // int i = st.executeUpdate(sql);
+        // int i = st.executeUpdate(sql);
         if (j > 0) {
             return "1";
         } else {
             return "0";
         }
     }
+
     @RequestMapping(value = "/insertpurchseItem", method = RequestMethod.GET)
     @ResponseBody
     public String insertPurchaseItem(@RequestParam("itemId") int itemId,
@@ -137,15 +139,16 @@ public class AdminAPIController {
             @RequestParam("qty") int qty,
             @RequestParam("purchaseid") String purchaseid)
             throws ClassNotFoundException, SQLException {
-            String sql="INSERT INTO `purchaseitem` (`PurchaseId`, `Quantity`, `ItemId`, `Rate`, `TotalAmount`) VALUES ('"+purchaseid+"', "+qty+", "+itemId+", "+price+", "+(qty*price)+")";
-            int j=  db.InsetQuery(sql);
-       
-                if (j > 0) {
-                    return "1";
-                } else {
-                    return "0";
-                }
+        String sql = "INSERT INTO `purchaseitem` (`PurchaseId`, `Quantity`, `ItemId`, `Rate`, `TotalAmount`) VALUES ('" + purchaseid + "', " + qty + ", " + itemId + ", " + price + ", " + (qty * price) + ")";
+        int j = db.InsetQuery(sql);
+
+        if (j > 0) {
+            return "1";
+        } else {
+            return "0";
+        }
     }
+
     @RequestMapping(value = "/insertpurchse", method = RequestMethod.GET)
     @ResponseBody
     public String insertpurchse(@RequestParam("supplierId") int supplierId,
@@ -153,22 +156,23 @@ public class AdminAPIController {
             @RequestParam("invoiceduedate") String invoiceduedate,
             @RequestParam("purchaseid") String purchaseid)
             throws ClassNotFoundException, SQLException {
-            String sql="INSERT INTO `purchase` (`PurchaseId`, `SupplierId`, `InvoiceDate`, `DueDate`) VALUES ('"+purchaseid+"', "+supplierId+", '"+invoicedate+"', '"+invoiceduedate+"')";
-            int j=  db.InsetQuery(sql);
-       
-                if (j > 0) {
-                    return "1";
-                } else {
-                    return "0";
-                }
+        String sql = "INSERT INTO `purchase` (`PurchaseId`, `SupplierId`, `InvoiceDate`, `DueDate`) VALUES ('" + purchaseid + "', " + supplierId + ", '" + invoicedate + "', '" + invoiceduedate + "')";
+        int j = db.InsetQuery(sql);
+
+        if (j > 0) {
+            return "1";
+        } else {
+            return "0";
+        }
     }
-   @RequestMapping(value = "/getsupplier", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/getsupplier", method = RequestMethod.GET)
     public @ResponseBody
     List<SupplierModel> getallSupplier(
-    @RequestParam("supplierid") int supplierid) throws SQLException {
+            @RequestParam("supplierid") int supplierid) throws SQLException {
         List<SupplierModel> sup = new ArrayList<SupplierModel>();
-       
-        String sql = "select * from supplier where supplierid="+supplierid;
+
+        String sql = "select * from supplier where supplierid=" + supplierid;
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
@@ -179,12 +183,11 @@ public class AdminAPIController {
         return sup;
 
     }
-    
-   
+
     @RequestMapping(value = "/getpurItem", method = RequestMethod.GET)
     public @ResponseBody
     List<PurchaseItemModel> getitempur(
-    @RequestParam("purchaseid") int purchaseid) throws SQLException {
+            @RequestParam("purchaseid") int purchaseid) throws SQLException {
         List<PurchaseItemModel> pur_item = new ArrayList<PurchaseItemModel>();
         pur_item.add(new PurchaseItemModel("Itms", 25, 25, 25));
 //        String sql = "select purchaseitem.*,item.ItemName from purchaseitem inner join item on item.ItemId=purchaseitem.ItemId where purchaseitem.PurchaseId="+purchaseid;
@@ -198,8 +201,8 @@ public class AdminAPIController {
         return pur_item;
 
     }
-    
-      @RequestMapping(value = "/insertstockassing", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/insertstockassing", method = RequestMethod.GET)
     @ResponseBody
     public String InsertStock(@RequestParam("shopownerId") int shopownerId,
             @RequestParam("itemId") int itemId,
@@ -207,18 +210,48 @@ public class AdminAPIController {
             @RequestParam("amount") float amount,
             @RequestParam("month") String month)
             throws ClassNotFoundException, SQLException {
-            String sql="INSERT INTO `stockassign` (`shopownerId`, `itemId`, `quota`, `amount`, `month`) VALUES ('"+shopownerId+"', '"+itemId+"', '"+quota+"', '"+amount+"', '"+month+"')";
-            int j=  db.InsetQuery(sql);
-       
-                if (j > 0) {
-                    return "1";
-                } else {
-                    return "0";
-                }
+        String sql = "INSERT INTO `stockassign` (`shopownerId`, `itemId`, `quota`, `amount`, `month`) VALUES ('" + shopownerId + "', '" + itemId + "', '" + quota + "', '" + amount + "', '" + month + "')";
+        int j = db.InsetQuery(sql);
+
+        if (j > 0) {
+            return "1";
+        } else {
+            return "0";
+        }
     }
 
-    
+    @RequestMapping(value = "/getAllFeedBackCustomer", method = RequestMethod.GET)
+    public @ResponseBody
+    List<FeedBackModel> getAllFeedBackCustomer() throws SQLException {
+        List<FeedBackModel> feed = new ArrayList<FeedBackModel>();
 
+        String sql = "select feedback.*,customer.CustomerName from feedback inner join customer on feedback.SenderId=customer.CustomerId where Type=3 and ReciverId='admin'";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("CustomerName"),rs.getString("CreatedOn"),rs.getInt("Type")));
+        }
+
+        return feed;
+
+    }
     
+    @RequestMapping(value = "/getAllFeedBackShop", method = RequestMethod.GET)
+    public @ResponseBody
+    List<FeedBackModel> getAllFeedBackShop() throws SQLException {
+        List<FeedBackModel> feed = new ArrayList<FeedBackModel>();
+
+        String sql = "select feedback.*,shopownerregistration.Name from feedback inner join shopownerregistration on feedback.SenderId=shopownerregistration.Email where Type=2 and ReciverId='admin'";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("Name"),rs.getString("CreatedOn"),rs.getInt("Type")));
+        }
+
+        return feed;
+
+    }
+
 }
-

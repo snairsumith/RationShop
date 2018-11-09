@@ -62,61 +62,52 @@
                   <i class="fa fa-globe"></i>
                 </button>
                 <div id="noticeDropdown" class="dropdown-menu dm-notice pull-right">
-                  <div role="tabpanel">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs nav-justified" role="tablist">
-                      <li class="active"><a data-target="#notification" data-toggle="tab" aria-expanded="true">Notifications (2)</a></li>
-                      <li class=""><a data-target="#reminders" data-toggle="tab" aria-expanded="false">Reminders (4)</a></li>
-                    </ul>
+                                          <div role="tabpanel">
+                                            <!-- Nav tabs -->
+                                            <%
+                                                            DBFunctions db = new DBFunctions();
+                                                            String sql = "select * from notifications where RoleType=3";
+                                                            ResultSet rs = db.SelectQuery(sql);
+                                                            
 
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                      <div role="tabpanel" class="tab-pane active" id="notification">
-                        <ul class="list-group notice-list">
-                          <li class="list-group-item unread">
-                            <div class="row">
-                              <div class="col-xs-2">
-                                <i class="fa fa-envelope"></i>
-                              </div>
-                              <div class="col-xs-10">
-                                <h5><a href="">New message from Test</a></h5>
-                                <small>June 20, 2015</small>
-                                <span>Soluta nobis est eligendi optio cumque...</span>
-                              </div>
-                            </div>
-                          </li>
-                         
-                        </ul>
-                        <a class="btn-more" href="">View More Notifications <i class="fa fa-long-arrow-right"></i></a>
-                      </div><!-- tab-pane -->
 
-                      <div role="tabpanel" class="tab-pane" id="reminders">
-                        <h1 id="todayDay" class="today-day">Thursday</h1>
-                        <h3 id="todayDate" class="today-date">4th October 2018</h3>
+                                                        %>
+                                            <ul class="nav nav-tabs nav-justified" role="tablist">
+                                                <li class="active"><a data-target="#notification" data-toggle="tab">Notifications (<%= rs.getRow() %>)</a></li>
 
-                        <h5 class="today-weather"><i class="wi wi-hail"></i> Cloudy 77 Degree</h5>
-                        <p>Thunderstorm in the area this afternoon through this evening</p>
+                                            </ul>
 
-                        <h4 class="panel-title">Upcoming Events</h4>
-                        <ul class="list-group">
-                          <li class="list-group-item">
-                            <div class="row">
-                              <div class="col-xs-2">
-                                <h4>20</h4>
-                                <p>Aug</p>
-                              </div>
-                              <div class="col-xs-10">
-                                <h5><a href="">HTML5/CSS3 Live! United States</a></h5>
-                                <small>San Francisco, CA</small>
-                              </div>
-                            </div>
-                          </li>
-                          
-                        </ul>
-                        <a class="btn-more" href="">View More Events <i class="fa fa-long-arrow-right"></i></a>
-                      </div>
-                    </div>
-                  </div>
+                                            <!-- Tab panes -->
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane active" id="notification">
+                                                    <ul class="list-group notice-list">
+                                                        <%
+                                                            
+                                                            while (rs.next()) {
+
+
+                                                        %>
+                                                        <li class="list-group-item unread">
+                                                            <div class="row">
+                                                                <div class="col-xs-2">
+                                                                    <i class="fa fa-envelope"></i>
+                                                                </div>
+                                                                <div class="col-xs-10">
+                                                                    <h5><a href="#"><%= rs.getString("Title")%></a></h5>
+                                                                    <small><%= rs.getString("Description")%></small>
+                                                                    <span><%= rs.getString("Date")%></span>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <%                              }
+                                                        %>
+                                                    </ul>
+                                                    <a class="btn-more" href="#">View More Notifications <i class="fa fa-long-arrow-right"></i></a>
+                                                </div><!-- tab-pane -->
+
+
+                                            </div>
+                                        </div>
                 </div>
               </div>
             </li>

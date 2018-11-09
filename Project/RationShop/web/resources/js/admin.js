@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 var baseurl = "http://localhost:8080/RationShop/adminapi";
-var commonurl="http://localhost:8080/RationShop/commonApi/";
+var commonurl = "http://localhost:8080/RationShop/commonApi/";
 $(document).ready(function () {
 
 });
@@ -35,7 +35,7 @@ function login() {
         $.ajax({url: url, success: function (result) {
                 if (result != "fail") {
                     if (result == 2) {
-                        
+
                         window.location.href = "/RationShop/admin/adminhome";
                     } else if (result == 3) {
                         localStorage.setItem("username", username);
@@ -69,7 +69,7 @@ function addItem() {
         $.ajax({url: url, success: function (result) {
                 if (result == "1") {
                     alert("Item added sucessfully ")
-                    window.location.href="itemdetails";
+                    window.location.href = "itemdetails";
                 } else {
                     alert("Error occoured.Please try again after some time ");
                 }
@@ -124,7 +124,7 @@ function addsuppliers() {
         $.ajax({url: url, success: function (result) {
                 if (result == "1") {
                     alert("Supplier added sucessfully ")
-                    window.location.href="suppliersdetails";
+                    window.location.href = "suppliersdetails";
                 } else {
                     alert("Error occoured.Please try again after some time ");
                 }
@@ -141,9 +141,9 @@ function shopowner_reg() {
     var dob = $("#txtShopOwnerDOB").val();
     var email = $("#txtShopOwnerEmailId").val();
     var pincode = $("#txtShopOwnerpincode").val();
-    var location=$("#txtShopOwnerdistrict").val();
-    var ardNo=$("#txtShopOwnerard").val();
-    
+    var location = $("#txtShopOwnerdistrict").val();
+    var ardNo = $("#txtShopOwnerard").val();
+
 
     var isValid = true;
     if (name == "") {
@@ -182,21 +182,21 @@ function shopowner_reg() {
         $("#err_shopemail").text("");
         isValid = true;
     }
-    if(contactno.length<10||contactno.length>11){
+    if (contactno.length < 10 || contactno.length > 11) {
         $("#err_shopcontact").text("Not a valid Contact");
         isValid = false;
-    }else{
-         $("#err_shopcontact").text("");
+    } else {
+        $("#err_shopcontact").text("");
         isValid = true;
     }
-    
-   
+
+
     if (isValid) {
-        var url = baseurl + "/shopowner_reg?name=" + name + "&password=" + password + "&address=" + address + "&dob=" + dob + "&email=" + email + "&contactno=" + contactno + "&gender=" + gender + "&status=&ardNo="+ardNo+"&location="+location+"&pincode="+pincode;
+        var url = baseurl + "/shopowner_reg?name=" + name + "&password=" + password + "&address=" + address + "&dob=" + dob + "&email=" + email + "&contactno=" + contactno + "&gender=" + gender + "&status=&ardNo=" + ardNo + "&location=" + location + "&pincode=" + pincode;
         $.ajax({url: url, success: function (result) {
                 if (result == "1") {
                     alert("Shop Owner Added Sucessfully ")
-                    window.location.href="shopownerslist";
+                    window.location.href = "shopownerslist";
                 } else {
                     alert("Error occured.Please try again after some time ");
                 }
@@ -254,125 +254,162 @@ function cust_reg() {
 }
 
 
-function quotasetting_add(){
+function quotasetting_add() {
     var categoryId = $("#CmbCategory").val();
     var itemId = $("#CmbItem").val();
     var quantity = $("#txtQuantity").val();
     var price = $("#txtRate").val();
     var date = $("#txtDate").val();
-     var url = baseurl + "/qutosettings?categoryId="+categoryId+"&itemId="+itemId+"&itemQuantity="+quantity+"&itemRate="+price+"&date="+date;
-        $.ajax({url: url, success: function (result) {
-                if (result == 1) {
-                    alert("Quota Settings Allowed")
-                    window.location.href="quotalist"
-                } else {
-                    alert("Error occured.Please try again after some time ");
-                }
-            }});
+    var url = baseurl + "/qutosettings?categoryId=" + categoryId + "&itemId=" + itemId + "&itemQuantity=" + quantity + "&itemRate=" + price + "&date=" + date;
+    $.ajax({url: url, success: function (result) {
+            if (result == 1) {
+                alert("Quota Settings Allowed")
+                window.location.href = "quotalist"
+            } else {
+                alert("Error occured.Please try again after some time ");
+            }
+        }});
 }
 
-function getalldistrict(){
-    var parentid=$("#txtShopOwnerstate").val();
-    var url = commonurl + "/getalllocation?ParentId="+parentid;
-        $.ajax({url: url, success: function (result) {
-                $.each( result, function( key, val ) {
-                    $('#txtShopOwnerdistrict')
+function getalldistrict() {
+    var parentid = $("#txtShopOwnerstate").val();
+    var url = commonurl + "/getalllocation?ParentId=" + parentid;
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $('#txtShopOwnerdistrict')
                         .append($("<option></option>")
-                        .attr("value",val.locationId)
-                        .text(val.locationName)); 
-                    
-                });
-            }});
-        
+                                .attr("value", val.locationId)
+                                .text(val.locationName));
+
+            });
+        }});
+
 }
-function getallocation(){
-    var parentid=$("#txtShopOwnerdistrict").val();
-    var url = commonurl + "/getalllocation?ParentId="+parentid;
+function getallocation() {
+    var parentid = $("#txtShopOwnerdistrict").val();
+    var url = commonurl + "/getalllocation?ParentId=" + parentid;
     $('#txtShopOwnerlocation')
             .empty()
-        $.ajax({url: url, success: function (result) {
-                $.each( result, function( key, val ) {
-                    $('#txtShopOwnerlocation')
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $('#txtShopOwnerlocation')
                         .append($("<option></option>")
-                        .attr("value",val.locationId)
-                        .text(val.locationName)); 
-                    
+                                .attr("value", val.locationId)
+                                .text(val.locationName));
+
+            });
+        }});
+
+}
+
+function getsupplier() {
+    var id = $("#cmbSupplier").val();
+    var url = baseurl + "/getsupplier?supplierid=" + id;
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#h3_custname").text(val.suppliername);
+                $("#p_address").text(val.supplieraddress);
+                $("#p_phone").text("PH No: " + val.contact);
+            });
+        }});
+
+
+}
+
+function insertPurchaseItem() {
+    var itemid = $("#cmbItem").val();
+    var price = $("#txtPrice").val();
+    var qty = $("#txtQuantity").val();
+    var purchaseid = $("#txtInvoiceNumber").val();
+    var url = baseurl + "/insertpurchseItem?itemId=" + itemid + "&price=" + price + "&qty=" + qty + "&purchaseid=" + purchaseid;
+    $.ajax({url: url, success: function (result) {
+            if (result == "1") {
+
+            } else {
+                alert("Error occured.Please try again after some time ");
+            }
+        }});
+
+}
+
+function insertPurchase() {
+    var supplierId = $("#cmbSupplier").val();
+    var invoicedate = $("#txtInvoiceDate").val();
+    var invoiceduedate = $("#txtInvoiceDueDate").val();
+    var purchaseid = $("#txtInvoiceNumber").val();
+    var url = baseurl + "/insertpurchse?supplierId=" + supplierId + "&invoicedate=" + invoicedate + "&invoiceduedate=" + invoiceduedate + "&purchaseid=" + purchaseid;
+    $.ajax({url: url, success: function (result) {
+            if (result == "1") {
+                alert("Items Purchased Sucessfully")
+                window.location.reload()
+            } else {
+                alert("Error occured.Please try again after some time ");
+            }
+        }});
+}
+
+function getAllPurchaseItem() {
+    var id = $("#txtInvoiceNumber").val();
+    var url = baseurl + "/getAllPurchaseItem?id=" + id;
+    var htm = "";
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                htm = htm + "<tr><td>" + val.ItemName + "</td><td>" + val.Qty + "</td><td>" + val.Price;
+            });
+        }});
+}
+function insertstockassing() {
+    var shopownerId = $("#txtselectshopowner").val();
+    var itemId = $("#cmbItem").val();
+    var quota = $("#txtassignedquota").val();
+    var amount = $("#txtamount").val();
+    var month = $("#txtmonth").val();
+    var url = baseurl + "/insertstockassing?shopownerId=" + shopownerId + "&itemId=" + itemId + "&quota=" + quota + "&amount=" + amount + "&month=" + month;
+    $.ajax({url: url, success: function (result) {
+            if (result == "1") {
+                alert("Quota Assigned Sucessfully")
+                window.location.reload()
+            } else {
+                alert("Error occured.Please try again after some time ");
+            }
+        }});
+}
+
+function getAllFeedBack() {
+    var senderType = $("#cmbChooseSender").val();
+
+    $("#feedback_list").html("");
+    if (senderType == "customer") {
+        var url = baseurl + "/getAllFeedBackCustomer";
+        $.ajax({url: url, success: function (result) {
+                $.each(result, function (key, val) {
+                    $("#feedback_list").append("<tr><td>" + val.title + "</td><td>" + val.description + "</td><td>" + val.senderName + "</td><td>" + val.dateOfSend + "</td></tr>");
+
                 });
             }});
-        
-}
+    } else {
+        var url = baseurl + "/getAllFeedBackShop";
+        $.ajax({url: url, success: function (result) {
+                $.each(result, function (key, val) {
+                    $("#feedback_list").append("<tr><td>" + val.title + "</td><td>" + val.description + "</td><td>" + val.senderName + "</td><td>" + val.dateOfSend + "</td></tr>");
 
-function getsupplier(){
-    var id=$("#cmbSupplier").val();
-    var url = baseurl + "/getsupplier?supplierid="+id;
-       $.ajax({url: url, success: function (result) {
-                $.each( result, function( key, val ) {
-                   $("#h3_custname").text(val.suppliername);
-                   $("#p_address").text(val.supplieraddress);
-                   $("#p_phone").text("PH No: "+val.contact);
                 });
             }});
-     
-     
+    }
 }
-
-function insertPurchaseItem(){
-    var itemid=$("#cmbItem").val();
-    var price=$("#txtPrice").val();
-    var qty=$("#txtQuantity").val();
-    var purchaseid=$("#txtInvoiceNumber").val();
-    var url = baseurl + "/insertpurchseItem?itemId="+itemid+"&price="+price+"&qty="+qty+"&purchaseid="+purchaseid;
+function insertNotification() {
+    var RoleType = $("#cmbRole").val();
+    var Title = $("#txtTitle").val();
+    var Description = $("#txtDescription").val();
+    var url = commonurl + "/insertNotification?RoleType=" + RoleType + "&Title=" + Title + "&Description=" + Description;
     $.ajax({url: url, success: function (result) {
-                if (result == "1") {
-                    
-                } else {
-                    alert("Error occured.Please try again after some time ");
-                }
-            }});
-    
-}
-
-function insertPurchase(){
-     var supplierId=$("#cmbSupplier").val();
-    var invoicedate=$("#txtInvoiceDate").val();
-    var invoiceduedate=$("#txtInvoiceDueDate").val();
-    var purchaseid=$("#txtInvoiceNumber").val();
-    var url = baseurl + "/insertpurchse?supplierId="+supplierId+"&invoicedate="+invoicedate+"&invoiceduedate="+invoiceduedate+"&purchaseid="+purchaseid;
-    $.ajax({url: url, success: function (result) {
-                if (result == "1") {
-                     alert("Items Purchased Sucessfully")
-                    window.location.reload()
-                } else {
-                    alert("Error occured.Please try again after some time ");
-                }
-            }});
-}
-
-function getAllPurchaseItem(){
-    var id=$("#txtInvoiceNumber").val();
-    var url = baseurl + "/getAllPurchaseItem?id="+id;
-    var htm="";
-       $.ajax({url: url, success: function (result) {
-                $.each( result, function( key, val ) {
-                    htm=htm+"<tr><td>"+val.ItemName+"</td><td>"+val.Qty+"</td><td>"+val.Price;
-                });
-            }});
-}
-function insertstockassing(){
-    var shopownerId=$("#txtselectshopowner").val();
-    var itemId=$("#cmbItem").val();
-    var quota=$("#txtassignedquota").val();
-    var amount=$("#txtamount").val();
-     var month=$("#txtmonth").val();
-    var url = baseurl + "/insertstockassing?shopownerId="+shopownerId+"&itemId="+itemId+"&quota="+quota+"&amount="+amount+"&month="+month;
-    $.ajax({url: url, success: function (result) {
-                if (result == "1") {
-                     alert("Quota Assigned Sucessfully")
-                    window.location.reload()
-                } else {
-                    alert("Error occured.Please try again after some time ");
-                }
-            }});
+            if (result == "1") {
+                alert("Notification Send Sucessfully")
+                window.location.reload()
+            } else {
+                alert("Error occured.Please try again after some time ");
+            }
+        }});
 }
 function emailValidation(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -381,7 +418,7 @@ function emailValidation(email) {
 function shopownermyprofiles() {
     var name = $("#txtName").val();
     var address = $("#txtAddress").val();
-  
+
     var email = $("#txtEmailId").val();
     var contact = $("#txtContact").val();
     if (!emailValidation(email)) {
@@ -399,6 +436,6 @@ function shopownermyprofiles() {
         $("#err_contact").text("");
         isValid = true;
     }
-    
-    }
+
+}
     

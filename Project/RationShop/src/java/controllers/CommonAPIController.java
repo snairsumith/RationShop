@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/commonApi")
 public class CommonAPIController {
 
+    DBFunctions db = new DBFunctions();
+
     @RequestMapping(value = "/getallcategory", method = RequestMethod.GET)
     public @ResponseBody
     List<CategoryModel> getAllCategory() throws SQLException {
@@ -43,13 +45,14 @@ public class CommonAPIController {
         return cat;
 
     }
+
     @RequestMapping(value = "/getalllocation", method = RequestMethod.GET)
     public @ResponseBody
     List<LocationModel> getAllLocation(
-    @RequestParam("ParentId") int ParentId) throws SQLException {
+            @RequestParam("ParentId") int ParentId) throws SQLException {
         List<LocationModel> loc = new ArrayList<LocationModel>();
-       
-        String sql = "select * from location where ParentId="+ParentId;
+
+        String sql = "select * from location where ParentId=" + ParentId;
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
@@ -60,7 +63,44 @@ public class CommonAPIController {
         return loc;
 
     }
-    
-        
+
+    @RequestMapping(value = "/sendFeedBack", method = RequestMethod.GET)
+    @ResponseBody
+    public String sendFeedBack(
+            @RequestParam("Title") String Title,
+            @RequestParam("Description") String Description,
+            @RequestParam("SenderId") String SenderId,
+            @RequestParam("ReciverId") String ReciverId,
+            @RequestParam("Type") String Type)
+            throws ClassNotFoundException, SQLException {
+
+        String sql = "INSERT INTO `feedback` (`FeedBackTitle`, `FeedBackDescription`,`SenderId`, `ReciverId`, `Type`) VALUES ('" + Title + "', '" + Description + "','" + SenderId + "', '" + ReciverId + "', " + Type + ")";
+
+        int i = db.InsetQuery(sql);
+
+        if (i > 0) {
+            return "1";
+        } else {
+            return "0";
+        }
+    }
+
+    @RequestMapping(value = "/insertNotification", method = RequestMethod.GET)
+    @ResponseBody
+    public String insertNotification(
+            @RequestParam("RoleType") int RoleType,
+            @RequestParam("Title") String Title,
+            @RequestParam("Description") String Description) throws ClassNotFoundException, SQLException {
+
+        String sql = "INSERT INTO `notifications` (`Title`, `Description`, `RoleType`) VALUES ('" + Title + "', '" + Description + "', " + RoleType + ")";
+
+        int i = db.InsetQuery(sql);
+
+        if (i > 0) {
+            return "1";
+        } else {
+            return "0";
+        }
+    }
 
 }

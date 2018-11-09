@@ -27,10 +27,7 @@ public class CustomerController {
          return "customerpurchase";
      }
      
-     @RequestMapping(value="/customerregistration",method = RequestMethod.GET)
-     public String customerregistration(){
-         return "customeregistration";
-     }
+     
     
         
 }

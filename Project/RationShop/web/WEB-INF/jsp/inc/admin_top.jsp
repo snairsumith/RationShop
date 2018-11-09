@@ -53,46 +53,7 @@
 
         <div class="header-right">
           <ul class="headermenu">
-           <li>
-              <div id="noticePanel" class="btn-group">
-                <button class="btn btn-notice alert-notice" data-toggle="dropdown" aria-expanded="false">
-                  <i class="fa fa-globe"></i>
-                </button>
-                <div id="noticeDropdown" class="dropdown-menu dm-notice pull-right">
-                  <div role="tabpanel">
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs nav-justified" role="tablist">
-                      <li class="active"><a data-target="#notification" data-toggle="tab" aria-expanded="true">Notifications (2)</a></li>
-                      
-                    </ul>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                      <div role="tabpanel" class="tab-pane active" id="notification">
-                        <ul class="list-group notice-list">
-                          <li class="list-group-item unread">
-                            <div class="row">
-                              <div class="col-xs-2">
-                                <i class="fa fa-envelope"></i>
-                              </div>
-                              <div class="col-xs-10">
-                                <h5><a href="">New message from Test</a></h5>
-                                <small>June 20, 2015</small>
-                                <span>Soluta nobis est eligendi optio cumque...</span>
-                              </div>
-                            </div>
-                          </li>
-                         
-                        </ul>
-                        <a class="btn-more" href="">View More Notifications <i class="fa fa-long-arrow-right"></i></a>
-                      </div><!-- tab-pane -->
-
-                     
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
+        
             <li>
               <div class="btn-group">
                 <button type="button" class="btn btn-logged" data-toggle="dropdown">
