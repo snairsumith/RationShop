@@ -11,6 +11,7 @@ import java.util.List;
 import models.AllowedQuotaModel;
 import models.CustomerModel;
 import models.FeedBackModel;
+import models.PurchaseItemModel;
 import models.ShopOwnerModel;
 import models.SupplierModel;
 import org.springframework.stereotype.Controller;
@@ -143,7 +144,23 @@ public class ShopownerAPIController {
             return "0";
         }
     }
+    @RequestMapping(value = "/getAllSalesItem", method = RequestMethod.GET)
+    public @ResponseBody
+    List<PurchaseItemModel> getitempur(
+            @RequestParam("purchaseid") String purchaseid) throws SQLException {
+        List<PurchaseItemModel> pur_item = new ArrayList<PurchaseItemModel>();
+       
+        String sql = "select salesitem.*,item.ItemName from salesitem inner join item on item.ItemId=salesitem.ItemId where salesitem.SalesId ='"+purchaseid+"'";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
 
+            pur_item.add(new PurchaseItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), rs.getInt("TotalAmount")));
+        }
+
+        return pur_item;
+
+    }
     @RequestMapping(value = "/insertsales", method = RequestMethod.GET)
     @ResponseBody
     public String insertpurchse(@RequestParam("supplierId") int supplierId,

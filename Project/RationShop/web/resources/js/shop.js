@@ -97,15 +97,31 @@ function insertSalesItem() {
     var url = baseurl + "/insertsalseItem?itemId=" + itemid + "&price=" + price + "&qty=" + qty + "&purchaseid=" + purchaseid;
     $.ajax({url: url, success: function (result) {
             if (result == "1") {
-
+                $("#isItemInsert").val("1");
+                getAllSalesItem();
+                 $("#cmbItem").val("0");
+                $("#txtPrice").val("");
+                $("#txtQuantity").val("");
             } else {
                 alert("Error occured.Please try again after some time ");
             }
         }});
 
 }
+function getAllSalesItem() {
+    var id = $("#txtInvoiceNumber").val();
+    var url = baseurl + "/getAllSalesItem?purchaseid=" + id;
+    $("#tblItem").html("");
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#tblItem").append("<tr><td>" + val.itemName + "</td><td>" + val.quantity + "</td><td>" + val.rate + "</td><td>" + val.totalAmount + "</td>");
+            });
+        }});
+}
 
 function insertSales() {
+     var isInsertItem=$("#isItemInsert").val();
+    if(isInsertItem==1){
     var supplierId = $("#cmbItem").val();
     var invoicedate = $("#txtInvoiceDate").val();
     var purchaseid = $("#txtInvoiceNumber").val();
@@ -118,6 +134,9 @@ function insertSales() {
                 alert("Error occured.Please try again after some time ");
             }
         }});
+    }else{
+         alert("Please Add any Item then continue");
+    }
 }
 
 function shopownerProfileById() {

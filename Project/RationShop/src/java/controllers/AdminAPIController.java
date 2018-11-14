@@ -183,33 +183,14 @@ public class AdminAPIController {
         return sup;
 
     }
-
-    @RequestMapping(value = "/getpurItem", method = RequestMethod.GET)
-    public @ResponseBody
-    List<PurchaseItemModel> getitempur(
-            @RequestParam("purchaseid") int purchaseid) throws SQLException {
-        List<PurchaseItemModel> pur_item = new ArrayList<PurchaseItemModel>();
-        pur_item.add(new PurchaseItemModel("Itms", 25, 25, 25));
-//        String sql = "select purchaseitem.*,item.ItemName from purchaseitem inner join item on item.ItemId=purchaseitem.ItemId where purchaseitem.PurchaseId="+purchaseid;
-//        DBFunctions db = new DBFunctions();
-//        ResultSet rs = db.SelectQuery(sql);
-//        while (rs.next()) {
-//
-//            pur_item.add(new PurchaseItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), rs.getInt("TotalAmount")));
-//        }
-
-        return pur_item;
-
-    }
-
     @RequestMapping(value = "/insertstockassing", method = RequestMethod.GET)
     @ResponseBody
-    public String InsertStock(@RequestParam("shopownerId") int shopownerId,
+    public String InsertStock(
+            @RequestParam("shopownerId") String shopownerId,
             @RequestParam("itemId") int itemId,
             @RequestParam("quota") int quota,
             @RequestParam("amount") float amount,
-            @RequestParam("month") String month)
-            throws ClassNotFoundException, SQLException {
+            @RequestParam("month") String month) throws ClassNotFoundException, SQLException {
         String sql = "INSERT INTO `stockassign` (`shopownerId`, `itemId`, `quota`, `amount`, `month`) VALUES ('" + shopownerId + "', '" + itemId + "', '" + quota + "', '" + amount + "', '" + month + "')";
         int j = db.InsetQuery(sql);
 
@@ -219,6 +200,25 @@ public class AdminAPIController {
             return "0";
         }
     }
+    @RequestMapping(value = "/getAllPurchaseItem", method = RequestMethod.GET)
+    public @ResponseBody
+    List<PurchaseItemModel> getitempur(
+            @RequestParam("purchaseid") String purchaseid) throws SQLException {
+        List<PurchaseItemModel> pur_item = new ArrayList<PurchaseItemModel>();
+       
+        String sql = "select purchaseitem.*,item.ItemName from purchaseitem inner join item on item.ItemId=purchaseitem.ItemId where purchaseitem.PurchaseId='"+purchaseid+"'";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            pur_item.add(new PurchaseItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), rs.getInt("TotalAmount")));
+        }
+
+        return pur_item;
+
+    }
+
+
 
     @RequestMapping(value = "/getAllFeedBackCustomer", method = RequestMethod.GET)
     public @ResponseBody

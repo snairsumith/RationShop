@@ -103,4 +103,26 @@ public class CommonAPIController {
         }
     }
 
+
+
+    @RequestMapping(value = "/insertstockassing1", method = RequestMethod.GET)
+    @ResponseBody
+    public String InsertStock1(@RequestParam("shopownerId") int shopownerId,
+            @RequestParam("itemId") int itemId,
+            @RequestParam("quota") int quota,
+            @RequestParam("amount") float amount,
+            @RequestParam("month") String month) throws ClassNotFoundException, SQLException {
+//        String sql = "INSERT INTO `stockassign` (`shopownerId`, `itemId`, `quota`, `amount`, `month`) VALUES ('" + shopownerId + "', '" + itemId + "', '" + quota + "', '" + amount + "', '" + month + "')";
+//        int j = db.InsetQuery(sql);
+//
+//        if (j > 0) {
+//            return "1";
+//        } else {
+//            return "0";
+//        }
+        return "0";
+    }
+
+    
+
 }

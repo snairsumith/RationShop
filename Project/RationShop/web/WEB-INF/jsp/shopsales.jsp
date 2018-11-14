@@ -65,6 +65,7 @@
                              
                                 <div class="form-group">
                                     <button class="btn btn-success btn-quirk btn-wide mr5" onclick="insertSales()">Save</button>
+                                     <input type="hidden" value="0" id="isItemInsert"/>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +80,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <select id="cmbItem" class="form-control">
-                                            <option>Select Item</option>
+                                            <option value="0">Select Item</option>
                                             <%
                                                 String sql1 = "select * from item";
                                                 DBFunctions db=new DBFunctions();
@@ -111,12 +112,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                           <div class="row">
                                 <div class="col-md-12">
                                     <div class="panel">
                                         <div class="panel-body">
                                             <div class="row">
                                                 <table class="table">
+                                                    <thead>
+                                                    <th>Item Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Rate</th>
+                                                    <th>Total Amount</th>
+                                                    
+                                                    </thead>
                                                     <tbody id="tblItem">
                                                         
                                                     </tbody>
@@ -129,6 +137,7 @@
                                         
                                 </div>
                             </div>
+
 
                         </div>
                     </div>

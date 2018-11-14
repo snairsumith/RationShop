@@ -29,7 +29,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <select id="cmbSupplier" class="form-control" onchange="getsupplier()">
-                                        <option>Select State</option>
+                                        <option>Select Supplier</option>
                                         <%
                                             String sql = "select * from  supplier";
                                             DBFunctions db = new DBFunctions();
@@ -73,6 +73,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-success btn-quirk btn-wide mr5" onclick="insertPurchase()">Save</button>
+                                    <input type="hidden" value="0" id="isItemInsert"/>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +88,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <select id="cmbItem" class="form-control">
-                                            <option>Select Item</option>
+                                            <option value="0">Select Item</option>
                                             <%
                                                 String sql1 = "select * from item";
 
@@ -125,6 +126,13 @@
                                         <div class="panel-body">
                                             <div class="row">
                                                 <table class="table">
+                                                    <thead>
+                                                    <th>Item Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Rate</th>
+                                                    <th>Total Amount</th>
+                                                    
+                                                    </thead>
                                                     <tbody id="tblItem">
                                                         
                                                     </tbody>

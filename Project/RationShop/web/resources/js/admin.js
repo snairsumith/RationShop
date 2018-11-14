@@ -324,7 +324,11 @@ function insertPurchaseItem() {
     var url = baseurl + "/insertpurchseItem?itemId=" + itemid + "&price=" + price + "&qty=" + qty + "&purchaseid=" + purchaseid;
     $.ajax({url: url, success: function (result) {
             if (result == "1") {
-
+                getAllPurchaseItem();
+                $("#isItemInsert").val("1");
+                $("#cmbItem").val("0");
+                $("#txtPrice").val("");
+                $("#txtQuantity").val("");
             } else {
                 alert("Error occured.Please try again after some time ");
             }
@@ -333,28 +337,33 @@ function insertPurchaseItem() {
 }
 
 function insertPurchase() {
-    var supplierId = $("#cmbSupplier").val();
-    var invoicedate = $("#txtInvoiceDate").val();
-    var invoiceduedate = $("#txtInvoiceDueDate").val();
-    var purchaseid = $("#txtInvoiceNumber").val();
-    var url = baseurl + "/insertpurchse?supplierId=" + supplierId + "&invoicedate=" + invoicedate + "&invoiceduedate=" + invoiceduedate + "&purchaseid=" + purchaseid;
-    $.ajax({url: url, success: function (result) {
-            if (result == "1") {
-                alert("Items Purchased Sucessfully")
-                window.location.reload()
-            } else {
-                alert("Error occured.Please try again after some time ");
-            }
-        }});
+    var isInsertItem = $("#isItemInsert").val();
+    if (isInsertItem == 1) {
+        var supplierId = $("#cmbSupplier").val();
+        var invoicedate = $("#txtInvoiceDate").val();
+        var invoiceduedate = $("#txtInvoiceDueDate").val();
+        var purchaseid = $("#txtInvoiceNumber").val();
+        var url = baseurl + "/insertpurchse?supplierId=" + supplierId + "&invoicedate=" + invoicedate + "&invoiceduedate=" + invoiceduedate + "&purchaseid=" + purchaseid;
+        $.ajax({url: url, success: function (result) {
+                if (result == "1") {
+                    alert("Items Purchased Sucessfully")
+                    window.location.reload()
+                } else {
+                    alert("Error occured.Please try again after some time ");
+                }
+            }});
+    } else {
+        alert("Please Add any Item then continue");
+    }
 }
 
 function getAllPurchaseItem() {
     var id = $("#txtInvoiceNumber").val();
-    var url = baseurl + "/getAllPurchaseItem?id=" + id;
-    var htm = "";
+    var url = baseurl + "/getAllPurchaseItem?purchaseid=" + id;
+    $("#tblItem").html("");
     $.ajax({url: url, success: function (result) {
             $.each(result, function (key, val) {
-                htm = htm + "<tr><td>" + val.ItemName + "</td><td>" + val.Qty + "</td><td>" + val.Price;
+                $("#tblItem").append("<tr><td>" + val.itemName + "</td><td>" + val.quantity + "</td><td>" + val.rate + "</td><td>" + val.totalAmount + "</td>");
             });
         }});
 }

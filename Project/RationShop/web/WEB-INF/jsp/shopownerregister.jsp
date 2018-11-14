@@ -33,12 +33,13 @@
                                     <input type="number" placeholder="Enter Shop Owner ARD Number" id="txtShopOwnerard" class="form-control" />
                                     <label id="err_shopard" class="text-danger"></label>
                                 </div>
+                               
                                 <div class="form-group">
 
-                                    <select id="txtShopOwnerstate" class="form-control" onchange="getalldistrict()">
-                                        <option>Select State</option>
+                                    <select id="txtShopOwnerdistrict" class="form-control" onchange="getallocation()">
+                                        <option>Select District</option>
                                         <%
-                                        String sql = "select * from location where ParentId=1";
+                                        String sql = "select * from location where ParentId=0";
                                         DBFunctions db = new DBFunctions();
                                         ResultSet rs = db.SelectQuery(sql);
                                         while (rs.next()) {
@@ -47,13 +48,6 @@
                                     <%
                                         }
                                     %>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-
-                                    <select id="txtShopOwnerdistrict" class="form-control" onchange="getallocation()">
-                                        <option>Select District</option>
-
                                     </select>
 
                                 </div>
@@ -65,7 +59,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="textarea" placeholder="Enter Shop Owner Address" id="txtShopOwnerAddress" class="form-control" />
+                                    <textarea type="textarea" placeholder="Enter Shop Owner Address" id="txtShopOwnerAddress" class="form-control" ></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="date" placeholder="Enter Shop Owner Date Of Birth" id="txtShopOwnerDOB" class="form-control" />
