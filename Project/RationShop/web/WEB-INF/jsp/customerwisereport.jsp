@@ -30,7 +30,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <select id="cmbCustomer" class="form-control">
+                                    <select id="cmbCustomer" class="form-control" onchange="getAllSalesItemByCustoer()">
                                         <option>Select Customer</option>
                                    
                                     </select>
@@ -46,16 +46,17 @@
                                         <thead>
                                             <tr>
 
-                                                <th>Customer Name</th>
+                                               
                                                 <th>Item</th>
                                                 <th>Quantity</th>
                                                 <th>Amount</th>
+                                                <th>Total Amount</th>
                                                 <th>Date</th>
 
 
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="tblItem">
                                             <tr>
                                                 <td></td>
                                                 <td></td>

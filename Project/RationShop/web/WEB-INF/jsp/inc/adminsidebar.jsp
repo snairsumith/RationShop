@@ -96,10 +96,10 @@
                         <a href="stockassign"><i class="fa fa-check-square"></i> <span>Stock Assign</span></a>
 
                     </li>
-                    <li >
+<!--                    <li >
                         <a href="stockreport"><i class="fa fa-check-square"></i> <span>Stock Report</span></a>
 
-                    </li>
+                    </li>-->
                     
                 </ul>
             </div><!-- tab-pane -->

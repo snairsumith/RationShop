@@ -16,6 +16,7 @@ import java.util.List;
 import models.FeedBackModel;
 import models.LocationModel;
 import models.PurchaseItemModel;
+import models.PurchaseModel;
 import models.SupplierModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -248,6 +249,25 @@ public class AdminAPIController {
         while (rs.next()) {
 
             feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("Name"),rs.getString("CreatedOn"),rs.getInt("Type")));
+        }
+
+        return feed;
+
+    }
+    
+    @RequestMapping(value = "/getPurchaseReport", method = RequestMethod.GET)
+    public @ResponseBody
+    List<PurchaseModel> getPurchaseReport(
+    @RequestParam("PurchaseFrom") String PurchaseFrom,
+            @RequestParam("PurchaseTo") String PurchaseTo) throws SQLException {
+        List<PurchaseModel> feed = new ArrayList<PurchaseModel>();
+
+        String sql = "select purchase.*,supplier.suppliername from purchase inner join supplier on supplier.supplierid=purchase.SupplierId where purchase.CreatedDate between '"+PurchaseFrom+"' and '"+PurchaseTo+"'";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            feed.add(new PurchaseModel(rs.getString("PurchaseId"),rs.getString("suppliername"),rs.getString("InvoiceDate"),"400"));
         }
 
         return feed;

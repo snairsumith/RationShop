@@ -56,19 +56,19 @@
                         <a href="allowdedquota"><i class="fa fa-check-square"></i> <span>Alloted Quota</span></a>
 
                     </li>
-                    <li >
+<!--                    <li >
                         <a href="shopsalesreport"><i class="fa fa-check-square"></i> <span>Sales Report</span></a>
 
-                    </li>
+                    </li>-->
                     <li >
                         <a href="customerwisereport"><i class="fa fa-check-square"></i> <span>Customerwise Report</span></a>
 
                     </li>
 
-                    <li >
+<!--                    <li >
                         <a href="shopstockreport"><i class="fa fa-check-square"></i> <span>Stock Report</span></a>
 
-                    </li>
+                    </li>-->
                     <li >
                         <a href="shopownerfeedback"><i class="fa fa-check-square"></i> <span>Feedbacks</span></a>
 

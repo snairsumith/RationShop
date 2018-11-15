@@ -28,7 +28,7 @@
                         <h2 class="profile-name" id="h_name">Barbara Balashova</h2>
                         <h4 class="profile-designation">Shop Owner</h4>
 
-
+                        <a href="#" class="btn btn-danger btn-quirk btn-block profile-btn-follow">Edit</a>
 
 
 

@@ -12,6 +12,8 @@ import models.AllowedQuotaModel;
 import models.CustomerModel;
 import models.FeedBackModel;
 import models.PurchaseItemModel;
+import models.PurchaseModel;
+import models.SalesItemModel;
 import models.ShopOwnerModel;
 import models.SupplierModel;
 import org.springframework.stereotype.Controller;
@@ -167,7 +169,8 @@ public class ShopownerAPIController {
             @RequestParam("invoicedate") String invoicedate,
             @RequestParam("purchaseid") String purchaseid)
             throws ClassNotFoundException, SQLException {
-        String sql = "INSERT INTO `sales` (`SalesId`, `CustomerId`, `DateOfSale`) VALUES ('" + purchaseid + "', " + supplierId + ", '" + invoicedate + "')";
+        String sql = "INSERT INTO `sales` (`SalesId`, `CustomerId`) VALUES ('" + purchaseid + "', " + supplierId + ")";
+        System.out.println("controllers.ShopownerAPIController.insertpurchse()"+sql);
         int j = db.InsetQuery(sql);
 
         if (j > 0) {
@@ -211,6 +214,43 @@ public class ShopownerAPIController {
         }
 
         return feed;
+
+    }
+    @RequestMapping(value = "/getCustomerReportReport", method = RequestMethod.GET)
+    public @ResponseBody
+    List<PurchaseModel> getPurchaseReport(
+    @RequestParam("PurchaseFrom") String PurchaseFrom,
+            @RequestParam("PurchaseTo") String PurchaseTo) throws SQLException {
+        List<PurchaseModel> feed = new ArrayList<PurchaseModel>();
+
+        String sql = "select purchase.*,supplier.suppliername from purchase inner join supplier on supplier.supplierid=purchase.SupplierId where purchase.CreatedDate between '"+PurchaseFrom+"' and '"+PurchaseTo+"'";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            feed.add(new PurchaseModel(rs.getString("PurchaseId"),rs.getString("suppliername"),rs.getString("InvoiceDate"),"400"));
+        }
+
+        return feed;
+
+    }
+    
+    @RequestMapping(value = "/getCustomerWiseReportSale", method = RequestMethod.GET)
+    public @ResponseBody
+    List<SalesItemModel> getitemSales(
+            @RequestParam("CustomerId") String CustomerId) throws SQLException {
+        List<SalesItemModel> pur_item = new ArrayList<SalesItemModel>();
+       
+        String sql = "select salesitem.*,item.ItemName,sales.* from salesitem inner join item on item.ItemId=salesitem.ItemId inner join sales on sales.SalesId=salesitem.SalesId where sales.CustomerId="+CustomerId+"";
+        System.out.println("controllers.ShopownerAPIController.getitemSales()"+sql);
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), rs.getInt("TotalAmount"),rs.getString("DateOfSale")));
+        }
+
+        return pur_item;
 
     }
     

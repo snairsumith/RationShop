@@ -367,6 +367,18 @@ function getAllPurchaseItem() {
             });
         }});
 }
+function getAllPurchaseReport() {
+    var to = $("#txttodate").val();
+     var from = $("#txtfromdate").val();
+      $("#tlist").html("");
+    var url = baseurl + "/getPurchaseReport?PurchaseFrom=" + from+"&PurchaseTo="+to;
+    $("#tblItem").html("");
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#tlist").append("<tr><td>" + val.purchaseId + "</td><td>" + val.supplierName + "</td><td>" + val.purcahseDate + "</td><td>" + val.totalAmount + "</td>");
+            });
+        }});
+}
 function insertstockassing() {
     var shopownerId = $("#txtselectshopowner").val();
     var itemId = $("#cmbItem").val();

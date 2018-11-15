@@ -122,10 +122,10 @@ function getAllSalesItem() {
 function insertSales() {
      var isInsertItem=$("#isItemInsert").val();
     if(isInsertItem==1){
-    var supplierId = $("#cmbItem").val();
+    var supplierId = $("#cmbCustomer").val();
     var invoicedate = $("#txtInvoiceDate").val();
     var purchaseid = $("#txtInvoiceNumber").val();
-    var url = baseurl + "/insertsales?supplierId=" + supplierId + "&invoicedate=" + invoicedate + "&invoiceduedate=" + invoiceduedate + "&purchaseid=" + purchaseid;
+    var url = baseurl + "/insertsales?supplierId=" + supplierId + "&invoicedate=" + invoicedate + "&purchaseid=" + purchaseid;
     $.ajax({url: url, success: function (result) {
             if (result == "1") {
                 alert("Items Purchased Sucessfully")
@@ -213,5 +213,16 @@ function insertNotification() {
             } else {
                 alert("Error occured.Please try again after some time ");
             }
+        }});
+}
+
+function getAllSalesItemByCustoer() {
+    var id = $("#cmbCustomer").val();
+    var url = baseurl + "/getCustomerWiseReportSale?CustomerId=" + id;
+    $("#tblItem").html("");
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#tblItem").append("<tr><td>" + val.itemName + "</td><td>" + val.quantity + "</td><td>" + val.rate + "</td><td>" + val.totalAmount + "</td><td>" + val.date + "</td></tr>");
+            });
         }});
 }
