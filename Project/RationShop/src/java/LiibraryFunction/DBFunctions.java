@@ -36,9 +36,10 @@ public class DBFunctions {
         int returnInt = 0;
         try{
              Class.forName("com.mysql.jdbc.Driver");
-        Connection con=(Connection) DriverManager.getConnection(  
-            "jdbc:mysql://localhost:3306/rationdb","root","");
+       Connection con=(Connection) DriverManager.getConnection(  
+            "jdbc:mysql://182.50.133.90:3306/student_db","student_root","student_pwd");
         Statement st=con.createStatement();
+            System.out.println("LiibraryFunction.DBFunctions.InsetQuery()"+sql);
         returnInt=st.executeUpdate(sql);
         }catch(Exception ex){
             System.out.print(ex.getMessage());
