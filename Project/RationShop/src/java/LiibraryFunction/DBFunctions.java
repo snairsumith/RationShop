@@ -22,7 +22,7 @@ public class DBFunctions {
         try{
          Class.forName("com.mysql.jdbc.Driver");
         Connection con=(Connection) DriverManager.getConnection(  
-            "jdbc:mysql://localhost:3306/rationdb","root","");
+            "jdbc:mysql://182.50.133.90:3306/student_db","student_root","student_pwd");
         Statement st=con.createStatement();
         rs=st.executeQuery(sql);
         

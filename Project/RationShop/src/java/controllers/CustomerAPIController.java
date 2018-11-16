@@ -1,6 +1,7 @@
 
 package controllers;
 
+import LiibraryFunction.DBFunctions;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/customerapi")
 public class CustomerAPIController {
+    DBFunctions db=new DBFunctions();
     @RequestMapping(value="/customermyprofile",method = RequestMethod.GET)
     @ResponseBody
    
@@ -23,12 +25,9 @@ public class CustomerAPIController {
             @RequestParam("age") String Age,
             @RequestParam("cls") String clss ) 
             throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con=(Connection) DriverManager.getConnection(  
-            "jdbc:mysql://localhost:3306/mydb","root","");
-        Statement st=con.createStatement();
+     
         String sql="insert into newtbl(Name,age,cls)values('sumith','"+Age+"','"+clss+"')";
-        int  i= st.executeUpdate(sql);
+        int  i= db.InsetQuery(sql);
         if(i>0){
             return "sucess";
         }else{

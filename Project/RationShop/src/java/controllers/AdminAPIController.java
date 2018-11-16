@@ -121,13 +121,10 @@ public class AdminAPIController {
             @RequestParam("state") String state
     )
             throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con = (Connection) DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/rationdb", "root", "");
-        Statement st = con.createStatement();
+      
         String sql = "insert into `supplier` ( `suppliername`, `supplieraddress`, `contact`, `emailid`,`LocationId`) VALUES ( '" + name + "', '" + address + "','" + contact + "', '" + email + "', '" + state + "');";
 
-        int j = st.executeUpdate(sql);
+        int j = db.InsetQuery(sql);
         // int i = st.executeUpdate(sql);
         if (j > 0) {
             return "1";
