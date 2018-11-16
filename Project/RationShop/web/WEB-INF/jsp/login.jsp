@@ -63,7 +63,7 @@
           </div>
             <label id="err_pwd" class="text-danger"></label>
         </div>
-        <div><a href="#" class="forgot">Forgot password?</a></div>
+<!--        <div><a href="#" class="forgot">Forgot password?</a></div>-->
         <div class="form-group">
             <button type="button" class="btn btn-success btn-quirk btn-block" onclick="login()">Sign In</button>
         </div>

@@ -8,10 +8,15 @@
         <section>
             <jsp:include page="inc/customersidebar.jsp" />
             <div class="mainpanel">
-
+  <script>
+            getuserCategoryId();
+            
+            
+            
+        </script>
                 <div class="contentpanel">
                     <ol class="breadcrumb breadcrumb-quirk">
-                        <li><a href="index-2.html"><i class="fa fa-home mr5"></i> Home</a></li>
+                        <li><a href="#"><i class="fa fa-home mr5"></i> Home</a></li>
                         <li class="active">Purchase</li>
                     </ol>
                     <div class="row">
@@ -20,6 +25,7 @@
                                 <div class="panel-heading">
                                     <h4 class="panel-title">Purchase</h4>
                                     <p> Purchase From Here</p>
+                                    <input type="hidden" value="" id="hdCategoryId"/>
                                 </div>
                                 <div class="panel-body">
                                     <div class="table-responsive">
@@ -30,14 +36,14 @@
                                                     <th>Item Name</th>
                                                     <th>Price</th>
                                                     <th>Quantity</th>
-                                                    <th>Status</th>
-
+                                                    <th>Date</th>
+                                                    <th></th>
                                                   
 
-                                                    <th></th>
+                                                    
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="tblist">
                                                 <tr>
                                                     <td></td>
                                                     <td></td>
@@ -51,12 +57,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-9 col-sm-offset-3">
-                                    <button class="btn btn-success btn-quirk btn-wide mr5">Submit</button>
-                                    <button type="reset" class="btn btn-quirk btn-wide btn-default">Reset</button>
-                                </div>
-                            </div
+                          
                             </section>
 
 

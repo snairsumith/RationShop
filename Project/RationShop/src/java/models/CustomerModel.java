@@ -19,8 +19,10 @@ public class CustomerModel {
     private String AadharCardNo;
     private String Gender;
     private String Address;
+    private String ShopOwnerId;
+    private int CategoryId;
 
-    public CustomerModel(int CustomerId, String CustomerName, String CustomerEmail, String Contact, String RationCardNo, String AadharCardNo,String Gender,String Address) {
+    public CustomerModel(int CustomerId, String CustomerName, String CustomerEmail, String Contact, String RationCardNo, String AadharCardNo,String Gender,String Address,String ShopOwnerId,int CategoryId) {
         this.CustomerId = CustomerId;
         this.CustomerName = CustomerName;
         this.CustomerEmail = CustomerEmail;
@@ -29,6 +31,8 @@ public class CustomerModel {
         this.AadharCardNo = AadharCardNo;
         this.Gender=Gender;
         this.Address=Address;
+        this.ShopOwnerId=ShopOwnerId;
+        this.CategoryId=CategoryId;
     }
 
     /**
@@ -141,5 +145,33 @@ public class CustomerModel {
      */
     public void setAddress(String Address) {
         this.Address = Address;
+    }
+
+    /**
+     * @return the ShopOwnerId
+     */
+    public String getShopOwnerId() {
+        return ShopOwnerId;
+    }
+
+    /**
+     * @param ShopOwnerId the ShopOwnerId to set
+     */
+    public void setShopOwnerId(String ShopOwnerId) {
+        this.ShopOwnerId = ShopOwnerId;
+    }
+
+    /**
+     * @return the CategoryId
+     */
+    public int getCategoryId() {
+        return CategoryId;
+    }
+
+    /**
+     * @param CategoryId the CategoryId to set
+     */
+    public void setCategoryId(int CategoryId) {
+        this.CategoryId = CategoryId;
     }
 }

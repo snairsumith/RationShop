@@ -21,6 +21,10 @@ public class CustomerController {
      public String customerfeedback(){
          return "customerfeedback";
      }
+      @RequestMapping(value="/customernewfeedback",method = RequestMethod.GET)
+     public String customernewfeedback(){
+         return "CustomerNewFeedBack";
+     }
      
          @RequestMapping(value="/customerpurchase",method = RequestMethod.GET)
      public String customerpurchase(){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2018 at 04:03 PM
+-- Generation Time: Nov 16, 2018 at 08:51 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `category` (
   `CategoryId` int(10) NOT NULL,
-  `CategoryName` varchar(20) NOT NULL
+  `CategoryName` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -38,9 +38,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`CategoryId`, `CategoryName`) VALUES
-(1, 'BPL'),
-(2, 'APL'),
-(3, 'Genaral');
+(5, 'Priority'),
+(6, 'Antyodaya Anna Yojana (AYY)'),
+(7, 'Non Priority Subsidy'),
+(8, 'Non-Priority ');
 
 -- --------------------------------------------------------
 
@@ -72,19 +73,21 @@ CREATE TABLE `customer` (
   `AadharNo` varchar(50) NOT NULL,
   `DOB` varchar(10) NOT NULL,
   `EmailId` varchar(50) NOT NULL,
-  `ContactNo` varchar(13) NOT NULL,
+  `ContactNo` varchar(12) NOT NULL,
   `Gender` varchar(10) NOT NULL,
-  `ShopOwnerId` varchar(20) NOT NULL
+  `ShopOwnerId` varchar(50) NOT NULL,
+  `CategoryId` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`CustomerId`, `CustomerName`, `RationCardNo`, `Address`, `AadharNo`, `DOB`, `EmailId`, `ContactNo`, `Gender`, `ShopOwnerId`) VALUES
-(4, 'sad', 'ds', 'sd', 'jgj', 'jgjg', 'jg', 'jg', 'Female', 'sumith@gmail.com'),
-(5, 'Sumith S Nair', 'ration 1', 'Thethothil', '1245', '12-12-1989', 'sumith@gmail.com', '9656761101', 'Female', 'sumith@gmail.com'),
-(6, 'Hari', 'sdsd23424', 'sddssd', 'assas24442', '12-12-1989', 'sumith@minusbugs.com', '9656761101', 'M', 'sumith123@gmail.com');
+INSERT INTO `customer` (`CustomerId`, `CustomerName`, `RationCardNo`, `Address`, `AadharNo`, `DOB`, `EmailId`, `ContactNo`, `Gender`, `ShopOwnerId`, `CategoryId`) VALUES
+(5, 'Sumith S Nair', 'ration 1', 'Thethothil', '1245', '12-12-1989', 'sumith@gmail.com', '9656761101', 'Male', 'sumith@gmail.com', 8),
+(7, 'Hari', '1045876310/PHH', 'Harisree Nilayam ', '321451268471', '02/09/94', 'hari@gmail.com', '919621354789', 'Male', 'afsal@gmail.com', 6),
+(10, 'Sreehari', '3214565412/PHH', 'sreenilayam', '125436521489', '02/03/1995', 'sree@gmail.com', '919130123016', 'Male', 'afsal@gmail.com', 7),
+(11, 'Jaison Jose', '3652325632/PHH', 'Murimattathil (h), Varikoli P.O,Mattakuzhi', '253214563210', '02/03/1985', 'jaison@gmail.com', '919587452136', 'Male', 'afsal@gmail.com', 5);
 
 -- --------------------------------------------------------
 
@@ -108,10 +111,13 @@ CREATE TABLE `feedback` (
 
 INSERT INTO `feedback` (`FeedBackId`, `FeedBackTitle`, `FeedBackDescription`, `CreatedOn`, `SenderId`, `ReciverId`, `Type`) VALUES
 (2, 'Quota Not Recived', 'assa', '2018-11-09 19:11:47', 'sumith@gmail.com', 'admin', 2),
-(3, 'Quota Not Recived', 'assa', '2018-11-09 19:11:52', '5', 'sumith@gmail.com', 3),
+(3, 'Quota Not Recived', 'assa', '2018-11-09 19:11:52', '5', 'jaison@gmail.com', 3),
 (4, 'Test', 'sdds', '2018-11-09 19:16:00', 'sumith@gmail.com', 'admin', 2),
 (5, 'Hai Admin', 'Test Msg', '2018-11-09 19:59:16', 'sumith@gmail.com', 'admin', 2),
-(6, 'New Stok Added', 'Test', '2018-11-09 19:59:30', 'sumith@gmail.com', '5', 2);
+(6, 'New Stok Added', 'Test', '2018-11-09 19:59:30', 'sumith@gmail.com', '5', 2),
+(7, 'Question', 'Is Sugar available this month???', '2018-11-10 12:37:36', 'afsal@gmail.com', 'admin', 2),
+(8, 'Question', 'kerosene shortage', '2018-11-10 16:04:12', 'afsal@gmail.com', 'admin', 2),
+(14, 'Test Feed', 'sdsds', '2018-11-16 12:33:28', 'afsal@gmail.com', 'jaison@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -131,11 +137,14 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`ItemId`, `ItemName`, `ItemDescription`, `ItemStatus`) VALUES
-(1, 'Rice', '', 0),
-(2, 'OIL', '', 0),
-(3, 'ddf', 'fd', 1),
-(4, 'wheat', 'sff', 1),
-(5, 'Item 2', 'khhkh', 1);
+(6, 'Wheat', 'Gujarath', 1),
+(7, 'Aatta', 'Aashirvad', 1),
+(8, 'Kerosene', 'First Quality', 1),
+(9, 'Sugar', 'First Quality', 1),
+(10, 'Pachari', 'First Quality', 1),
+(11, 'Kuthari', 'First Quality', 1),
+(12, 'Chakkari', 'First Quality', 1),
+(13, 'Puzhukkalari', 'First Quality', 1);
 
 -- --------------------------------------------------------
 
@@ -154,16 +163,21 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`LocationId`, `LocationName`, `ParentId`) VALUES
-(1, 'India', 0),
-(2, 'Kerala', 1),
-(3, 'Kottayam', 2),
-(4, 'Eranakulam', 2),
-(5, 'Iduki', 2),
-(6, 'Alapuzha', 2),
-(7, 'Vaikom', 3),
-(8, 'Kaduthuruthy', 3),
-(9, 'Tripunithura', 4),
-(10, 'Vytilla', 4);
+(4, 'Pazhamthottam', 12),
+(7, 'Vaikom', 11),
+(8, 'Kaduthuruthy', 11),
+(9, 'Tripunithura', 12),
+(10, 'Vytilla', 12),
+(11, 'Kottayam', 0),
+(12, 'Ernakulam', 0),
+(13, 'Iduki', 0),
+(14, 'Thodupuzha', 13),
+(15, 'Kattapana', 13),
+(16, 'Wayanad', 0),
+(17, 'Kalpatta', 16),
+(18, 'Thrissur', 0),
+(19, 'Guruvayoor', 18),
+(20, 'Chalakkudy', 18);
 
 -- --------------------------------------------------------
 
@@ -190,7 +204,17 @@ INSERT INTO `login` (`LoginId`, `UserName`, `Password`, `Role`) VALUES
 (27, 'admin@dd.vom', 'admin', 3),
 (28, 'sumith@minusbugs.com', '123', 2),
 (29, 'sumith2112@minusbugs.com', '123', 1),
-(30, 'sumith2112@minusbugs.com', '123', 1);
+(30, 'sumith2112@minusbugs.com', '123', 1),
+(31, 'afsal@gmail.com', 'admin', 3),
+(32, 'afsal@gmail.com', 'admin', 3),
+(33, 'hari@gmail.com', 'hari', 1),
+(34, 'manju@gmail.com', 'manju', 1),
+(35, 'manju@gmail.com', 'manju', 1),
+(36, 'manju@gmail.com', 'manju', 1),
+(37, 'admin', 'admin', 1),
+(38, 'S@S.COM', '1234', 1),
+(39, 'sree@gmail.com', 'sree', 1),
+(40, 'jaison@gmail.com', 'jaison', 1);
 
 -- --------------------------------------------------------
 
@@ -216,7 +240,8 @@ INSERT INTO `notifications` (`NotificationId`, `Title`, `Description`, `RoleType
 (2, 'Hai Admin', 'jjlj', 1, '2018-11-09 14:47:49.118243', 0),
 (3, 'sa', 'as', 2, '2018-11-09 14:48:23.709090', 0),
 (4, 'nEw Cust', 'kkjj', 1, '2018-11-09 14:48:43.899205', 0),
-(5, 'as', 'as', 3, '2018-11-09 15:01:54.077429', 0);
+(5, 'as', 'as', 3, '2018-11-09 15:01:54.077429', 0),
+(6, 'Quota', 'Quota Alloted', 3, '2018-11-10 07:19:05.667229', 0);
 
 -- --------------------------------------------------------
 
@@ -228,18 +253,19 @@ CREATE TABLE `purchase` (
   `PurchaseId` varchar(25) NOT NULL,
   `SupplierId` int(20) NOT NULL,
   `InvoiceDate` varchar(20) NOT NULL,
-  `DueDate` varchar(20) NOT NULL
+  `DueDate` varchar(20) NOT NULL,
+  `CreatedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `purchase`
 --
 
-INSERT INTO `purchase` (`PurchaseId`, `SupplierId`, `InvoiceDate`, `DueDate`) VALUES
-('', 0, '0000-0', ''),
-('21', 0, '', ''),
-('PU0072780', 1, '2018-11-12', '2018-11-16'),
-('PU026294', 1, '2018-11-07', '2018-11-07');
+INSERT INTO `purchase` (`PurchaseId`, `SupplierId`, `InvoiceDate`, `DueDate`, `CreatedDate`) VALUES
+('PU0196255', 1, '2018-11-12', '2018-11-16', '2018-11-15 13:12:55'),
+('PU026294', 1, '2018-11-07', '2018-11-07', '2018-11-15 13:12:55'),
+('PU059146', 1, '2018-11-07', '2018-11-16', '2018-11-15 13:12:55'),
+('PU0683971', 2, '2018-11-05', '2018-11-20', '2018-11-15 13:12:55');
 
 -- --------------------------------------------------------
 
@@ -261,15 +287,17 @@ CREATE TABLE `purchaseitem` (
 --
 
 INSERT INTO `purchaseitem` (`PurchaseItemId`, `PurchaseId`, `Quantity`, `ItemId`, `Rate`, `TotalAmount`) VALUES
-(1, '0', 0, 0, 0, 0),
-(2, 'p1', 4, 1, 21, 211),
-(3, 'p1', 23, 1, 200, 200),
-(4, 'p1', 23, 1, 200, 4600),
-(5, 'p1', 2, 1, 200, 400),
-(6, 'p1', 2, 1, 200, 400),
-(7, 'PU0754645', 21, 2, 21, 441),
-(8, 'PU0072780', 2, 1, 21, 42),
-(9, 'PU0072780', 2, 2, 21, 42);
+(12, 'PU0196255', 10, 7, 50, 500),
+(13, 'PU0196255', 100, 9, 45, 4500),
+(14, 'PU0166582', 20, 6, 20, 400),
+(15, 'PU0166582', 20, 6, 20, 400),
+(16, 'PU0166582', 20, 6, 20, 400),
+(17, 'PU039085', 2, 7, 21, 42),
+(18, 'PU039085', 2, 7, 21, 42),
+(19, 'PU0597794', 2, 7, 200, 400),
+(20, 'PU0888280', 2, 13, 21, 42),
+(21, 'PU0888280', 2, 8, 21, 42),
+(22, 'PU059146', 2, 6, 21, 42);
 
 -- --------------------------------------------------------
 
@@ -291,13 +319,10 @@ CREATE TABLE `rationallotment` (
 --
 
 INSERT INTO `rationallotment` (`AllotmentId`, `CategoryId`, `ItemId`, `Quantity`, `Rate`, `date`) VALUES
-(2, 1, 1, 23, 23, '0000-00-00'),
-(3, 1, 1, 23, 23, '10-10-2012'),
-(4, 1, 1, 23, 233, '2018-11-08'),
-(5, 3, 2, 230, 234, '2018-11-23'),
-(6, 2, 2, 12, 12, '2018-11-21'),
-(7, 1, 1, 23, 23, '10-10-2012'),
-(8, 1, 1, 23, 23, '10-10-2012');
+(9, 5, 6, 1, 20, '2018-11-04'),
+(10, 6, 10, 35, 7, '2018-09-26'),
+(11, 7, 11, 2, 2, '2018-11-09'),
+(12, 8, 13, 8, 14, '2018-11-16');
 
 -- --------------------------------------------------------
 
@@ -307,13 +332,13 @@ INSERT INTO `rationallotment` (`AllotmentId`, `CategoryId`, `ItemId`, `Quantity`
 
 CREATE TABLE `registration` (
   `CustomerId` int(10) NOT NULL,
-  `UserName` varchar(20) NOT NULL,
+  `UserName` varchar(50) NOT NULL,
   `Name` varchar(20) NOT NULL,
-  `Address` varchar(30) NOT NULL,
+  `Address` varchar(50) NOT NULL,
   `DateOfBirth` date NOT NULL,
   `Gender` varchar(20) NOT NULL,
-  `Contact` int(10) NOT NULL,
-  `Email` varchar(20) NOT NULL,
+  `Contact` varchar(12) NOT NULL,
+  `Email` varchar(50) NOT NULL,
   `AdharNumber` varchar(12) NOT NULL,
   `Status` varchar(20) NOT NULL COMMENT 'Verified or not'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -337,11 +362,18 @@ CREATE TABLE `reports` (
 --
 
 CREATE TABLE `sales` (
-  `SalesId` varchar(25) NOT NULL,
+  `SalesId` varchar(50) NOT NULL,
   `CustomerId` int(10) NOT NULL,
   `Status` varchar(20) NOT NULL DEFAULT '1',
   `DateOfSale` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`SalesId`, `CustomerId`, `Status`, `DateOfSale`) VALUES
+('SALE0372115', 7, '1', '2018-11-15 13:54:02.105828');
 
 -- --------------------------------------------------------
 
@@ -351,12 +383,32 @@ CREATE TABLE `sales` (
 
 CREATE TABLE `salesitem` (
   `SalesItemId` int(10) NOT NULL,
-  `SalesId` varchar(10) NOT NULL COMMENT 'ForeignKey',
+  `SalesId` varchar(100) NOT NULL COMMENT 'ForeignKey',
   `Quantity` int(20) NOT NULL,
   `ItemId` int(10) NOT NULL COMMENT 'ForeignKey',
   `Rate` float NOT NULL,
   `TotalAmount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `salesitem`
+--
+
+INSERT INTO `salesitem` (`SalesItemId`, `SalesId`, `Quantity`, `ItemId`, `Rate`, `TotalAmount`) VALUES
+(1, 'SALE083546', 2, 6, 221, 442),
+(2, 'SALE0835464', 2, 6, 221, 442),
+(3, 'SALE0835464', 2, 6, 221, 442),
+(4, 'SALE0588294', 1, 6, 21, 21),
+(5, 'SALE0588294', 4, 8, 34, 136),
+(6, 'SALE0137698', 1, 6, 21, 21),
+(7, 'SALE0397302', 1, 8, 21, 21),
+(8, 'SALE0556625', 5, 7, 25, 125),
+(9, 'SALE068856', 2, 10, 21, 42),
+(10, 'SALE0003919', 2, 7, 221, 442),
+(11, 'SALE0679219', 12, 6, 21, 252),
+(12, 'SALE0545354', 12, 7, 21, 252),
+(13, 'SALE0221556', 2, 7, 21, 42),
+(14, 'SALE0372115', 1, 8, 12, 12);
 
 -- --------------------------------------------------------
 
@@ -369,7 +421,7 @@ CREATE TABLE `shopownerregistration` (
   `Password` varchar(20) NOT NULL,
   `ARDNumber` varchar(20) NOT NULL,
   `Name` varchar(20) NOT NULL,
-  `Address` varchar(20) NOT NULL,
+  `Address` varchar(150) NOT NULL,
   `DateOfBirth` varchar(100) NOT NULL,
   `Gender` varchar(10) NOT NULL,
   `Contact` varchar(20) NOT NULL,
@@ -384,10 +436,7 @@ CREATE TABLE `shopownerregistration` (
 --
 
 INSERT INTO `shopownerregistration` (`ShopOwnerId`, `Password`, `ARDNumber`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`, `Locationid`, `PinCode`, `Status`) VALUES
-(8, 'admin', '323223', 'sads', 'sdsd', '2018-10-16', 'Male', '9656761101', 'sumith@gmail.com', 3, '686138', '1'),
-(9, '5267', '787878787', 'Hari', 'Paravoor', '2002-12-05', 'Male', '9526909898', 'hari@gmail.com', 4, '686141', '1'),
-(10, 'admin', '122112', 'assa', 'qqw', '2018-11-15', 'Male', '2121212121', 'admin@gg.vom', 3, '121212', '1'),
-(11, 'admin', '1212121212', 'dadaad', '123', '2018-09-15', 'Male', '1212212121', 'admin@dd.vom', 3, '212120', '1');
+(12, 'admin', '1738055', 'Afsal', 'Pazhamthottam P.o\r\nPazhamthottam', '2018-11-08', 'Male', '9874589622', 'afsal@gmail.com', 12, '683565', '1');
 
 -- --------------------------------------------------------
 
@@ -397,7 +446,7 @@ INSERT INTO `shopownerregistration` (`ShopOwnerId`, `Password`, `ARDNumber`, `Na
 
 CREATE TABLE `stockassign` (
   `stockassignId` int(10) NOT NULL,
-  `shopownerId` varchar(20) NOT NULL,
+  `shopownerId` varchar(50) NOT NULL,
   `itemId` int(10) NOT NULL,
   `quota` int(10) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
@@ -409,8 +458,10 @@ CREATE TABLE `stockassign` (
 --
 
 INSERT INTO `stockassign` (`stockassignId`, `shopownerId`, `itemId`, `quota`, `amount`, `month`) VALUES
-(1, '0', 0, 0, '0', '0000-00-00'),
-(2, 'sumith@gmail.com', 1, 21, '12', '2018-11-15');
+(2, 'afsal@gmail.com', 7, 21, '12', '2018-11-15'),
+(3, 'afsal@gmail.com', 6, 50, '40', '2018-11-10'),
+(4, 'afsal@gmail.com', 8, 123, '22', '2018-11-16'),
+(5, 'afsal@gmail.com', 6, 50, '40', '2018-11-10');
 
 -- --------------------------------------------------------
 
@@ -432,8 +483,9 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`supplierid`, `suppliername`, `supplieraddress`, `contact`, `emailid`, `LocationId`) VALUES
-(1, 'Sup1', 'hjsd', '9656761101', 'sup@gmail.com', 1),
-(2, 'Sup 2', 'Thet', '9656761101', 'ss@ss.com', 2);
+(1, 'Rajesh', 'Rajasree Food Mills', '9656761101', 'supplier1@gmail.com', 14),
+(2, 'Pradeep Dhadha\r\n', 'Ranganadhan Food Mills', '9687458632', 'supplier2@gmail.com', 12),
+(3, 'Vishnu ', 'Vee And Vee', '9656880761', 'Vishnu@gmail.com', 18);
 
 --
 -- Indexes for dumped tables
@@ -467,7 +519,8 @@ ALTER TABLE `feedback`
 -- Indexes for table `item`
 --
 ALTER TABLE `item`
-  ADD PRIMARY KEY (`ItemId`);
+  ADD PRIMARY KEY (`ItemId`),
+  ADD UNIQUE KEY `ItemName` (`ItemName`);
 
 --
 -- Indexes for table `location`
@@ -555,7 +608,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `CategoryId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `CategoryId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `complaints`
@@ -567,49 +620,49 @@ ALTER TABLE `complaints`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `CustomerId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `CustomerId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `FeedBackId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `FeedBackId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `ItemId` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ItemId` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `LocationId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `LocationId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `LoginId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `LoginId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `NotificationId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `NotificationId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `purchaseitem`
 --
 ALTER TABLE `purchaseitem`
-  MODIFY `PurchaseItemId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `PurchaseItemId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `rationallotment`
 --
 ALTER TABLE `rationallotment`
-  MODIFY `AllotmentId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `AllotmentId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `registration`
@@ -627,25 +680,25 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT for table `salesitem`
 --
 ALTER TABLE `salesitem`
-  MODIFY `SalesItemId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `SalesItemId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `shopownerregistration`
 --
 ALTER TABLE `shopownerregistration`
-  MODIFY `ShopOwnerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ShopOwnerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `stockassign`
 --
 ALTER TABLE `stockassign`
-  MODIFY `stockassignId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `stockassignId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `supplierid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `supplierid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

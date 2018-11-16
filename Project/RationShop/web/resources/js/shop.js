@@ -36,7 +36,8 @@ function insertCustomer() {
     var Gender = $("#rdGender").val();
     var username = localStorage.getItem("username");
     var password = $("#txtPassword").val();
-    var url = baseurl + "/insertCustomer?CustomerName=" + CustomerName + "&RationCardNo=" + RationCardNo + "&Address=" + Address + "&AadharNo=" + AadharNo + "&DOB=" + DOB + "&EmailId=" + EmailId + "&ContactNo=" + ContactNo + "&Gender=" + Gender + "&ShopOwnerId=" + username + "&Password=" + password;
+    var CategoryId=$("#cmbCategory").val();
+    var url = baseurl + "/insertCustomer?CustomerName=" + CustomerName + "&RationCardNo=" + RationCardNo + "&Address=" + Address + "&AadharNo=" + AadharNo + "&DOB=" + DOB + "&EmailId=" + EmailId + "&ContactNo=" + ContactNo + "&Gender=" + Gender + "&ShopOwnerId=" + username + "&Password=" + password+"&CategoryId="+CategoryId;
 
     $.ajax({url: url, success: function (result) {
             if (result == "1") {

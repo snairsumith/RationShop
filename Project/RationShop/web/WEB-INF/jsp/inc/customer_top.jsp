@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="LiibraryFunction.DBFunctions"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
@@ -102,7 +104,7 @@
                                                         <%                              }
                                                         %>
                                                     </ul>
-                                                    <a class="btn-more" href="#">View More Notifications <i class="fa fa-long-arrow-right"></i></a>
+                                                    <a class="btn-more" href="customernotification">View More Notifications <i class="fa fa-long-arrow-right"></i></a>
                                                 </div><!-- tab-pane -->
 
 
@@ -120,7 +122,7 @@
                 </button>
                 <ul class="dropdown-menu pull-right">
                  
-                  <li><a href="../common/"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
+                  <li><a href="../"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
                 </ul>
               </div>
             </li>

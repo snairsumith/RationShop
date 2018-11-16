@@ -49,7 +49,23 @@
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Customer Date Of Birth" id="txtcustomerDOB" class="form-control" />
                             </div>
+                             <div class="form-group">
+                                 <select id="cmbCategory" class="form-control">
+                                     <option value="0">Select Category</option>
+                                  <%
+                                                            DBFunctions db = new DBFunctions();
+                                                            String sql = "select * from category";
+                                                            ResultSet rs = db.SelectQuery(sql);
+                                                             while (rs.next()) {
 
+
+                                                        %>
+                                                         <option value=<%= rs.getString("CategoryId")%>><%= rs.getString("CategoryName")%></option>
+                                                         <% }
+                                                             %>
+                                                        </select>
+                                                        
+                            </div>
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Customer Contact" id="txtcustomerContact" class="form-control" />
                                 <label id="err_custcontact" class="text-danger"></label>

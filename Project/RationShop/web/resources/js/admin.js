@@ -41,6 +41,7 @@ function login() {
                         localStorage.setItem("username", username);
                         window.location.href = "/RationShop/shopowner/shophome";
                     } else if (result == 1) {
+                         localStorage.setItem("username", username);
                         window.location.href = "/RationShop/customer/customermyprofile";
                     }
 
@@ -418,6 +419,20 @@ function getAllFeedBack() {
             }});
     }
 }
+
+function getAllCustFeedBack() {
+    
+    $("#feedback_list").html("");
+    var shopownerId = localStorage.getItem("username");
+        var url = baseurl + "/getAllFeedBackCustomerGet?username="+shopownerId;
+        $.ajax({url: url, success: function (result) {
+                $.each(result, function (key, val) {
+                    $("#feedback_list").append("<tr><td>" + val.title + "</td><td>" + val.description + "</td><td>" + val.senderName + "</td><td>" + val.dateOfSend + "</td></tr>");
+
+                });
+            }});
+   
+}
 function insertNotification() {
     var RoleType = $("#cmbRole").val();
     var Title = $("#txtTitle").val();
@@ -459,4 +474,83 @@ function shopownermyprofiles() {
     }
 
 }
+
+function userProfileById() {
+    var shopownerId = localStorage.getItem("username");
+    var url = baseurl + "/getsuserbyid?shopusername=" + shopownerId;
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#h_name").text(val.customerName);
+                $("#p_address").text(val.address);
+                $("#p_location").text(val.locationName);
+                $("#p_pincode").text(val.pinCode);
+                $("#p_contact").text(val.contact);
+                $("#p_email").text(val.customerEmail);
+                $("#p_ardno").text(val.rationCardNo);
+                $("#p_gender").text(val.gender);
+                $("#p_adharno").text(val.aadharCardNo);
+            });
+        }});
+
+}
+function getuserProfileById() {
+    var username = localStorage.getItem("username");
+    var ShopOwnerId="";
+    var url = baseurl + "/getsuserbyid?shopusername=" + username;
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+               $("#hdShopId").val(val.shopOwnerId);
+            });
+        }});
     
+    
+}
+async function getuserCategoryId() {
+    var username = localStorage.getItem("username");
+    var ShopOwnerId="";
+    var url = baseurl + "/getsuserbyid?shopusername=" + username;
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+               $("#hdCategoryId").val(val.categoryId);
+               getAllItemsByCategoryId(val.categoryId);
+            });
+        }});
+    
+    
+}
+function shopSendFeedBack() {
+    var optionId = $("#cmbChooseReciver").val();
+    var ReciverId = "";
+    if (optionId == "shop") {
+        ReciverId = $("#hdShopId").val();
+    } else {
+        ReciverId = "admin";
+    }
+    var Title = $("#txtName").val();
+    var Description = $("#txtDescription").val();
+    var SenderId = localStorage.getItem("username");
+    var Type = 3;
+    var url = commonurl + "/sendFeedBack?Title=" + Title + "&Description=" + Description + "&SenderId=" + SenderId + "&ReciverId=" + ReciverId + "&Type=" + Type;
+    $.ajax({url: url, success: function (result) {
+            if (result == "1") {
+                alert("Feedback Send Sucessfully")
+                window.location.reload()
+            } else {
+                alert("Error occured.Please try again after some time ");
+            }
+        }});
+}
+
+function getAllItemsByCategoryId(categoryId) {
+    
+    $("#tblist").html("");
+//    var categoryId = $("#hdCategoryId").val();
+        var url = baseurl + "/getAllPurchaseItemByCustomer?categoryId="+categoryId;
+        $.ajax({url: url, success: function (result) {
+                $.each(result, function (key, val) {
+                    $("#tblist").append("<tr><td>" + val.itemName + "</td><td>" + val.rate + "</td><td>" + val.quantity + "</td><td>" + val.date + "</td><td><a href='#'>Buy Now</a></td></tr>");
+
+                });
+            }});
+   
+}

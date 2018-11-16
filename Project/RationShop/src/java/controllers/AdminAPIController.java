@@ -13,10 +13,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import models.CustomerModel;
 import models.FeedBackModel;
 import models.LocationModel;
 import models.PurchaseItemModel;
 import models.PurchaseModel;
+import models.SalesItemModel;
+import models.ShopOwnerModel;
 import models.SupplierModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -254,6 +257,24 @@ public class AdminAPIController {
         return feed;
 
     }
+    @RequestMapping(value = "/getAllFeedBackCustomerGet", method = RequestMethod.GET)
+    public @ResponseBody
+    List<FeedBackModel> getAllFeedBackCustomerGet(
+        @RequestParam("username") String username) throws SQLException {
+        List<FeedBackModel> feed = new ArrayList<FeedBackModel>();
+
+         String sql = "select feedback.*,shopownerregistration.Name from feedback inner join shopownerregistration on feedback.SenderId=shopownerregistration.Email where  ReciverId='"+username+"'";
+         System.out.println("controllers.AdminAPIController.getAllFeedBackCustomerGet()"+sql);
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("Name"),rs.getString("CreatedOn"),rs.getInt("Type")));
+        }
+
+        return feed;
+
+    }
     
     @RequestMapping(value = "/getPurchaseReport", method = RequestMethod.GET)
     public @ResponseBody
@@ -271,6 +292,42 @@ public class AdminAPIController {
         }
 
         return feed;
+
+    }
+        @RequestMapping(value = "/getsuserbyid", method = RequestMethod.GET)
+    public @ResponseBody
+    List<CustomerModel> getUserById(
+            @RequestParam("shopusername") String shopusername) throws SQLException {
+        List<CustomerModel> quota = new ArrayList<CustomerModel>();
+
+         String sql = "select * from customer where EmailId='" + shopusername + "'";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            quota.add(new CustomerModel(rs.getInt("CustomerId"), rs.getString("CustomerName"), rs.getString("EmailId"), rs.getString("ContactNo"), rs.getString("RationCardNo"), rs.getString("AadharNo"), rs.getString("Gender"), rs.getString("Address"),rs.getString("ShopOwnerId"),rs.getInt("CategoryId")));
+        }
+
+        return quota;
+
+    }
+    
+     @RequestMapping(value = "/getAllPurchaseItemByCustomer", method = RequestMethod.GET)
+    public @ResponseBody
+    List<SalesItemModel> getAllPurchaseItemByCustomer(
+            @RequestParam("categoryId") String categoryId) throws SQLException {
+        List<SalesItemModel> pur_item = new ArrayList<SalesItemModel>();
+       
+        String sql = "select rationallotment.*,item.ItemName from rationallotment inner join item on item.ItemId=rationallotment.ItemId where rationallotment.CategoryId='"+categoryId+"'";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), 400,rs.getString("date")));
+            
+        }
+
+        return pur_item;
 
     }
 

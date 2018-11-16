@@ -60,11 +60,12 @@ public class ShopownerAPIController {
             @RequestParam("ContactNo") String ContactNo,
             @RequestParam("Gender") String Gender,
             @RequestParam("ShopOwnerId") String ShopOwnerId,
-            @RequestParam("Password") String Password
+            @RequestParam("Password") String Password,
+            @RequestParam("CategoryId") String CategoryId
     )
             throws ClassNotFoundException, SQLException {
 
-        String sql = "INSERT INTO `customer` (`CustomerName`, `RationCardNo`, `Address`, `AadharNo`, `DOB`, `EmailId`, `ContactNo`, `Gender`, `ShopOwnerId`) VALUES ('" + Name + "', '" + RationCardNo + "', '" + Address + "', '" + AadharNo + "','" + DOB + "', '" + EmailId + "', '" + ContactNo + "', '" + Gender + "', '" + ShopOwnerId + "')";
+        String sql = "INSERT INTO `customer` (`CustomerName`, `RationCardNo`, `Address`, `AadharNo`, `DOB`, `EmailId`, `ContactNo`, `Gender`, `ShopOwnerId`,`CategoryId`) VALUES ('" + Name + "', '" + RationCardNo + "', '" + Address + "', '" + AadharNo + "','" + DOB + "', '" + EmailId + "', '" + ContactNo + "', '" + Gender + "', '" + ShopOwnerId + "',"+CategoryId+")";
          String sql1="insert into login(UserName,Password,Role)values('"+EmailId+"','"+Password+"','1')";
         int i = db.InsetQuery(sql);
         int j = db.InsetQuery(sql1);
@@ -105,7 +106,7 @@ public class ShopownerAPIController {
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            quota.add(new CustomerModel(rs.getInt("CustomerId"), rs.getString("CustomerName"), rs.getString("EmailId"), rs.getString("ContactNo"), rs.getString("RationCardNo"), rs.getString("AadharNo"), rs.getString("Gender"), rs.getString("Address")));
+            quota.add(new CustomerModel(rs.getInt("CustomerId"), rs.getString("CustomerName"), rs.getString("EmailId"), rs.getString("ContactNo"), rs.getString("RationCardNo"), rs.getString("AadharNo"), rs.getString("Gender"), rs.getString("Address"),rs.getString("ShopOwnerId"),rs.getInt("CategoryId")));
         }
 
         return quota;
@@ -123,7 +124,7 @@ public class ShopownerAPIController {
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            quota.add(new CustomerModel(rs.getInt("CustomerId"), rs.getString("CustomerName"), rs.getString("EmailId"), rs.getString("ContactNo"), rs.getString("RationCardNo"), rs.getString("AadharNo"), rs.getString("Gender"), rs.getString("Address")));
+            quota.add(new CustomerModel(rs.getInt("CustomerId"), rs.getString("CustomerName"), rs.getString("EmailId"), rs.getString("ContactNo"), rs.getString("RationCardNo"), rs.getString("AadharNo"), rs.getString("Gender"), rs.getString("Address"),rs.getString("ShopOwnerId"),rs.getInt("CategoryId")));
         }
 
         return quota;
