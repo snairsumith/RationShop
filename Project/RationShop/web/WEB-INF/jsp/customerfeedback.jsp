@@ -21,7 +21,7 @@
                         <div class="col-md-12">
                             <div class="panel">
                                 <div class="panel-heading">
-                                     <a href="customernewfeedback" class="btn btn-primary pull-right">Send New</a>
+                                     <a href="customernewfeedback?uname=<%= request.getParameter("uname") %>" class="btn btn-primary pull-right">Send New</a>
                                     <h4 class="panel-title">Feedbacks</h4>
                                     <p>List Feedbacks Here</p>
                                 </div>

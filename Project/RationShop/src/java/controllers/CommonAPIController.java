@@ -90,9 +90,10 @@ public class CommonAPIController {
     public String insertNotification(
             @RequestParam("RoleType") int RoleType,
             @RequestParam("Title") String Title,
-            @RequestParam("Description") String Description) throws ClassNotFoundException, SQLException {
+            @RequestParam("Description") String Description,
+            @RequestParam("CategoryType") int CategoryType) throws ClassNotFoundException, SQLException {
 
-        String sql = "INSERT INTO `notifications` (`Title`, `Description`, `RoleType`) VALUES ('" + Title + "', '" + Description + "', " + RoleType + ")";
+        String sql = "INSERT INTO `notifications` (`Title`, `Description`, `RoleType`,`CategoryType`) VALUES ('" + Title + "', '" + Description + "', " + RoleType + ","+CategoryType+")";
 
         int i = db.InsetQuery(sql);
 

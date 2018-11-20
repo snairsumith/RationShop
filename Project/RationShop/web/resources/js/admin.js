@@ -42,7 +42,7 @@ function login() {
                         window.location.href = "/RationShop/shopowner/shophome";
                     } else if (result == 1) {
                          localStorage.setItem("username", username);
-                        window.location.href = "/RationShop/customer/customermyprofile";
+                        window.location.href = "/RationShop/customer/customermyprofile?uname="+username;
                     }
 
                 }
@@ -205,6 +205,31 @@ function shopowner_reg() {
     }
 }
 
+
+function updateCustomer() {
+    var CustomerName = $("#txtCustomerName").val();
+    var RationCardNo = $("#txtcustomerrationcardnumber").val();
+    var Address = $("#txtcustomerAddress").val();
+    var AadharNo = $("#txtcustomeradharnumber").val();
+    var DOB = $("#txtcustomerDOB").val();
+    var EmailId = $("#txtcustomerEmailId").val();
+    var ContactNo = $("#txtcustomerContact").val();
+    var Gender = $("#rdGender").val();
+    var username = localStorage.getItem("username");
+    var password = $("#txtPassword").val();
+    var CategoryId=$("#cmbCategory").val();
+    var CustomerId=$("#hdCustomerId").val();
+    var url = baseurl + "/updateCustomer?CustomerName=" + CustomerName + "&RationCardNo=" + RationCardNo + "&Address=" + Address + "&AadharNo=" + AadharNo + "&DOB=" + DOB + "&EmailId=" + EmailId + "&ContactNo=" + ContactNo + "&Gender=" + Gender + "&ShopOwnerId=" + username + "&Password=" + password+"&CategoryId="+CategoryId+"&CustomerId="+CustomerId;
+
+    $.ajax({url: url, success: function (result) {
+            if (result == "1") {
+                alert("Customer update sucessfully ")
+                window.location.href="customermyprofile?uname="+username;
+            } else {
+                alert("Error occoured.Please try again after some time ");
+            }
+        }});
+}
 function cust_reg() {
     var name = $("#txtCustomerName").val();
     var address = $("#Customerrationcardnumber").val();
@@ -434,10 +459,15 @@ function getAllCustFeedBack() {
    
 }
 function insertNotification() {
+    var url="";
     var RoleType = $("#cmbRole").val();
     var Title = $("#txtTitle").val();
     var Description = $("#txtDescription").val();
-    var url = commonurl + "/insertNotification?RoleType=" + RoleType + "&Title=" + Title + "&Description=" + Description;
+    if(RoleType==3){
+        url = commonurl + "/insertNotification?RoleType=" + RoleType + "&Title=" + Title + "&Description=" + Description+"&CategoryType=0";
+    }else{
+        url = commonurl + "/insertNotification?RoleType=1&Title=" + Title + "&Description=" + Description+"&CategoryType="+RoleType;
+    }
     $.ajax({url: url, success: function (result) {
             if (result == "1") {
                 alert("Notification Send Sucessfully")
@@ -553,4 +583,17 @@ function getAllItemsByCategoryId(categoryId) {
                 });
             }});
    
+}
+function checkDate(){
+        var dateString = $("#txtInvoiceDate").val();
+        var myDate = new Date(dateString);
+        var today = new Date();
+        if ( myDate > today ) { 
+            alert("You cannot enter a date in the future!");
+            $("#btnPurchase").attr("disabled", "disabled");
+            $("#txtInvoiceDate").val("");
+        }else{
+            $("#btnPurchase").removeAttr("disabled");       
+        }
+        return true;
 }

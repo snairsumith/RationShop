@@ -35,8 +35,14 @@
                                     <tbody>
                                         <%
                                             DBFunctions db = new DBFunctions();
-                                            String sql = "select * from notifications where RoleType=3";
-                                            ResultSet rs = db.SelectQuery(sql);
+                                                            int CategoryId=0;
+                                                            String sql1="select * from customer where EmailId='"+request.getParameter("uname")+"'";
+                                                            ResultSet rs1 = db.SelectQuery(sql1);
+                                                            if(rs1.next()){
+                                                                CategoryId=rs1.getInt("CategoryId");
+                                                            }
+                                                            String sql = "select * from notifications where RoleType=1 and CategoryType="+CategoryId+"";
+                                                            ResultSet rs = db.SelectQuery(sql);
                                             while (rs.next()) {
 
 

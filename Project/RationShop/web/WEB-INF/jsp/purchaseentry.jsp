@@ -66,13 +66,13 @@
                                     <input type="text" value="<%= randomNumber%>" placeholder="Enter Invoice Number" id="txtInvoiceNumber" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="date"  value="<%= now.get(Calendar.DATE)%>" placeholder="Enter Invoice Date" id="txtInvoiceDate" class="form-control" />
+                                    <input type="date" onchange="checkDate()"  value="<%= now.get(Calendar.DATE)%>" placeholder="Enter Invoice Date" id="txtInvoiceDate" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <input type="date" placeholder="Enter Invoice Due Date" id="txtInvoiceDueDate" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-success btn-quirk btn-wide mr5" onclick="insertPurchase()">Save</button>
+                                    <button class="btn btn-success btn-quirk btn-wide mr5" id="btnPurchase" onclick="insertPurchase()">Save</button>
                                     <input type="hidden" value="0" id="isItemInsert"/>
                                 </div>
                             </div>

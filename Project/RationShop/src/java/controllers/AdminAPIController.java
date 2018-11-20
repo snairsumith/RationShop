@@ -327,5 +327,35 @@ public class AdminAPIController {
         return pur_item;
 
     }
+    
+    
+     @RequestMapping(value = "/updateCustomer", method = RequestMethod.GET)
+    @ResponseBody
+    public String updateCustomer(
+            @RequestParam("CustomerName") String Name,
+            @RequestParam("RationCardNo") String RationCardNo,
+            @RequestParam("Address") String Address,
+            @RequestParam("AadharNo") String AadharNo,
+            @RequestParam("DOB") String DOB,
+            @RequestParam("EmailId") String EmailId,
+            @RequestParam("ContactNo") String ContactNo,
+            @RequestParam("Gender") String Gender,
+            @RequestParam("ShopOwnerId") String ShopOwnerId,
+            @RequestParam("Password") String Password,
+            @RequestParam("CategoryId") String CategoryId,
+            @RequestParam("CustomerId") int CustomerId
+            
+    )
+            throws ClassNotFoundException, SQLException {
+
+        String sql = "update customer set  CustomerName='" + Name + "',RationCardNo= '" + RationCardNo + "',Address= '" + Address + "',AadharNo= '" + AadharNo + "',DOB='" + DOB + "', ContactNo='" + ContactNo + "'where CustomerId="+CustomerId+"";
+        
+        int j = db.InsetQuery(sql);
+        if (j > 0) {
+            return "1";
+        } else {
+            return "0";
+        }
+    }
 
 }

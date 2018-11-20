@@ -203,10 +203,15 @@ function getAllFeedBackFromCustomer() {
 }
 
 function insertNotification() {
+    var url="";
     var RoleType = $("#cmbRole").val();
     var Title = $("#txtTitle").val();
     var Description = $("#txtDescription").val();
-    var url = commonurl + "/insertNotification?RoleType=" + RoleType + "&Title=" + Title + "&Description=" + Description;
+    if(RoleType==2){
+        url = commonurl + "/insertNotification?RoleType=" + RoleType + "&Title=" + Title + "&Description=" + Description+"&CategoryType=0";
+    }else{
+        url = commonurl + "/insertNotification?RoleType=1&Title=" + Title + "&Description=" + Description+"&CategoryType="+RoleType;
+    }
     $.ajax({url: url, success: function (result) {
             if (result == "1") {
                 alert("Notification Send Sucessfully")

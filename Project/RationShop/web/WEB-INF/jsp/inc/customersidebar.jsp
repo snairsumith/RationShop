@@ -38,34 +38,27 @@
 
             <div class="tab-pane active" id="mainmenu">
                 <h5 class="sidebar-title">Favorites</h5>
-<!--                <ul class="nav nav-pills nav-stacked nav-quirk">
-                    <li><a href="customermyprofile"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
 
-                </ul>-->
 
                 <h5 class="sidebar-title">Main Menu</h5>
                 <ul class="nav nav-pills nav-stacked nav-quirk">
 
-                    <!--                    <li >
-                                            <a href="myprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
                     
-                                        </li>-->
-                   
                     <li >
-                        <a href="customermyprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
+                        <a href="customermyprofile?uname=<%= request.getParameter("uname") %>"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
 
                     </li>
                     <li >
-                        <a href="customernotification"><i class="fa fa-check-square"></i> <span>Notifications</span></a>
+                        <a href="customernotification?uname=<%= request.getParameter("uname") %>"><i class="fa fa-check-square"></i> <span>Notifications</span></a>
 
                     </li>
                     <li >
-                        <a href="customerfeedback"><i class="fa fa-check-square"></i> <span>Feedbacks</span></a>
+                        <a href="customerfeedback?uname=<%= request.getParameter("uname") %>"><i class="fa fa-check-square"></i> <span>Feedbacks</span></a>
 
                     </li>
 
                     <li >
-                        <a href="customerpurchase"><i class="fa fa-check-square"></i> <span>Purchase</span></a>
+                        <a href="customerpurchase?uname=<%= request.getParameter("uname") %>"><i class="fa fa-check-square"></i> <span>Purchase</span></a>
 
                     </li>
                     

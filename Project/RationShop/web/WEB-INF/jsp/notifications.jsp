@@ -12,7 +12,7 @@
 
         <div class="contentpanel">
             <ol class="breadcrumb breadcrumb-quirk">
-                <li><a href="index-2.html"><i class="fa fa-home mr5"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-home mr5"></i> Home</a></li>
                 <li class="active">Notifications</li>
             </ol>
             <div class="row">
@@ -27,8 +27,11 @@
                             <div class="form-group">
                                 <select id="cmbRole" class="form-control" onchange="showChooseOptionForFeedBack()">
                                     <option value="0">Choose Role Type</option>
-                                    <option value="3">Shop</option>
-                                    <option value="1">Customer</option>
+                                    <option value=3>Shop</option>
+                                    <option value=6>Antyodaya Anna Yojana (AYY)</option>
+                                     <option value=7>Non Priority Subsidy</option>
+                                      <option value=8>Non-Priority </option>
+                                       <option value=5>Priority</option>
                                 </select>
                             </div>
                             <div class="form-group">

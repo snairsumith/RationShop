@@ -68,7 +68,13 @@
                                             <!-- Nav tabs -->
                                             <%
                                                             DBFunctions db = new DBFunctions();
-                                                            String sql = "select * from notifications where RoleType=3";
+                                                            int CategoryId=0;
+                                                            String sql1="select * from customer where EmailId='"+request.getParameter("uname")+"'";
+                                                            ResultSet rs1 = db.SelectQuery(sql1);
+                                                            if(rs1.next()){
+                                                                CategoryId=rs1.getInt("CategoryId");
+                                                            }
+                                                            String sql = "select * from notifications where RoleType=1 and CategoryType="+CategoryId+"";
                                                             ResultSet rs = db.SelectQuery(sql);
                                                             
 
@@ -104,7 +110,7 @@
                                                         <%                              }
                                                         %>
                                                     </ul>
-                                                    <a class="btn-more" href="customernotification">View More Notifications <i class="fa fa-long-arrow-right"></i></a>
+                                                    <a class="btn-more" href="customernotification?uname=<%= request.getParameter("uname") %>">View More Notifications <i class="fa fa-long-arrow-right"></i></a>
                                                 </div><!-- tab-pane -->
 
 

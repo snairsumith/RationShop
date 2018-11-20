@@ -43,7 +43,7 @@
                                     <tbody>
                                         <%
                                             DBFunctions db = new DBFunctions();
-                                            String sql = "select category.CategoryName,item.ItemName,rationallotment.Quantity,rationallotment.Rate,rationallotment.date from rationallotment inner join category on category.CategoryId=rationallotment.CategoryId inner join item on item.ItemId=rationallotment.ItemId ORDER BY rationallotment.AllotmentId desc";
+                                            String sql = "select category.CategoryName,item.ItemName,rationallotment.Quantity,rationallotment.Rate,rationallotment.date from rationallotment inner join category on category.CategoryId=rationallotment.CategoryId inner join item on item.ItemId=rationallotment.ItemId ORDER BY category.CategoryName desc";
                                             ResultSet rs = db.SelectQuery(sql);
                                             while (rs.next()) {
 
