@@ -595,5 +595,5 @@ function checkDate(){
         }else{
             $("#btnPurchase").removeAttr("disabled");       
         }
-        return true;
+       
 }
