@@ -46,6 +46,7 @@
                                             <th>Title</th>
                                             <th>Description</th>
                                             <th>Name Of User</th>
+                                             <th>Address</th>
                                             <th>Date</th>
 
 

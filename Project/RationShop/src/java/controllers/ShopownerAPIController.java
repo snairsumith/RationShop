@@ -209,7 +209,7 @@ public class ShopownerAPIController {
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("CustomerName"),rs.getString("CreatedOn"),rs.getInt("Type")));
+            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("CustomerName"),rs.getString("CreatedOn"),rs.getInt("Type"),rs.getString("Address")));
         }
 
         return feed;

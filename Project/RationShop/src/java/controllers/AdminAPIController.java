@@ -226,12 +226,12 @@ public class AdminAPIController {
     List<FeedBackModel> getAllFeedBackCustomer() throws SQLException {
         List<FeedBackModel> feed = new ArrayList<FeedBackModel>();
 
-        String sql = "select feedback.*,customer.CustomerName from feedback inner join customer on feedback.SenderId=customer.CustomerId where Type=3 and ReciverId='admin'";
+        String sql = "select feedback.*,customer.* from feedback inner join customer on feedback.SenderId=customer.CustomerId where Type=3 and ReciverId='admin'";
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("CustomerName"),rs.getString("CreatedOn"),rs.getInt("Type")));
+            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("CustomerName"),rs.getString("CreatedOn"),rs.getInt("Type"),rs.getString("Address")));
         }
 
         return feed;
@@ -243,12 +243,12 @@ public class AdminAPIController {
     List<FeedBackModel> getAllFeedBackShop() throws SQLException {
         List<FeedBackModel> feed = new ArrayList<FeedBackModel>();
 
-        String sql = "select feedback.*,shopownerregistration.Name from feedback inner join shopownerregistration on feedback.SenderId=shopownerregistration.Email where Type=2 and ReciverId='admin'";
+        String sql = "select feedback.*,shopownerregistration.* from feedback inner join shopownerregistration on feedback.SenderId=shopownerregistration.Email where Type=2 and ReciverId='admin'";
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("Name"),rs.getString("CreatedOn"),rs.getInt("Type")));
+            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("Name"),rs.getString("CreatedOn"),rs.getInt("Type"),rs.getString("Address")));
         }
 
         return feed;
@@ -260,13 +260,13 @@ public class AdminAPIController {
         @RequestParam("username") String username) throws SQLException {
         List<FeedBackModel> feed = new ArrayList<FeedBackModel>();
 
-         String sql = "select feedback.*,shopownerregistration.Name from feedback inner join shopownerregistration on feedback.SenderId=shopownerregistration.Email where  ReciverId='"+username+"'";
+         String sql = "select feedback.*,shopownerregistration.* from feedback inner join shopownerregistration on feedback.SenderId=shopownerregistration.Email where  ReciverId='"+username+"'";
          System.out.println("controllers.AdminAPIController.getAllFeedBackCustomerGet()"+sql);
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("Name"),rs.getString("CreatedOn"),rs.getInt("Type")));
+            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("Name"),rs.getString("CreatedOn"),rs.getInt("Type"),rs.getString("Address")));
         }
 
         return feed;

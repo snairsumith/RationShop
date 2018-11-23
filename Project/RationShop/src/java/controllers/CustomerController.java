@@ -35,7 +35,7 @@ public class CustomerController {
      public String customerpurchase(@RequestParam("uname") String uname){
          return "customerpurchase";
      }
-     
+    
      
     
         

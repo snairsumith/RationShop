@@ -29,7 +29,7 @@
             <li class="tooltips active" data-toggle="tooltip" title="Main Menu"><a data-toggle="tab" data-target="#mainmenu"><i class="tooltips fa fa-ellipsis-h"></i></a></li>
            
             
-            <li class="tooltips" data-toggle="tooltip" title="Log Out"><a href="../"><i class="fa fa-sign-out"></i></a></li>
+            <li class="tooltips" data-toggle="tooltip" title="Log Out"><a href="login"><i class="fa fa-sign-out"></i></a></li>
         </ul>
 
         <div class="tab-content">
@@ -50,13 +50,24 @@
                         <a href="myprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
 
                     </li>-->
-                    
-                   
-                    <li >
+  <li >
+                        <a href="itemdetails"><i class="fa fa-check-square"></i> <span>Item Details</span></a>
+
+                    </li>
+                     <li >
+                        <a href="purchaseentry"><i class="fa fa-check-square"></i> <span>Purchase Entry</span></a>
+
+                    </li>
+                     <li >
                         <a href="quotalist"><i class="fa fa-check-square"></i> <span>Ration Allotment</span></a>
 
                     </li>
+
                     <li >
+                        <a href="stockassign"><i class="fa fa-check-square"></i> <span>Stock Assign</span></a>
+
+                    </li>
+                                       <li >
                         <a href="shopownerslist"><i class="fa fa-check-square"></i> <span>Shop Owners Details</span></a>
 
                     </li>
@@ -68,14 +79,8 @@
                         <a href="feedbacklist"><i class="fa fa-check-square"></i> <span>FeedBack</span></a>
 
                     </li>
-                    <li >
-                        <a href="itemdetails"><i class="fa fa-check-square"></i> <span>Item Details</span></a>
-
-                    </li>
-                    <li >
-                        <a href="purchaseentry"><i class="fa fa-check-square"></i> <span>Purchase Entry</span></a>
-
-                    </li>
+                  
+                   
                     <li >
                         <a href="notifications"><i class="fa fa-check-square"></i> <span>Notifications</span></a>
 
@@ -92,10 +97,7 @@
                         <a href="purchasereport"><i class="fa fa-check-square"></i> <span>Purchase Report</span></a>
 
                     </li>
-                    <li >
-                        <a href="stockassign"><i class="fa fa-check-square"></i> <span>Stock Assign</span></a>
-
-                    </li>
+                   
 <!--                    <li >
                         <a href="stockreport"><i class="fa fa-check-square"></i> <span>Stock Report</span></a>
 

@@ -9,6 +9,9 @@
 <%@page import="LiibraryFunction.DBFunctions"%>
 <jsp:include page="inc/admin_top.jsp" /> 
         <section>
+            <script>
+                getalldistrict();
+                </script>
             <jsp:include page="inc/adminsidebar.jsp" />
             <div class="mainpanel">
 
@@ -37,7 +40,7 @@
                                          <select id="txtShopOwnerstate" class="form-control">
                                         <option>Select State</option>
                                         <%
-                                        String sql = "select * from location where ParentId=1";
+                                        String sql = "select * from location where ParentId=0";
                                         DBFunctions db = new DBFunctions();
                                         ResultSet rs = db.SelectQuery(sql);
                                         while (rs.next()) {

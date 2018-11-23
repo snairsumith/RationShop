@@ -33,7 +33,7 @@
                                 <select id="CmbCategory" name="Category" class="form-control select2">
                                     <option value="0">Select Category</option>
                                     <%
-                                        String sql = "select * from Category";
+                                        String sql = "select * from category";
                                         DBFunctions db = new DBFunctions();
                                         ResultSet rs = db.SelectQuery(sql);
                                         while (rs.next()) {

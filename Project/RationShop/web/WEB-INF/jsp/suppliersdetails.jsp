@@ -30,9 +30,10 @@
                                         <table class="table nomargin">
                                             <thead>
                                                 <tr>
+                                                     <th>Suppliers Id</th>
                                                     <th>Suppliers Name</th>
                                                     <th>Suppliers Address</th>
-                                                    <th>Suppliers State</th>
+                                                    <th>Suppliers Location</th>
                                                     <th>Suppliers Contact</th>
                                                     <th>Suppliers Email-Id</th>
                                                     <th></th>
@@ -46,6 +47,7 @@
                                             while (rs.next()) {
                                         %>
                                         <tr>
+                                            <td><%= rs.getString("supplierid")%></td>
                                             <td><%= rs.getString("suppliername")%></td>
                                             <td><%= rs.getString("supplieraddress")%></td>
                                             <td><%= rs.getString("LocationName")%></td>

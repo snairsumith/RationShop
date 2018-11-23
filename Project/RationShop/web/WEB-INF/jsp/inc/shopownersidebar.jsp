@@ -51,47 +51,50 @@
                     
                                         </li>-->
                    
+                    <li >
+                        <a href="shopownermyprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
+
+                    </li>
                      
                     <li >
                         <a href="allowdedquota"><i class="fa fa-check-square"></i> <span>Alloted Quota</span></a>
+
+                    </li>
+                     <li >
+                        <a href="shopsales"><i class="fa fa-check-square"></i> <span>Sales</span></a>
 
                     </li>
 <!--                    <li >
                         <a href="shopsalesreport"><i class="fa fa-check-square"></i> <span>Sales Report</span></a>
 
                     </li>-->
+ <li >
+                        <a href="shopcustomerlist"><i class="fa fa-check-square"></i> <span>Customer List</span></a>
+
+                    
+<li >
                     <li >
                         <a href="customerwisereport"><i class="fa fa-check-square"></i> <span>Customerwise Report</span></a>
 
                     </li>
+                    
 
 <!--                    <li >
                         <a href="shopstockreport"><i class="fa fa-check-square"></i> <span>Stock Report</span></a>
 
                     </li>-->
-                    <li >
-                        <a href="shopownerfeedback"><i class="fa fa-check-square"></i> <span>Feedbacks</span></a>
-
-                    </li>
                     
-                    <li >
-                        <a href="shopownermyprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
-
-                    </li>
-                    <li >
+                    
+<li>
+                   
+                   
                         <a href="shopownernotification"><i class="fa fa-check-square"></i> <span>Notifications</span></a>
 
                     </li>
-                    <li >
-                        <a href="shopsales"><i class="fa fa-check-square"></i> <span>Sales</span></a>
+<li >
+                        <a href="shopownerfeedback"><i class="fa fa-check-square"></i> <span>Feedbacks</span></a>
 
                     </li>
-                    <li >
-                        <a href="shopcustomerlist"><i class="fa fa-check-square"></i> <span>Customer List</span></a>
-
-                    
-
-
 
                    
                 </ul>

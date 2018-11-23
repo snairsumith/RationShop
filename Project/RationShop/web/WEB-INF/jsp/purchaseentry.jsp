@@ -4,6 +4,8 @@
     Author     : MinusBugspc1
 --%>
 
+
+<%@page import="java.util.Date"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Random"%>
 <%@page import="java.sql.ResultSet"%>
@@ -61,12 +63,12 @@
                                         Random r = new Random();
                                         Calendar now = Calendar.getInstance();
                                         String randomNumber = "PU" + String.format("%04d", r.nextInt(1001)) + now.get(Calendar.MILLISECOND);
-
+                                        Date date = new Date();
                                     %>
                                     <input type="text" value="<%= randomNumber%>" placeholder="Enter Invoice Number" id="txtInvoiceNumber" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="date" onchange="checkDate()"  value="<%= now.get(Calendar.DATE)%>" placeholder="Enter Invoice Date" id="txtInvoiceDate" class="form-control" />
+                                    <input type="text" onchange="checkDate()"  value="<%= date.toString() %>" placeholder="Enter Invoice Date" id="txtInvoiceDate" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <input type="date" placeholder="Enter Invoice Due Date" id="txtInvoiceDueDate" class="form-control" />

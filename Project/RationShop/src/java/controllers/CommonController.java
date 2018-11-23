@@ -24,7 +24,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/")
 public class CommonController {
+    
     @RequestMapping(method = RequestMethod.GET)
+    public String home(ModelMap modelMap) {
+        
+        return "CommonHomePage";
+    }
+    @RequestMapping(value="/login",method = RequestMethod.GET)
     public String login(ModelMap modelMap) {
         
         return "login";

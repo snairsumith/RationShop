@@ -35,29 +35,50 @@
                                             <th>Item</th>
                                             <th>Quantity</th>
                                             <th>Rate</th>
-                                            <th>Date</th>
-
                                             <th></th>
+
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <%
                                             DBFunctions db = new DBFunctions();
-                                            String sql = "select category.CategoryName,item.ItemName,rationallotment.Quantity,rationallotment.Rate,rationallotment.date from rationallotment inner join category on category.CategoryId=rationallotment.CategoryId inner join item on item.ItemId=rationallotment.ItemId ORDER BY category.CategoryName desc";
-                                            ResultSet rs = db.SelectQuery(sql);
-                                            while (rs.next()) {
+                                            String sql = "select * from category ";
 
+                                            ResultSet rs = db.SelectQuery(sql);
+
+                                            while (rs.next()) {
+                                            int Count=0;
+                                            String sql2 = "select count(*)as Itmcount  from rationallotment where rationallotment.CategoryId=" + rs.getInt("CategoryId") + "";
+                                            ResultSet rs2 = db.SelectQuery(sql2);
+                                            if(rs2.next()){
+                                                Count=rs2.getInt("Itmcount")+1;
+                                            }
+                                        %>
+                                        <tr>
+                                            <td rowspan="<%= Count %>"><%= rs.getString("CategoryName")%></td>
+                                            <td></td>   
+                                            <td></td>   
+                                            <td></td> 
+                                           
+
+                                        </tr>
+                                        <%
+                                            String sql1 = "select item.ItemName,rationallotment.Quantity,rationallotment.Rate,rationallotment.date from rationallotment inner join category on category.CategoryId=rationallotment.CategoryId inner join item on item.ItemId=rationallotment.ItemId where rationallotment.CategoryId=" + rs.getInt("CategoryId") + "";
+                                            ResultSet rs1 = db.SelectQuery(sql1);
+                                            while (rs1.next()) {
 
                                         %>
                                         <tr>
-                                            <td><%= rs.getString("CategoryName")%></td>
 
-                                            <td><%= rs.getString("ItemName")%></td>
-                                            <td><%= rs.getInt("Quantity")%></td>
-                                            <td><%= rs.getInt("Rate")%></td>
-                                            <td><%= rs.getString("date")%></td>
+                                            <td><%= rs1.getString("ItemName")%></td>
+                                            <td><%= rs1.getInt("Quantity")%></td>
+                                            <td><%= rs1.getInt("Rate")%></td>
+                                            <td><a href="#">Update </a></td>
                                         </tr>
                                         <%
+                                                }
+
                                             }
                                         %>
                                     </tbody>
@@ -66,8 +87,10 @@
                             </div>
                         </div>
                     </div>
-                  
+
 
                     </section>
                     </body>
                     </html>
+
+

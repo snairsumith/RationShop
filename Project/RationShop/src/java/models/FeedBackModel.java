@@ -18,8 +18,9 @@ public class FeedBackModel {
     private String SenderName;
     private String DateOfSend;
     private int Type;
+    private String Location;
 
-    public FeedBackModel(int FeedBackId, String Title, String Description, String ReciverName, String SenderName, String DateOfSend, int Type) {
+    public FeedBackModel(int FeedBackId, String Title, String Description, String ReciverName, String SenderName, String DateOfSend, int Type,String Location) {
         this.FeedBackId = FeedBackId;
         this.Title = Title;
         this.Description = Description;
@@ -27,6 +28,7 @@ public class FeedBackModel {
         this.SenderName = SenderName;
         this.DateOfSend = DateOfSend;
         this.Type = Type;
+        this.Location=Location;
     }
 
     /**
@@ -125,5 +127,19 @@ public class FeedBackModel {
      */
     public void setType(int Type) {
         this.Type = Type;
+    }
+
+    /**
+     * @return the Location
+     */
+    public String getLocation() {
+        return Location;
+    }
+
+    /**
+     * @param Location the Location to set
+     */
+    public void setLocation(String Location) {
+        this.Location = Location;
     }
 }

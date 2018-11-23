@@ -33,8 +33,7 @@
 
                                                     <th>Item Name</th>
                                                     <th>Item Description</th>
-                                                    <th>Status</th>
-
+                                                    
 
                                                     <th></th>
                                                 </tr>
@@ -49,7 +48,7 @@
                                         <tr>
                                             <td><%= rs.getString("ItemName")%></td>
                                             <td><%= rs.getString("ItemDescription")%></td>
-                                            <td><%= rs.getString("ItemStatus")%></td>
+                                           
                     
                                             
                                             

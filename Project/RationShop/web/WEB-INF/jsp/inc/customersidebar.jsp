@@ -48,6 +48,12 @@
                         <a href="customermyprofile?uname=<%= request.getParameter("uname") %>"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
 
                     </li>
+                    
+                    <li >
+                        <a href="customerpurchase?uname=<%= request.getParameter("uname") %>"><i class="fa fa-check-square"></i> <span>Purchase</span></a>
+
+                    </li>
+                    
                     <li >
                         <a href="customernotification?uname=<%= request.getParameter("uname") %>"><i class="fa fa-check-square"></i> <span>Notifications</span></a>
 
@@ -57,11 +63,6 @@
 
                     </li>
 
-                    <li >
-                        <a href="customerpurchase?uname=<%= request.getParameter("uname") %>"><i class="fa fa-check-square"></i> <span>Purchase</span></a>
-
-                    </li>
-                    
 
 
 

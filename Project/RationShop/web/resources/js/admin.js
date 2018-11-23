@@ -298,7 +298,7 @@ function quotasetting_add() {
 }
 
 function getalldistrict() {
-    var parentid = $("#txtShopOwnerstate").val();
+    var parentid = 0;
     var url = commonurl + "/getalllocation?ParentId=" + parentid;
     $.ajax({url: url, success: function (result) {
             $.each(result, function (key, val) {
@@ -430,7 +430,7 @@ function getAllFeedBack() {
         var url = baseurl + "/getAllFeedBackCustomer";
         $.ajax({url: url, success: function (result) {
                 $.each(result, function (key, val) {
-                    $("#feedback_list").append("<tr><td>" + val.title + "</td><td>" + val.description + "</td><td>" + val.senderName + "</td><td>" + val.dateOfSend + "</td></tr>");
+                    $("#feedback_list").append("<tr><td>" + val.title + "</td><td>" + val.description + "</td><td>" + val.senderName + "</td><td>" + val.location + "</td><td>" + val.dateOfSend + "</td></tr>");
 
                 });
             }});
@@ -438,7 +438,7 @@ function getAllFeedBack() {
         var url = baseurl + "/getAllFeedBackShop";
         $.ajax({url: url, success: function (result) {
                 $.each(result, function (key, val) {
-                    $("#feedback_list").append("<tr><td>" + val.title + "</td><td>" + val.description + "</td><td>" + val.senderName + "</td><td>" + val.dateOfSend + "</td></tr>");
+                    $("#feedback_list").append("<tr><td>" + val.title + "</td><td>" + val.description + "</td><td>" + val.senderName + "</td><td>" + val.location + "</td><td>" + val.dateOfSend + "</td></tr>");
 
                 });
             }});
