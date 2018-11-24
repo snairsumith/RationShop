@@ -291,7 +291,10 @@ function quotasetting_add() {
             if (result == 1) {
                 alert("Quota Settings Allowed")
                 window.location.href = "quotalist"
-            } else {
+            }else if(result==3){
+                 alert("Item already added in this group");
+            } 
+            else {
                 alert("Error occured.Please try again after some time ");
             }
         }});
@@ -410,13 +413,16 @@ function insertstockassing() {
     var itemId = $("#cmbItem").val();
     var quota = $("#txtassignedquota").val();
     var amount = $("#txtamount").val();
-    var month = "12-2-2018";
+    var month = "12-12-2018";
     var url = baseurl + "/insertstockassing?shopownerId=" + shopownerId + "&itemId=" + itemId + "&quota=" + quota + "&amount=" + amount + "&month=" + month;
     $.ajax({url: url, success: function (result) {
-            if (result == "1") {
+            if (result == 1) {
                 alert("Quota Assigned Sucessfully")
                 window.location.reload()
-            } else {
+            }else if(result==3){
+                alert("You don't have enough stock.Please purchase new stock");
+            }
+            else {
                 alert("Error occured.Please try again after some time ");
             }
         }});
@@ -584,14 +590,14 @@ function getAllItemsByCategoryId(categoryId) {
         }});
 
 }
-function checkDate() {
-    var dateString = $("#txtInvoiceDate").val();
+    function checkDate() {
+    var dateString = $("#txtInvoiceDueDate").val();
     var myDate = new Date(dateString);
     var today = new Date();
-    if (myDate > today) {
-        alert("You cannot enter a date in the future!");
+    if (myDate < today) {
+        alert("Please select valid date");
         $("#btnPurchase").attr("disabled", "disabled");
-        $("#txtInvoiceDate").val("");
+        $("#txtInvoiceDueDate").val("");
     } else {
         $("#btnPurchase").removeAttr("disabled");
     }
@@ -650,4 +656,17 @@ function getItemPriceAndQtyByCategory() {
     $("#txtassignedquota").val(TotalQty);
     $("#txtamount").val(TotalAmout);
 
+}
+
+function supplierByPurchaseReport() {
+    var SupplierId = $("#cmbSupplier").val();
+    
+    
+    var url = baseurl + "/getPurchaseReportBySupplier?SupplierId=" + SupplierId ;
+    $("#tlist").html("");
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#tlist").append("<tr><td>" + val.purchaseId + "</td><td>" + val.supplierName + "</td><td>" + val.purcahseDate + "</td><td>" + val.totalAmount + "</td>");
+            });
+        }});
 }

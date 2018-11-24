@@ -64,7 +64,7 @@
                                 
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Enter Quantity/Litter" id="txtQuantity" class="form-control" />
+                                <input type="text" placeholder="Enter Quantity/Litre" id="txtQuantity" class="form-control" />
                             </div>
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Rate" id="txtRate" class="form-control" />

@@ -68,10 +68,10 @@
                                     <input type="text" value="<%= randomNumber%>" placeholder="Enter Invoice Number" id="txtInvoiceNumber" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" onchange="checkDate()"  value="<%= date.toString() %>" placeholder="Enter Invoice Date" id="txtInvoiceDate" class="form-control" />
+                                    <input type="text"   value="<%= date.toString() %>" placeholder="Enter Invoice Date" id="txtInvoiceDate" class="form-control" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="date" placeholder="Enter Invoice Due Date" id="txtInvoiceDueDate" class="form-control" />
+                                    <input type="date" placeholder="Enter Invoice Due Date" onchange="checkDate()" id="txtInvoiceDueDate" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-success btn-quirk btn-wide mr5" id="btnPurchase" onclick="insertPurchase()">Save</button>

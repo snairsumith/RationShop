@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="LiibraryFunction.DBFunctions"%>
 <jsp:include page="inc/admin_top.jsp" /> 
 <section>
     <jsp:include page="inc/adminsidebar.jsp" />
@@ -39,7 +41,25 @@
                                 </div>
                             </div>
 
-
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                    <select id="cmbSupplier" class="form-control" onchange="supplierByPurchaseReport()">
+                                        <option>Select Supplier</option>
+                                        <%
+                                            String sql = "select * from  supplier";
+                                            DBFunctions db = new DBFunctions();
+                                            ResultSet rs = db.SelectQuery(sql);
+                                            while (rs.next()) {
+                                        %>
+                                        <option value=<%= rs.getString("supplierid")%>><%= rs.getString("suppliername")%></option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
+                                </div>
+                                </div>
+                            </div>
 
                            
                             <div class="row">
@@ -49,8 +69,8 @@
                                             <tr>
 
                                                 <th>Purchase Id</th>
+                                                    <th>Suppliers Name</th>
                                                 <th>Purchase Date</th>
-                                                <th>Suppliers Name</th>
                                                 <th>Amount</th>
 
 

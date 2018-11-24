@@ -106,10 +106,17 @@ public class AdminAPIController {
             @RequestParam("categoryId") int categoryId,
             @RequestParam("itemId") int itemId,
             @RequestParam("itemQuantity") int itemQuantity,
-            @RequestParam("itemRate") int itemRate,
+            @RequestParam("itemRate") double itemRate,
             @RequestParam("date") String date) throws SQLException {
+        int i=0;
+        String sql_select="select * from rationallotment where CategoryId="+categoryId+" and ItemId="+itemId+"";
+        ResultSet rs=db.SelectQuery(sql_select);
+        if(rs.next()){
+            i=3;
+        }else{
         String sql = "INSERT INTO `rationallotment` (`CategoryId`, `ItemId`, `Quantity`, `Rate`, `date`) VALUES (" + categoryId + ", " + itemId + ", " + itemQuantity + ", " + itemRate + ", '" + date + "')";
-        int i = db.InsetQuery(sql);
+         i= db.InsetQuery(sql);
+        }
         return i;
     }
 
@@ -188,20 +195,24 @@ public class AdminAPIController {
 
     @RequestMapping(value = "/insertstockassing", method = RequestMethod.GET)
     @ResponseBody
-    public String InsertStock(
+    public int InsertStock(
             @RequestParam("shopownerId") String shopownerId,
             @RequestParam("itemId") int itemId,
             @RequestParam("quota") int quota,
             @RequestParam("amount") float amount,
             @RequestParam("month") String month) throws ClassNotFoundException, SQLException {
+        int j=0;
+        String sql_select="Select * from adminitem where ItemId="+itemId+"";
+        ResultSet rs=db.SelectQuery(sql_select);
+        if(rs.next()){
+            if(rs.getInt("BalanceQty")<quota){
+                j=3;
+            }
+        }else{
         String sql = "INSERT INTO `stockassign` (`shopownerId`, `itemId`, `quota`, `amount`, `month`) VALUES ('" + shopownerId + "', '" + itemId + "', '" + quota + "', '" + amount + "', '" + month + "')";
-        int j = db.InsetQuery(sql);
-
-        if (j > 0) {
-            return "1";
-        } else {
-            return "0";
+        j = db.InsetQuery(sql);
         }
+        return j;
     }
 
     @RequestMapping(value = "/getAllPurchaseItem", method = RequestMethod.GET)
@@ -407,6 +418,24 @@ public class AdminAPIController {
         }
          pur_item.add(new CategoryItemCountPrice(ItemQtyPriority, ItemQtyNonPriority, ItemQtyAyy, ItemQtyNonPrioSub, ItemPricePriority, ItemPriceNonPriority, ItemPriceAyy, ItemPriceNonPrioSub));
         return pur_item;
+
+    }
+    
+        @RequestMapping(value = "/getPurchaseReportBySupplier", method = RequestMethod.GET)
+    public @ResponseBody
+    List<PurchaseModel> getPurchaseReportBySupplier(
+            @RequestParam("SupplierId") int SupplierId) throws SQLException {
+        List<PurchaseModel> feed = new ArrayList<PurchaseModel>();
+
+        String sql = "select purchase.*,supplier.suppliername from purchase inner join supplier on supplier.supplierid=purchase.SupplierId where purchase.SupplierId="+SupplierId+"";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            feed.add(new PurchaseModel(rs.getString("PurchaseId"), rs.getString("suppliername"), rs.getString("InvoiceDate"), "400"));
+        }
+
+        return feed;
 
     }
 

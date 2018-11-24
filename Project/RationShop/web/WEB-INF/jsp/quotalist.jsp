@@ -73,7 +73,7 @@
 
                                             <td><%= rs1.getString("ItemName")%></td>
                                             <td><%= rs1.getInt("Quantity")%></td>
-                                            <td><%= rs1.getInt("Rate")%></td>
+                                            <td><%= rs1.getString("Rate")%></td>
                                             <td><a href="#">Update </a></td>
                                         </tr>
                                         <%
