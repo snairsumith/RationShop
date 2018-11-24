@@ -63,7 +63,7 @@
                 </button>
                 <ul class="dropdown-menu pull-right">
                  
-                  <li><a href="login"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
+                  <li><a href="../login"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
                 </ul>
               </div>
             </li>

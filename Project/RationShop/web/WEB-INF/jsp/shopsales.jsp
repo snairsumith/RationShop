@@ -79,18 +79,9 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <select id="cmbItem" class="form-control">
+                                        <select id="cmbItem" class="form-control" onchange="getItemByAllotement()">
                                             <option value="0">Select Item</option>
-                                            <%
-                                                String sql1 = "select * from item";
-                                                DBFunctions db=new DBFunctions();
-                                                ResultSet rs1 = db.SelectQuery(sql1);
-                                                while (rs1.next()) {
-                                            %>
-                                            <option value=<%= rs1.getInt("ItemId")%>><%= rs1.getString("ItemName")%></option>
-                                            <%
-                                                }
-                                            %>
+                                          
                                         </select>
 
                                     </div>

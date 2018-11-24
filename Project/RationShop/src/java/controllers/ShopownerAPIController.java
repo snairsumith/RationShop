@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import models.AllowedQuotaModel;
+import models.CustomerCategoryCount;
 import models.CustomerModel;
 import models.FeedBackModel;
 import models.PurchaseItemModel;
@@ -247,6 +248,89 @@ public class ShopownerAPIController {
         while (rs.next()) {
 
             pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), rs.getInt("TotalAmount"),rs.getString("DateOfSale")));
+        }
+
+        return pur_item;
+
+    }
+    @RequestMapping(value = "/getCutsomersCoutByCategory", method = RequestMethod.GET)
+    public @ResponseBody
+    List<CustomerCategoryCount> getCutsomersCoutByCategory(
+            @RequestParam("ShopOwnerUsername") String ShopOwnerUsername) throws SQLException {
+        List<CustomerCategoryCount> pur_item = new ArrayList<CustomerCategoryCount>();
+        DBFunctions db = new DBFunctions();
+        int CountPriority=0;
+        int CountAYY=0;
+        int CountNonPrioritySubsidy=0;
+        int CountNonPriority =0;
+        
+        String sql = "select count(*)as CountPriority from customer where ShopOwnerId='"+ShopOwnerUsername+"' and CategoryId=5";
+        String sql1 = "select count(*)as CountAYY from customer where ShopOwnerId='"+ShopOwnerUsername+"' and CategoryId=6";
+        String sql2 = "select count(*)as CountNonPrioritySubsidy from customer where ShopOwnerId='"+ShopOwnerUsername+"' and CategoryId=7";
+        String sql3 = "select count(*)as CountNonPriority from customer where ShopOwnerId='"+ShopOwnerUsername+"' and CategoryId=8";
+        
+        
+        ResultSet rs = db.SelectQuery(sql);
+        ResultSet rs2 = db.SelectQuery(sql1);
+        ResultSet rs3 = db.SelectQuery(sql2);
+        ResultSet rs4 = db.SelectQuery(sql3);
+        if (rs.next()) {
+
+            CountPriority=rs.getInt("CountPriority");
+        }
+         if (rs2.next()) {
+
+            CountAYY=rs2.getInt("CountAYY");
+        }
+          if (rs3.next()) {
+
+            CountNonPrioritySubsidy=rs3.getInt("CountNonPrioritySubsidy");
+        }
+         if (rs4.next()) {
+
+            CountNonPriority=rs4.getInt("CountNonPriority");
+        }
+        pur_item.add(new CustomerCategoryCount(CountPriority, CountNonPriority, CountAYY, CountNonPrioritySubsidy));
+        return pur_item;
+
+    }
+    
+     @RequestMapping(value = "/getItemByCategory", method = RequestMethod.GET)
+    public @ResponseBody
+    List<SalesItemModel> getItemByCategory(
+            @RequestParam("CategoryId") int CategoryId) throws SQLException {
+        List<SalesItemModel> pur_item = new ArrayList<SalesItemModel>();
+       
+        String sql = "select item.ItemName,rationallotment.AllotmentId,rationallotment.Quantity as AllotedQty,rationallotment.Rate as allotedPrice  from rationallotment inner join item on item.ItemId=rationallotment.ItemId  where rationallotment.CategoryId="+CategoryId+"";
+       
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+            int qty=rs.getInt("AllotedQty");
+            int amount=rs.getInt("allotedPrice");
+            int Total=qty*amount;
+            pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("AllotedQty"), rs.getInt("allotedPrice"), Total,rs.getString("AllotmentId")));
+        }
+
+        return pur_item;
+
+    }
+    
+        @RequestMapping(value = "/getItemByAllotementId", method = RequestMethod.GET)
+    public @ResponseBody
+    List<SalesItemModel> getItemByAllotementId(
+            @RequestParam("AllotmentId") int AllotmentId) throws SQLException {
+        List<SalesItemModel> pur_item = new ArrayList<SalesItemModel>();
+       
+        String sql = "select item.ItemName,rationallotment.AllotmentId,rationallotment.Quantity as AllotedQty,rationallotment.Rate as allotedPrice  from rationallotment inner join item on item.ItemId=rationallotment.ItemId  where rationallotment.AllotmentId="+AllotmentId+"";
+       
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+            int qty=rs.getInt("AllotedQty");
+            int amount=rs.getInt("allotedPrice");
+            int Total=qty*amount;
+            pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("AllotedQty"), rs.getInt("allotedPrice"), Total,rs.getString("AllotmentId")));
         }
 
         return pur_item;

@@ -18,18 +18,18 @@
         <div class="leftpanel-userinfo collapse" id="loguserinfo">
             <h5 class="sidebar-title">Address</h5>
             <address>
-                 4975 Cambridge Road
+                4975 Cambridge Road
                 Miami Gardens, FL 33056
             </address>
             <h5 class="sidebar-title">Contact</h5>
-           
+
         </div><!-- leftpanel-userinfo -->
 
         <ul class="nav nav-tabs nav-justified nav-sidebar">
             <li class="tooltips active" data-toggle="tooltip" title="Main Menu"><a data-toggle="tab" data-target="#mainmenu"><i class="tooltips fa fa-ellipsis-h"></i></a></li>
-           
-            
-            <li class="tooltips" data-toggle="tooltip" title="Log Out"><a href="login"><i class="fa fa-sign-out"></i></a></li>
+
+
+            <li class="tooltips" data-toggle="tooltip" title="Log Out"><a href="../login"><i class="fa fa-sign-out"></i></a></li>
         </ul>
 
         <div class="tab-content">
@@ -45,29 +45,31 @@
 
                 <h5 class="sidebar-title">Main Menu</h5>
                 <ul class="nav nav-pills nav-stacked nav-quirk">
-                  
-<!--                    <li >
-                        <a href="myprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
 
-                    </li>-->
-  <li >
+                    <!--                    <li >
+                                            <a href="myprofile"><i class="fa fa-check-square"></i> <span>My Profile</span></a>
+                    
+                                        </li>-->
+                
+                    <li >
                         <a href="itemdetails"><i class="fa fa-check-square"></i> <span>Item Details</span></a>
 
                     </li>
-                     <li >
-                        <a href="purchaseentry"><i class="fa fa-check-square"></i> <span>Purchase Entry</span></a>
-
-                    </li>
-                     <li >
+                        <li >
                         <a href="quotalist"><i class="fa fa-check-square"></i> <span>Ration Allotment</span></a>
 
                     </li>
+                    <li >
+                        <a href="purchaseentry"><i class="fa fa-check-square"></i> <span>Purchase Entry</span></a>
+
+                    </li>
+
 
                     <li >
                         <a href="stockassign"><i class="fa fa-check-square"></i> <span>Stock Assign</span></a>
 
                     </li>
-                                       <li >
+                    <li >
                         <a href="shopownerslist"><i class="fa fa-check-square"></i> <span>Shop Owners Details</span></a>
 
                     </li>
@@ -79,8 +81,8 @@
                         <a href="feedbacklist"><i class="fa fa-check-square"></i> <span>FeedBack</span></a>
 
                     </li>
-                  
-                   
+
+
                     <li >
                         <a href="notifications"><i class="fa fa-check-square"></i> <span>Notifications</span></a>
 
@@ -97,12 +99,12 @@
                         <a href="purchasereport"><i class="fa fa-check-square"></i> <span>Purchase Report</span></a>
 
                     </li>
-                   
-<!--                    <li >
-                        <a href="stockreport"><i class="fa fa-check-square"></i> <span>Stock Report</span></a>
 
-                    </li>-->
+                    <!--                    <li >
+                                            <a href="stockreport"><i class="fa fa-check-square"></i> <span>Stock Report</span></a>
                     
+                                        </li>-->
+
                 </ul>
             </div><!-- tab-pane -->
 
@@ -131,7 +133,7 @@
 
             <!-- ################### CONTACT LIST ################### -->
 
-        
+
 
             <!-- #################### SETTINGS ################### -->
 

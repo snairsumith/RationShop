@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import models.CategoryItemCountPrice;
 import models.CustomerModel;
 import models.FeedBackModel;
 import models.LocationModel;
@@ -121,7 +122,7 @@ public class AdminAPIController {
             @RequestParam("state") String state
     )
             throws ClassNotFoundException, SQLException {
-      
+
         String sql = "insert into `supplier` ( `suppliername`, `supplieraddress`, `contact`, `emailid`,`LocationId`) VALUES ( '" + name + "', '" + address + "','" + contact + "', '" + email + "', '" + state + "');";
 
         int j = db.InsetQuery(sql);
@@ -184,6 +185,7 @@ public class AdminAPIController {
         return sup;
 
     }
+
     @RequestMapping(value = "/insertstockassing", method = RequestMethod.GET)
     @ResponseBody
     public String InsertStock(
@@ -201,13 +203,14 @@ public class AdminAPIController {
             return "0";
         }
     }
+
     @RequestMapping(value = "/getAllPurchaseItem", method = RequestMethod.GET)
     public @ResponseBody
     List<PurchaseItemModel> getitempur(
             @RequestParam("purchaseid") String purchaseid) throws SQLException {
         List<PurchaseItemModel> pur_item = new ArrayList<PurchaseItemModel>();
-       
-        String sql = "select purchaseitem.*,item.ItemName from purchaseitem inner join item on item.ItemId=purchaseitem.ItemId where purchaseitem.PurchaseId='"+purchaseid+"'";
+
+        String sql = "select purchaseitem.*,item.ItemName from purchaseitem inner join item on item.ItemId=purchaseitem.ItemId where purchaseitem.PurchaseId='" + purchaseid + "'";
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
@@ -219,8 +222,6 @@ public class AdminAPIController {
 
     }
 
-
-
     @RequestMapping(value = "/getAllFeedBackCustomer", method = RequestMethod.GET)
     public @ResponseBody
     List<FeedBackModel> getAllFeedBackCustomer() throws SQLException {
@@ -231,13 +232,13 @@ public class AdminAPIController {
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("CustomerName"),rs.getString("CreatedOn"),rs.getInt("Type"),rs.getString("Address")));
+            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"), rs.getString("FeedBackDescription"), rs.getString("ReciverId"), rs.getString("CustomerName"), rs.getString("CreatedOn"), rs.getInt("Type"), rs.getString("Address")));
         }
 
         return feed;
 
     }
-    
+
     @RequestMapping(value = "/getAllFeedBackShop", method = RequestMethod.GET)
     public @ResponseBody
     List<FeedBackModel> getAllFeedBackShop() throws SQLException {
@@ -248,88 +249,89 @@ public class AdminAPIController {
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("Name"),rs.getString("CreatedOn"),rs.getInt("Type"),rs.getString("Address")));
+            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"), rs.getString("FeedBackDescription"), rs.getString("ReciverId"), rs.getString("Name"), rs.getString("CreatedOn"), rs.getInt("Type"), rs.getString("Address")));
         }
 
         return feed;
 
     }
+
     @RequestMapping(value = "/getAllFeedBackCustomerGet", method = RequestMethod.GET)
     public @ResponseBody
     List<FeedBackModel> getAllFeedBackCustomerGet(
-        @RequestParam("username") String username) throws SQLException {
+            @RequestParam("username") String username) throws SQLException {
         List<FeedBackModel> feed = new ArrayList<FeedBackModel>();
 
-         String sql = "select feedback.*,shopownerregistration.* from feedback inner join shopownerregistration on feedback.SenderId=shopownerregistration.Email where  ReciverId='"+username+"'";
-         System.out.println("controllers.AdminAPIController.getAllFeedBackCustomerGet()"+sql);
+        String sql = "select feedback.*,shopownerregistration.* from feedback inner join shopownerregistration on feedback.SenderId=shopownerregistration.Email where  ReciverId='" + username + "'";
+        System.out.println("controllers.AdminAPIController.getAllFeedBackCustomerGet()" + sql);
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"),rs.getString("FeedBackDescription"),rs.getString("ReciverId"),rs.getString("Name"),rs.getString("CreatedOn"),rs.getInt("Type"),rs.getString("Address")));
+            feed.add(new FeedBackModel(rs.getInt("FeedBackId"), rs.getString("FeedBackTitle"), rs.getString("FeedBackDescription"), rs.getString("ReciverId"), rs.getString("Name"), rs.getString("CreatedOn"), rs.getInt("Type"), rs.getString("Address")));
         }
 
         return feed;
 
     }
-    
+
     @RequestMapping(value = "/getPurchaseReport", method = RequestMethod.GET)
     public @ResponseBody
     List<PurchaseModel> getPurchaseReport(
-    @RequestParam("PurchaseFrom") String PurchaseFrom,
+            @RequestParam("PurchaseFrom") String PurchaseFrom,
             @RequestParam("PurchaseTo") String PurchaseTo) throws SQLException {
         List<PurchaseModel> feed = new ArrayList<PurchaseModel>();
 
-        String sql = "select purchase.*,supplier.suppliername from purchase inner join supplier on supplier.supplierid=purchase.SupplierId where purchase.CreatedDate between '"+PurchaseFrom+"' and '"+PurchaseTo+"'";
+        String sql = "select purchase.*,supplier.suppliername from purchase inner join supplier on supplier.supplierid=purchase.SupplierId where purchase.CreatedDate between '" + PurchaseFrom + "' and '" + PurchaseTo + "'";
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            feed.add(new PurchaseModel(rs.getString("PurchaseId"),rs.getString("suppliername"),rs.getString("InvoiceDate"),"400"));
+            feed.add(new PurchaseModel(rs.getString("PurchaseId"), rs.getString("suppliername"), rs.getString("InvoiceDate"), "400"));
         }
 
         return feed;
 
     }
-        @RequestMapping(value = "/getsuserbyid", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/getsuserbyid", method = RequestMethod.GET)
     public @ResponseBody
     List<CustomerModel> getUserById(
             @RequestParam("shopusername") String shopusername) throws SQLException {
         List<CustomerModel> quota = new ArrayList<CustomerModel>();
 
-         String sql = "select * from customer where EmailId='" + shopusername + "'";
+        String sql = "select * from customer where EmailId='" + shopusername + "'";
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            quota.add(new CustomerModel(rs.getInt("CustomerId"), rs.getString("CustomerName"), rs.getString("EmailId"), rs.getString("ContactNo"), rs.getString("RationCardNo"), rs.getString("AadharNo"), rs.getString("Gender"), rs.getString("Address"),rs.getString("ShopOwnerId"),rs.getInt("CategoryId")));
+            quota.add(new CustomerModel(rs.getInt("CustomerId"), rs.getString("CustomerName"), rs.getString("EmailId"), rs.getString("ContactNo"), rs.getString("RationCardNo"), rs.getString("AadharNo"), rs.getString("Gender"), rs.getString("Address"), rs.getString("ShopOwnerId"), rs.getInt("CategoryId")));
         }
 
         return quota;
 
     }
-    
-     @RequestMapping(value = "/getAllPurchaseItemByCustomer", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/getAllPurchaseItemByCustomer", method = RequestMethod.GET)
     public @ResponseBody
     List<SalesItemModel> getAllPurchaseItemByCustomer(
             @RequestParam("categoryId") String categoryId) throws SQLException {
         List<SalesItemModel> pur_item = new ArrayList<SalesItemModel>();
-       
-        String sql = "select rationallotment.*,item.ItemName from rationallotment inner join item on item.ItemId=rationallotment.ItemId where rationallotment.CategoryId='"+categoryId+"'";
+
+        String sql = "select rationallotment.*,item.ItemName from rationallotment inner join item on item.ItemId=rationallotment.ItemId where rationallotment.CategoryId='" + categoryId + "'";
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), 400,rs.getString("date")));
-            
+            pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), 400, rs.getString("date")));
+
         }
 
         return pur_item;
 
     }
-    
-    
-     @RequestMapping(value = "/updateCustomer", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/updateCustomer", method = RequestMethod.GET)
     @ResponseBody
     public String updateCustomer(
             @RequestParam("CustomerName") String Name,
@@ -344,18 +346,68 @@ public class AdminAPIController {
             @RequestParam("Password") String Password,
             @RequestParam("CategoryId") String CategoryId,
             @RequestParam("CustomerId") int CustomerId
-            
     )
             throws ClassNotFoundException, SQLException {
 
-        String sql = "update customer set  CustomerName='" + Name + "',RationCardNo= '" + RationCardNo + "',Address= '" + Address + "',AadharNo= '" + AadharNo + "',DOB='" + DOB + "', ContactNo='" + ContactNo + "'where CustomerId="+CustomerId+"";
-        
+        String sql = "update customer set  CustomerName='" + Name + "',RationCardNo= '" + RationCardNo + "',Address= '" + Address + "',AadharNo= '" + AadharNo + "',DOB='" + DOB + "', ContactNo='" + ContactNo + "'where CustomerId=" + CustomerId + "";
+
         int j = db.InsetQuery(sql);
         if (j > 0) {
             return "1";
         } else {
             return "0";
         }
+    }
+
+    @RequestMapping(value = "/getItemCategoryCountAndPrice", method = RequestMethod.GET)
+    public @ResponseBody
+    List<CategoryItemCountPrice> getItemCategoryCountAndPrice(
+            @RequestParam("ItemId") int ItemId) throws SQLException {
+        List<CategoryItemCountPrice> pur_item = new ArrayList<CategoryItemCountPrice>();
+
+        int ItemQtyPriority = 0;
+        int ItemQtyNonPriority = 0;
+        int ItemQtyAyy = 0;
+        int ItemQtyNonPrioSub = 0;
+        int ItemPricePriority = 0;
+        int ItemPriceNonPriority = 0;
+        int ItemPriceAyy = 0;
+        int ItemPriceNonPrioSub = 0;
+        
+        String sql = "select *  from rationallotment where ItemId="+ItemId+" and CategoryId=5";
+        String sql1 = "select * from rationallotment where ItemId="+ItemId+" and CategoryId=6";
+        String sql2 = "select * from rationallotment where ItemId="+ItemId+" and CategoryId=7";
+        String sql3 = "select  * from rationallotment where ItemId="+ItemId+" and CategoryId=8";
+        
+        
+        ResultSet rs = db.SelectQuery(sql);
+        ResultSet rs2 = db.SelectQuery(sql1);
+        ResultSet rs3 = db.SelectQuery(sql2);
+        ResultSet rs4 = db.SelectQuery(sql3);
+       
+        if (rs.next()) {
+
+            ItemPricePriority=rs.getInt("Rate");
+            ItemQtyPriority=rs.getInt("Quantity");
+        }
+         if (rs2.next()) {
+
+            ItemPriceAyy=rs2.getInt("Rate");
+            ItemQtyAyy=rs2.getInt("Quantity");
+        }
+          if (rs3.next()) {
+
+             ItemPriceNonPrioSub=rs3.getInt("Rate");
+            ItemQtyNonPrioSub=rs3.getInt("Quantity");
+        }
+         if (rs4.next()) {
+
+             ItemQtyNonPriority=rs4.getInt("Rate");
+            ItemPriceNonPriority=rs4.getInt("Quantity");
+        }
+         pur_item.add(new CategoryItemCountPrice(ItemQtyPriority, ItemQtyNonPriority, ItemQtyAyy, ItemQtyNonPrioSub, ItemPricePriority, ItemPriceNonPriority, ItemPriceAyy, ItemPriceNonPrioSub));
+        return pur_item;
+
     }
 
 }

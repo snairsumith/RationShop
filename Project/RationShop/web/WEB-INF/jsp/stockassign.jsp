@@ -26,7 +26,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <select id="txtselectshopowner" class="form-control" onchange="getsupplier()">
+                                <select id="txtselectshopowner" class="form-control" onchange="getCustomerCategoryCount()">
                                     <option>Select Shop Owner</option>
                                     <%
                                         String sql = "select * from  shopownerregistration";
@@ -41,8 +41,12 @@
                                 </select>
 
                             </div>
+                                <input type="hidden" id="hdCatPriority"/>
+                                <input type="hidden" id="hdCatNonPriority"/>
+                                <input type="hidden" id="hdCatAYY"/>
+                                <input type="hidden" id="hdCatNonPrioritySub"/>
                             <div class="form-group">
-                                <select id="cmbItem" class="form-control">
+                                <select id="cmbItem" class="form-control" onchange="getItemPriceAndQtyByCategory()">
                                     <option>Select Item</option>
                                     <%
                                         String sql1 = "select * from item";
@@ -57,13 +61,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input type="text" placeholder="Assigned Quota" id="txtassignedquota" class="form-control" />
+                                <input type="text" placeholder="Assigned Quota" id="txtassignedquota" class="form-control"  disabled="disabled"/>
                             </div>
 
                             <div class="form-group">
-                                <input type="text" placeholder="Amount" id="txtamount" class="form-control" />
+                                <input type="text" placeholder="Amount" id="txtamount" class="form-control"  disabled="disabled" />
                             </div>
-                            <div class="form-group">
+                                <div class="form-group" style="display:none">
                                 <input type="date" placeholder="Month" id="txtmonth" class="form-control" />
                             </div>
 

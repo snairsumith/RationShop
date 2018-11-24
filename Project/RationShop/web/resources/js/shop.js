@@ -84,6 +84,7 @@ function getcustomerBYId() {
                 $("#p_address").text("AadharNo :" + val.aadharCardNo);
                 $("#p_email").text("Ration No :" + val.rationCardNo);
                 $("#p_phone").text("Email: " + val.customerEmail);
+                getAllItemByCategoryId(val.categoryId);
             });
         }});
 
@@ -231,4 +232,35 @@ function getAllSalesItemByCustoer() {
                 $("#tblItem").append("<tr><td>" + val.itemName + "</td><td>" + val.quantity + "</td><td>" + val.rate + "</td><td>" + val.totalAmount + "</td><td>" + val.date + "</td></tr>");
             });
         }});
+}
+
+
+function getAllItemByCategoryId(categoryId) {
+   
+    var url = baseurl + "/getItemByCategory?CategoryId=" + categoryId;
+    $('#cmbItem').html("");
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $('#cmbItem')
+                        .append($("<option></option>")
+                                .attr("value", val.date)
+                                .text(val.itemName));
+
+            });
+        }});
+
+}
+
+function getItemByAllotement() {
+   var AllotementId=$("#cmbItem").val();
+   
+    var url = baseurl + "/getItemByAllotementId?AllotmentId=" + AllotementId;
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#txtPrice").val(val.rate);
+                $("#txtQuantity").val(val.quantity);
+                
+            });
+        }});
+
 }

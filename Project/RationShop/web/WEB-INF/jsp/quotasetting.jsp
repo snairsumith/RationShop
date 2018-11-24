@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 <input type="text" placeholder="Enter Rate" id="txtRate" class="form-control" />
                             </div>
-                            <div class="form-group">
+                                <div class="form-group" style="display:none">
                                 <input type="Date" placeholder="Date" id="txtDate" class="form-control" />
                             </div>
                         </div>

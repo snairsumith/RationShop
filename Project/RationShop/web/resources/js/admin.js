@@ -41,8 +41,8 @@ function login() {
                         localStorage.setItem("username", username);
                         window.location.href = "/RationShop/shopowner/shophome";
                     } else if (result == 1) {
-                         localStorage.setItem("username", username);
-                        window.location.href = "/RationShop/customer/customermyprofile?uname="+username;
+                        localStorage.setItem("username", username);
+                        window.location.href = "/RationShop/customer/customermyprofile?uname=" + username;
                     }
 
                 }
@@ -217,14 +217,14 @@ function updateCustomer() {
     var Gender = $("#rdGender").val();
     var username = localStorage.getItem("username");
     var password = $("#txtPassword").val();
-    var CategoryId=$("#cmbCategory").val();
-    var CustomerId=$("#hdCustomerId").val();
-    var url = baseurl + "/updateCustomer?CustomerName=" + CustomerName + "&RationCardNo=" + RationCardNo + "&Address=" + Address + "&AadharNo=" + AadharNo + "&DOB=" + DOB + "&EmailId=" + EmailId + "&ContactNo=" + ContactNo + "&Gender=" + Gender + "&ShopOwnerId=" + username + "&Password=" + password+"&CategoryId="+CategoryId+"&CustomerId="+CustomerId;
+    var CategoryId = $("#cmbCategory").val();
+    var CustomerId = $("#hdCustomerId").val();
+    var url = baseurl + "/updateCustomer?CustomerName=" + CustomerName + "&RationCardNo=" + RationCardNo + "&Address=" + Address + "&AadharNo=" + AadharNo + "&DOB=" + DOB + "&EmailId=" + EmailId + "&ContactNo=" + ContactNo + "&Gender=" + Gender + "&ShopOwnerId=" + username + "&Password=" + password + "&CategoryId=" + CategoryId + "&CustomerId=" + CustomerId;
 
     $.ajax({url: url, success: function (result) {
             if (result == "1") {
                 alert("Customer update sucessfully ")
-                window.location.href="customermyprofile?uname="+username;
+                window.location.href = "customermyprofile?uname=" + username;
             } else {
                 alert("Error occoured.Please try again after some time ");
             }
@@ -285,7 +285,7 @@ function quotasetting_add() {
     var itemId = $("#CmbItem").val();
     var quantity = $("#txtQuantity").val();
     var price = $("#txtRate").val();
-    var date = $("#txtDate").val();
+    var date = "12-02-2018";
     var url = baseurl + "/qutosettings?categoryId=" + categoryId + "&itemId=" + itemId + "&itemQuantity=" + quantity + "&itemRate=" + price + "&date=" + date;
     $.ajax({url: url, success: function (result) {
             if (result == 1) {
@@ -395,9 +395,9 @@ function getAllPurchaseItem() {
 }
 function getAllPurchaseReport() {
     var to = $("#txttodate").val();
-     var from = $("#txtfromdate").val();
-      $("#tlist").html("");
-    var url = baseurl + "/getPurchaseReport?PurchaseFrom=" + from+"&PurchaseTo="+to;
+    var from = $("#txtfromdate").val();
+    $("#tlist").html("");
+    var url = baseurl + "/getPurchaseReport?PurchaseFrom=" + from + "&PurchaseTo=" + to;
     $("#tblItem").html("");
     $.ajax({url: url, success: function (result) {
             $.each(result, function (key, val) {
@@ -410,7 +410,7 @@ function insertstockassing() {
     var itemId = $("#cmbItem").val();
     var quota = $("#txtassignedquota").val();
     var amount = $("#txtamount").val();
-    var month = $("#txtmonth").val();
+    var month = "12-2-2018";
     var url = baseurl + "/insertstockassing?shopownerId=" + shopownerId + "&itemId=" + itemId + "&quota=" + quota + "&amount=" + amount + "&month=" + month;
     $.ajax({url: url, success: function (result) {
             if (result == "1") {
@@ -446,27 +446,27 @@ function getAllFeedBack() {
 }
 
 function getAllCustFeedBack() {
-    
+
     $("#feedback_list").html("");
     var shopownerId = localStorage.getItem("username");
-        var url = baseurl + "/getAllFeedBackCustomerGet?username="+shopownerId;
-        $.ajax({url: url, success: function (result) {
-                $.each(result, function (key, val) {
-                    $("#feedback_list").append("<tr><td>" + val.title + "</td><td>" + val.description + "</td><td>" + val.senderName + "</td><td>" + val.dateOfSend + "</td></tr>");
+    var url = baseurl + "/getAllFeedBackCustomerGet?username=" + shopownerId;
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#feedback_list").append("<tr><td>" + val.title + "</td><td>" + val.description + "</td><td>" + val.senderName + "</td><td>" + val.dateOfSend + "</td></tr>");
 
-                });
-            }});
-   
+            });
+        }});
+
 }
 function insertNotification() {
-    var url="";
+    var url = "";
     var RoleType = $("#cmbRole").val();
     var Title = $("#txtTitle").val();
     var Description = $("#txtDescription").val();
-    if(RoleType==3){
-        url = commonurl + "/insertNotification?RoleType=" + RoleType + "&Title=" + Title + "&Description=" + Description+"&CategoryType=0";
-    }else{
-        url = commonurl + "/insertNotification?RoleType=1&Title=" + Title + "&Description=" + Description+"&CategoryType="+RoleType;
+    if (RoleType == 3) {
+        url = commonurl + "/insertNotification?RoleType=" + RoleType + "&Title=" + Title + "&Description=" + Description + "&CategoryType=0";
+    } else {
+        url = commonurl + "/insertNotification?RoleType=1&Title=" + Title + "&Description=" + Description + "&CategoryType=" + RoleType;
     }
     $.ajax({url: url, success: function (result) {
             if (result == "1") {
@@ -525,28 +525,28 @@ function userProfileById() {
 }
 function getuserProfileById() {
     var username = localStorage.getItem("username");
-    var ShopOwnerId="";
+    var ShopOwnerId = "";
     var url = baseurl + "/getsuserbyid?shopusername=" + username;
     $.ajax({url: url, success: function (result) {
             $.each(result, function (key, val) {
-               $("#hdShopId").val(val.shopOwnerId);
+                $("#hdShopId").val(val.shopOwnerId);
             });
         }});
-    
-    
+
+
 }
 async function getuserCategoryId() {
     var username = localStorage.getItem("username");
-    var ShopOwnerId="";
+    var ShopOwnerId = "";
     var url = baseurl + "/getsuserbyid?shopusername=" + username;
     $.ajax({url: url, success: function (result) {
             $.each(result, function (key, val) {
-               $("#hdCategoryId").val(val.categoryId);
-               getAllItemsByCategoryId(val.categoryId);
+                $("#hdCategoryId").val(val.categoryId);
+                getAllItemsByCategoryId(val.categoryId);
             });
         }});
-    
-    
+
+
 }
 function shopSendFeedBack() {
     var optionId = $("#cmbChooseReciver").val();
@@ -572,28 +572,82 @@ function shopSendFeedBack() {
 }
 
 function getAllItemsByCategoryId(categoryId) {
-    
+
     $("#tblist").html("");
 //    var categoryId = $("#hdCategoryId").val();
-        var url = baseurl + "/getAllPurchaseItemByCustomer?categoryId="+categoryId;
-        $.ajax({url: url, success: function (result) {
-                $.each(result, function (key, val) {
-                    $("#tblist").append("<tr><td>" + val.itemName + "</td><td>" + val.rate + "</td><td>" + val.quantity + "</td><td>" + val.date + "</td><td><a href='#'>Buy Now</a></td></tr>");
+    var url = baseurl + "/getAllPurchaseItemByCustomer?categoryId=" + categoryId;
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#tblist").append("<tr><td>" + val.itemName + "</td><td>" + val.rate + "</td><td>" + val.quantity + "</td><td>" + val.date + "</td><td><a href='#'>Buy Now</a></td></tr>");
 
-                });
-            }});
-   
+            });
+        }});
+
 }
-function checkDate(){
-        var dateString = $("#txtInvoiceDate").val();
-        var myDate = new Date(dateString);
-        var today = new Date();
-        if ( myDate > today ) { 
-            alert("You cannot enter a date in the future!");
-            $("#btnPurchase").attr("disabled", "disabled");
-            $("#txtInvoiceDate").val("");
-        }else{
-            $("#btnPurchase").removeAttr("disabled");       
-        }
-       
+function checkDate() {
+    var dateString = $("#txtInvoiceDate").val();
+    var myDate = new Date(dateString);
+    var today = new Date();
+    if (myDate > today) {
+        alert("You cannot enter a date in the future!");
+        $("#btnPurchase").attr("disabled", "disabled");
+        $("#txtInvoiceDate").val("");
+    } else {
+        $("#btnPurchase").removeAttr("disabled");
+    }
+
+}
+
+function getCustomerCategoryCount() {
+    var UserName = $("#txtselectshopowner").val();
+    var url = "http://localhost:8080/RationShop/shopownerapi/getCutsomersCoutByCategory?ShopOwnerUsername=" + UserName;
+
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#hdCatPriority").val(val.catPriority);
+                $("#hdCatNonPriority").val(val.catNonPriority);
+                $("#hdCatAYY").val(val.catAyy);
+                $("#hdCatNonPrioritySub").val(val.catNonPrioSub);
+            });
+        }});
+}
+
+function getItemPriceAndQtyByCategory() {
+    var ItemId = $("#cmbItem").val();
+    var url = baseurl + "/getItemCategoryCountAndPrice?ItemId=" + ItemId;
+    var catPriority = $("#hdCatPriority").val();
+    var catNonPriority = $("#hdCatNonPriority").val();
+    var catAyy = $("#hdCatAYY").val();
+    var catNonPrioSub = $("#hdCatNonPrioritySub").val();
+    var TotalAmountPriority = 0;
+    var TotalAmountNonPriority = 0;
+    var TotalAmountAyy = 0;
+    var TotalAmountNonPrioSub = 0;
+
+    var TotalAmout = 0;
+    var TotalQty = 0;
+    var TotalQtyPriority = 0;
+    var TotalQtyNonPriority = 0;
+    var TotalQtyAyy = 0;
+    var TotalQtyNonPrioSub = 0;
+    $.ajax({url: url, async: false, success: function (result) {
+            $.each(result, function (key, val) {
+                TotalAmountPriority = (catPriority * val.itemPricePriority);
+                TotalAmountNonPriority = (catNonPriority * val.itemPriceNonPriority);
+                TotalAmountAyy = (catAyy * val.itemPriceAyy);
+                TotalAmountNonPrioSub = (catNonPrioSub * val.itemPriceNonPrioSub);
+                TotalQtyPriority = (catPriority * val.itemQtyPriority);
+                TotalQtyNonPriority = (catNonPriority * val.itemQtyNonPriority);
+                TotalQtyAyy = (catAyy * val.itemQtyAyy);
+                TotalQtyNonPrioSub = (catNonPrioSub * val.itemQtyNonPrioSub);
+
+
+            });
+        }});
+    TotalAmout = (TotalAmountPriority + TotalAmountAyy + TotalAmountNonPrioSub + TotalAmountNonPriority);
+    TotalQty = (TotalQtyAyy + TotalQtyNonPrioSub + TotalQtyNonPriority + TotalQtyPriority);
+
+    $("#txtassignedquota").val(TotalQty);
+    $("#txtamount").val(TotalAmout);
+
 }
