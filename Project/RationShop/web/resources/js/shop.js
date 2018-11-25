@@ -158,7 +158,22 @@ function shopownerProfileById() {
         }});
 
 }
+    function shopownerProfileByIdInEditProfile() {
+    var shopownerId = localStorage.getItem("username");
+    var url = baseurl + "/getshopownerbyid?shopusername=" + shopownerId;
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#txtShopOwnerName").val(val.name);
+                $("#txtShopOwnerAddress").val(val.address);
+                $("#txtShopOwnerpincode").val(val.pinCode);
+                $("#txtShopOwnercontact").val(val.mobile);
+                
+                $("#txtShopOwnerard").val(val.ardnumber);
+               
+            });
+        }});
 
+}
 
 function showChooseOptionForFeedBack() {
     var optionId = $("#cmbChooseReciver").val();
@@ -263,4 +278,26 @@ function getItemByAllotement() {
             });
         }});
 
+}
+
+
+function shopowner_update() {
+    var name = $("#txtShopOwnerName").val();
+    var password = $("#txtPassword").val();
+    var address = $("#txtShopOwnerAddress").val();
+    var dob = $("#txtShopOwnerDOB").val();
+    var email = $("#txtShopOwnerEmailId").val();
+    var contactno = $("#txtShopOwnerContact").val();
+    var gender = $("#rdgender").val();
+    var status = $("#cmdSatus").val();
+    var username=localStorage.getItem("username");
+    var url = baseurl + "/shopowner_update?name=" + name + "&password=" + password + "&address=" + address + "&dob=" + dob + "&email=" + email + "&contactno=" + contactno + "&gender=" + gender + "&status=" + status+"&username="+username;
+    $.ajax({url: url, success: function (result) {
+            if (result == "1") {
+                alert("Shop owner added sucessfully ")
+                window.location.reload()
+            } else {
+                alert("Error occoured.Please try again after some time ");
+            }
+        }});
 }

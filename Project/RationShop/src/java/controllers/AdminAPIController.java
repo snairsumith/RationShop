@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import models.CategoryItemCountPrice;
 import models.CustomerModel;
@@ -100,6 +101,30 @@ public class AdminAPIController {
         }
     }
 
+    @RequestMapping(value = "/shopowner_update", method = RequestMethod.GET)
+    @ResponseBody
+    public String shopowner_update(@RequestParam("name") String name,
+            @RequestParam("password") String password,
+            @RequestParam("address") String address,
+            @RequestParam("dob") String dob,
+            @RequestParam("email") String email,
+            @RequestParam("contactno") String contactno,
+            @RequestParam("gender") String gender,
+            @RequestParam("ardNo") String ardno,
+            @RequestParam("location") String location,
+            @RequestParam("pincode") String pincode,
+            @RequestParam("username") String username) throws ClassNotFoundException, SQLException {
+
+        String sql = "update  `shopownerregistration` set ARDNumber='" + ardno + "',`Name`='" + name + "', `Address`='" + address + "', `DateOfBirth`='" + dob + "',  `Contact`='" + contactno + "',`PinCode`='" + pincode + "' where EmailId='" + username + "'";
+
+        int i = db.InsetQuery(sql);
+        if (i > 0) {
+            return "1";
+        } else {
+            return "0";
+        }
+    }
+
     @RequestMapping(value = "/qutosettings", method = RequestMethod.GET)
     @ResponseBody
     public int qutosettings(
@@ -108,14 +133,14 @@ public class AdminAPIController {
             @RequestParam("itemQuantity") int itemQuantity,
             @RequestParam("itemRate") double itemRate,
             @RequestParam("date") String date) throws SQLException {
-        int i=0;
-        String sql_select="select * from rationallotment where CategoryId="+categoryId+" and ItemId="+itemId+"";
-        ResultSet rs=db.SelectQuery(sql_select);
-        if(rs.next()){
-            i=3;
-        }else{
-        String sql = "INSERT INTO `rationallotment` (`CategoryId`, `ItemId`, `Quantity`, `Rate`, `date`) VALUES (" + categoryId + ", " + itemId + ", " + itemQuantity + ", " + itemRate + ", '" + date + "')";
-         i= db.InsetQuery(sql);
+        int i = 0;
+        String sql_select = "select * from rationallotment where CategoryId=" + categoryId + " and ItemId=" + itemId + "";
+        ResultSet rs = db.SelectQuery(sql_select);
+        if (rs.next()) {
+            i = 3;
+        } else {
+            String sql = "INSERT INTO `rationallotment` (`CategoryId`, `ItemId`, `Quantity`, `Rate`, `date`) VALUES (" + categoryId + ", " + itemId + ", " + itemQuantity + ", " + itemRate + ", '" + date + "')";
+            i = db.InsetQuery(sql);
         }
         return i;
     }
@@ -201,16 +226,25 @@ public class AdminAPIController {
             @RequestParam("quota") int quota,
             @RequestParam("amount") float amount,
             @RequestParam("month") String month) throws ClassNotFoundException, SQLException {
-        int j=0;
-        String sql_select="Select * from adminitem where ItemId="+itemId+"";
-        ResultSet rs=db.SelectQuery(sql_select);
-        if(rs.next()){
-            if(rs.getInt("BalanceQty")<quota){
-                j=3;
+        int j = 0;
+        String sql_select = "Select * from adminitem where ItemId=" + itemId + "";
+        ResultSet rs = db.SelectQuery(sql_select);
+        if (rs.next()) {
+            if (rs.getInt("BalanceQty") < quota) {
+                j = 3;
+            } else {
+                 Calendar now = Calendar.getInstance();
+                    int mnt=now.get(now.MONTH)+1;
+                String sql3="select * from stockassign where itemId="+itemId+" and month(month)="+mnt+" and shopownerId='"+shopownerId+"'";
+                ResultSet rs12=db.SelectQuery(sql3);
+                if(rs12.next()){
+                    j=4;
+                }else{
+                     String sql = "INSERT INTO `stockassign` (`shopownerId`, `itemId`, `quota`, `amount`, `month`) VALUES ('" + shopownerId + "', '" + itemId + "', '" + quota + "', '" + amount + "', '" + month + "')";
+                j = db.InsetQuery(sql);
+                }
+               
             }
-        }else{
-        String sql = "INSERT INTO `stockassign` (`shopownerId`, `itemId`, `quota`, `amount`, `month`) VALUES ('" + shopownerId + "', '" + itemId + "', '" + quota + "', '" + amount + "', '" + month + "')";
-        j = db.InsetQuery(sql);
         }
         return j;
     }
@@ -384,50 +418,49 @@ public class AdminAPIController {
         int ItemPriceNonPriority = 0;
         int ItemPriceAyy = 0;
         int ItemPriceNonPrioSub = 0;
-        
-        String sql = "select *  from rationallotment where ItemId="+ItemId+" and CategoryId=5";
-        String sql1 = "select * from rationallotment where ItemId="+ItemId+" and CategoryId=6";
-        String sql2 = "select * from rationallotment where ItemId="+ItemId+" and CategoryId=7";
-        String sql3 = "select  * from rationallotment where ItemId="+ItemId+" and CategoryId=8";
-        
-        
+
+        String sql = "select *  from rationallotment where ItemId=" + ItemId + " and CategoryId=5";
+        String sql1 = "select * from rationallotment where ItemId=" + ItemId + " and CategoryId=6";
+        String sql2 = "select * from rationallotment where ItemId=" + ItemId + " and CategoryId=7";
+        String sql3 = "select  * from rationallotment where ItemId=" + ItemId + " and CategoryId=8";
+
         ResultSet rs = db.SelectQuery(sql);
         ResultSet rs2 = db.SelectQuery(sql1);
         ResultSet rs3 = db.SelectQuery(sql2);
         ResultSet rs4 = db.SelectQuery(sql3);
-       
+
         if (rs.next()) {
 
-            ItemPricePriority=rs.getInt("Rate");
-            ItemQtyPriority=rs.getInt("Quantity");
+            ItemPricePriority = rs.getInt("Rate");
+            ItemQtyPriority = rs.getInt("Quantity");
         }
-         if (rs2.next()) {
+        if (rs2.next()) {
 
-            ItemPriceAyy=rs2.getInt("Rate");
-            ItemQtyAyy=rs2.getInt("Quantity");
+            ItemPriceAyy = rs2.getInt("Rate");
+            ItemQtyAyy = rs2.getInt("Quantity");
         }
-          if (rs3.next()) {
+        if (rs3.next()) {
 
-             ItemPriceNonPrioSub=rs3.getInt("Rate");
-            ItemQtyNonPrioSub=rs3.getInt("Quantity");
+            ItemPriceNonPrioSub = rs3.getInt("Rate");
+            ItemQtyNonPrioSub = rs3.getInt("Quantity");
         }
-         if (rs4.next()) {
+        if (rs4.next()) {
 
-             ItemQtyNonPriority=rs4.getInt("Rate");
-            ItemPriceNonPriority=rs4.getInt("Quantity");
+            ItemQtyNonPriority = rs4.getInt("Rate");
+            ItemPriceNonPriority = rs4.getInt("Quantity");
         }
-         pur_item.add(new CategoryItemCountPrice(ItemQtyPriority, ItemQtyNonPriority, ItemQtyAyy, ItemQtyNonPrioSub, ItemPricePriority, ItemPriceNonPriority, ItemPriceAyy, ItemPriceNonPrioSub));
+        pur_item.add(new CategoryItemCountPrice(ItemQtyPriority, ItemQtyNonPriority, ItemQtyAyy, ItemQtyNonPrioSub, ItemPricePriority, ItemPriceNonPriority, ItemPriceAyy, ItemPriceNonPrioSub));
         return pur_item;
 
     }
-    
-        @RequestMapping(value = "/getPurchaseReportBySupplier", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/getPurchaseReportBySupplier", method = RequestMethod.GET)
     public @ResponseBody
     List<PurchaseModel> getPurchaseReportBySupplier(
             @RequestParam("SupplierId") int SupplierId) throws SQLException {
         List<PurchaseModel> feed = new ArrayList<PurchaseModel>();
 
-        String sql = "select purchase.*,supplier.suppliername from purchase inner join supplier on supplier.supplierid=purchase.SupplierId where purchase.SupplierId="+SupplierId+"";
+        String sql = "select purchase.*,supplier.suppliername from purchase inner join supplier on supplier.supplierid=purchase.SupplierId where purchase.SupplierId=" + SupplierId + "";
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
@@ -437,6 +470,23 @@ public class AdminAPIController {
 
         return feed;
 
+    }
+    
+    @RequestMapping(value = "/updateAllotmet", method = RequestMethod.GET)
+    @ResponseBody
+    public String updateAllotmet(
+            @RequestParam("AllotMentId") int AllotMentId,
+            @RequestParam("Rate") float Rate,
+            @RequestParam("Qty") int Qty
+    )
+            throws ClassNotFoundException, SQLException {
+        String sql = "update rationallotment set Quantity="+Qty+",Rate="+Rate+"  where AllotmentId="+AllotMentId+"";
+        int j = db.InsetQuery(sql);
+        if (j > 0) {
+            return "1";
+        } else {
+            return "0";
+        }
     }
 
 }

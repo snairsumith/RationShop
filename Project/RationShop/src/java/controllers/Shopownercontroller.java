@@ -81,4 +81,9 @@ public class Shopownercontroller {
     public String shopstockupdation() {
         return "shopstockupdation";
     }
+    
+    @RequestMapping(value = "/shopownerEditmyprofile", method = RequestMethod.GET)
+    public String shopownerEditmyprofile() {
+        return "EditProfileShopOwner";
+    }
 }

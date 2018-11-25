@@ -82,7 +82,7 @@ public class ShopownerAPIController {
             @RequestParam("month") int month) throws SQLException {
         List<AllowedQuotaModel> quota = new ArrayList<AllowedQuotaModel>();
 
-        String sql = "select stockassign.*,item.ItemName from stockassign inner join item on stockassign.ItemId=item.ItemId where stockassign.shopownerId='" + shopusername + "'and month(month)=" + month;
+        String sql = "select stockassign.*,item.ItemName from stockassign inner join item on stockassign.ItemId=item.ItemId where stockassign.shopownerId='" + shopusername + "'and month(CreatedDate)=" + month;
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
@@ -335,6 +335,31 @@ public class ShopownerAPIController {
 
         return pur_item;
 
+    }
+    
+            @RequestMapping(value = "/shopowner_update", method = RequestMethod.GET)
+    @ResponseBody
+    public String shopowner_update(@RequestParam("name") String name,
+            @RequestParam("password") String password,
+            @RequestParam("address") String address,
+            @RequestParam("dob") String dob,
+            @RequestParam("email") String email,
+            @RequestParam("contactno") String contactno,
+            @RequestParam("gender") String gender,
+            @RequestParam("ardNo") String ardno,
+            @RequestParam("location") String location,
+            @RequestParam("pincode") String pincode,
+            @RequestParam("username") String username) throws ClassNotFoundException, SQLException {
+
+        String sql = "update  `shopownerregistration` set ARDNumber='"+ardno+"',`Name`='"+name+"', `Address`='"+address+"', `DateOfBirth`='"+dob+"',  `Contact`='"+contactno+"',`PinCode`='"+pincode+"' where EmailId='"+username+"'";
+      
+       
+        int i = db.InsetQuery(sql);
+        if (i > 0) {
+            return "1";
+        } else {
+            return "0";
+        }
     }
     
 

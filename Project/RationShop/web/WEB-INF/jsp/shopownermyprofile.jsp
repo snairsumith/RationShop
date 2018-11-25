@@ -19,7 +19,7 @@
         <div class="contentpanel">
 
             <div class="row profile-wrapper">
-                <div class="col-xs-12 col-md-3 col-lg-2 profile-left">
+                <div class="col-xs-12 col-md-10 col-lg-10 profile-left">
                     <div class="profile-left-heading">
                         <ul class="panel-options">
                             <li><a><i class="glyphicon glyphicon-option-vertical"></i></a></li>
@@ -28,7 +28,7 @@
                         <h2 class="profile-name" id="h_name">Barbara Balashova</h2>
                         <h4 class="profile-designation">Shop Owner</h4>
 
-<!--                        <a href="#" class="btn btn-danger btn-quirk btn-block profile-btn-follow">Edit</a>-->
+                       <a href="shopownerEditmyprofile" class="btn btn-danger btn-quirk btn-block profile-btn-follow">Edit</a>   
 
 
 
@@ -64,17 +64,17 @@
 
                     </div>
                 </div>
-                <div class="col-md-8 col-lg-8 profile-right">
+<!--                <div class="col-md-8 col-lg-8 profile-right">
                     <div class="profile-right-body">
-                        <!-- Nav tabs -->
+                         Nav tabs 
                         <ul class="nav nav-tabs nav-justified nav-line">
                             <li class="active"><a href="#activity" data-toggle="tab"><strong>Customers</strong></a></li>
                             <li><a href="#photos" data-toggle="tab"><strong>FeedBack</strong></a></li>
-<!--                            <li><a href="#music" data-toggle="tab"><strong>Music (10)</strong></a></li>
-                            <li><a href="#places" data-toggle="tab"><strong>Places (5)</strong></a></li>-->
+                            <li><a href="#music" data-toggle="tab"><strong>Music (10)</strong></a></li>
+                            <li><a href="#places" data-toggle="tab"><strong>Places (5)</strong></a></li>
                         </ul>
 
-                        <!-- Tab panes -->
+                         Tab panes 
                         <div class="tab-content">
                             <div class="tab-pane active" id="activity">
 
@@ -103,11 +103,11 @@
                                     </div>
 
 
-                                </div><!-- panel panel-post -->
+                                </div> panel panel-post 
 
 
 
-                            </div><!-- tab-pane -->
+                            </div> tab-pane 
 
                             <div class="tab-pane" id="photos">
                                 <div class="panel">
@@ -141,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
             </div><!-- row -->
 

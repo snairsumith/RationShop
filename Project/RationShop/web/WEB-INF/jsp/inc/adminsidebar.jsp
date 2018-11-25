@@ -99,6 +99,11 @@
                         <a href="purchasereport"><i class="fa fa-check-square"></i> <span>Purchase Report</span></a>
 
                     </li>
+                     <li >
+                        <a href="stockReport"><i class="fa fa-check-square"></i> <span>Stock Report</span></a>
+
+                    </li>
+
 
                     <!--                    <li >
                                             <a href="stockreport"><i class="fa fa-check-square"></i> <span>Stock Report</span></a>

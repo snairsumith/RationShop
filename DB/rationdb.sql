@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2018 at 09:26 AM
+-- Generation Time: Nov 25, 2018 at 03:57 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -21,6 +21,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `rationdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminitem`
+--
+
+CREATE TABLE `adminitem` (
+  `AdminItemId` int(10) NOT NULL,
+  `ItemId` int(10) NOT NULL,
+  `TotalQty` int(10) NOT NULL,
+  `BalanceQty` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `adminitem`
+--
+
+INSERT INTO `adminitem` (`AdminItemId`, `ItemId`, `TotalQty`, `BalanceQty`) VALUES
+(1, 9, 0, 0),
+(2, 8, 0, 0),
+(3, 6, 100, 44),
+(4, 7, 0, 0),
+(5, 10, 0, 0),
+(6, 11, 0, 0),
+(7, 12, 0, 0),
+(8, 13, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -89,7 +116,7 @@ INSERT INTO `customer` (`CustomerId`, `CustomerName`, `RationCardNo`, `Address`,
 (10, 'Sreehari', '3214565412/PHH', 'sreenilayam', '125436521489', '02/03/1995', 'sree@gmail.com', '919130123016', 'Male', 'afsal@gmail.com', 7),
 (11, 'Jaison Jose', '3652325632/PHH', 'Murimattathil (h), Varikoli P.O,Mattakuzhi', '253214563210', '02/03/1985', 'jaison@gmail.com', '919587452136', 'Male', 'afsal@gmail.com', 5),
 (13, 'Anu', '324422', 'sddsd', '12122121', '12-12-12', 'anu@gmail.com', 'sq', 'Female', 'afsal@gmail.com', 6),
-(14, 'Anu', '123456789', '4556', '313113', '12-09-18', 'anu@gmail.com', '1212121212', 'Female', 'afsal@gmail.com', 6),
+(14, 'Ajay', '123456789', '4556', '313113', '12-09-18', 'anu@gmail.com', '1212121212', 'Female', 'afsal@gmail.com', 6),
 (15, 'Anu', '123456789', '4556', '313113', '12-09-18', 'anu@gmail.com', '1212121212', 'Female', 'afsal@gmail.com', 6),
 (16, 'Anu', '123456789', '4556', '313113', '12-09-18', 'anu@gmail.com', '1212121212', 'Female', 'afsal@gmail.com', 6),
 (17, 'Anu', '123456789', '4556', '313113', '12-09-18', 'anu@gmail.com', '1212121212', 'Female', 'afsal@gmail.com', 6);
@@ -150,6 +177,14 @@ INSERT INTO `item` (`ItemId`, `ItemName`, `ItemDescription`, `ItemStatus`) VALUE
 (11, 'Kuthari', 'First Quality', 1),
 (12, 'Chakkari', 'First Quality', 1),
 (13, 'Puzhukkalari', 'First Quality', 1);
+
+--
+-- Triggers `item`
+--
+DELIMITER $$
+CREATE TRIGGER `InsertItem` AFTER INSERT ON `item` FOR EACH ROW INSERT INTO `adminitem` (`ItemId`, `TotalQty`, `BalanceQty`) VALUES (New.ItemId,0,0)
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -223,7 +258,8 @@ INSERT INTO `login` (`LoginId`, `UserName`, `Password`, `Role`) VALUES
 (41, 'anu@gmail.com', '123456789', 1),
 (42, 'anu@gmail.com', '123', 1),
 (43, 'anu@gmail.com', '123', 1),
-(44, 'anu@gmail.com', '123', 1);
+(44, 'anu@gmail.com', '123', 1),
+(45, 'vijaya@gmail.com', '123456', 3);
 
 -- --------------------------------------------------------
 
@@ -241,20 +277,6 @@ CREATE TABLE `notifications` (
   `Status` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`NotificationId`, `Title`, `Description`, `RoleType`, `CategoryType`, `Date`, `Status`) VALUES
-(1, '', '', 0, 0, '0000-00-00 00:00:00.000000', 0),
-(2, 'Hai Admin', 'jjlj', 1, 0, '2018-11-09 14:47:49.118243', 0),
-(3, 'sa', 'as', 2, 0, '2018-11-09 14:48:23.709090', 0),
-(4, 'nEw Cust', 'kkjj', 1, 0, '2018-11-09 14:48:43.899205', 0),
-(5, 'as', 'as', 3, 0, '2018-11-09 15:01:54.077429', 0),
-(6, 'Quota', 'Quota Alloted', 3, 0, '2018-11-10 07:19:05.667229', 0),
-(7, 'te', 'er', 1, 6, '2018-11-20 13:30:41.734765', 0),
-(8, 'assa', 'assa', 3, 0, '2018-11-22 09:43:04.303554', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -262,10 +284,10 @@ INSERT INTO `notifications` (`NotificationId`, `Title`, `Description`, `RoleType
 --
 
 CREATE TABLE `purchase` (
-  `PurchaseId` varchar(25) NOT NULL,
+  `PurchaseId` varchar(50) NOT NULL,
   `SupplierId` int(20) NOT NULL,
-  `InvoiceDate` varchar(20) NOT NULL,
-  `DueDate` varchar(20) NOT NULL,
+  `InvoiceDate` varchar(50) NOT NULL,
+  `DueDate` varchar(50) NOT NULL,
   `CreatedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -274,10 +296,7 @@ CREATE TABLE `purchase` (
 --
 
 INSERT INTO `purchase` (`PurchaseId`, `SupplierId`, `InvoiceDate`, `DueDate`, `CreatedDate`) VALUES
-('PU0196255', 1, '2018-11-12', '2018-11-16', '2018-11-15 13:12:55'),
-('PU026294', 1, '2018-11-07', '2018-11-07', '2018-11-15 13:12:55'),
-('PU059146', 1, '2018-11-07', '2018-11-16', '2018-11-15 13:12:55'),
-('PU0683971', 2, '2018-11-05', '2018-11-20', '2018-11-15 13:12:55');
+('PU0260700', 1, 'Sun Nov 25 01:01:10 IST 2018', '2018-11-26', '2018-11-24 19:32:31');
 
 -- --------------------------------------------------------
 
@@ -299,21 +318,16 @@ CREATE TABLE `purchaseitem` (
 --
 
 INSERT INTO `purchaseitem` (`PurchaseItemId`, `PurchaseId`, `Quantity`, `ItemId`, `Rate`, `TotalAmount`) VALUES
-(12, 'PU0196255', 10, 7, 50, 500),
-(13, 'PU0196255', 100, 9, 45, 4500),
-(14, 'PU0166582', 20, 6, 20, 400),
-(15, 'PU0166582', 20, 6, 20, 400),
-(16, 'PU0166582', 20, 6, 20, 400),
-(17, 'PU039085', 2, 7, 21, 42),
-(18, 'PU039085', 2, 7, 21, 42),
-(19, 'PU0597794', 2, 7, 200, 400),
-(20, 'PU0888280', 2, 13, 21, 42),
-(21, 'PU0888280', 2, 8, 21, 42),
-(22, 'PU059146', 2, 6, 21, 42),
-(23, 'PU0692960', 2, 6, 12, 24),
-(24, 'PU0692960', 2, 7, 2, 4),
-(25, 'PU0186943', 500, 6, 10, 5000),
-(26, 'PU0186943', 100, 9, 30, 3000);
+(27, 'PU0497679', 50, 6, 200, 10000),
+(28, 'PU0260700', 50, 6, 50, 2500);
+
+--
+-- Triggers `purchaseitem`
+--
+DELIMITER $$
+CREATE TRIGGER `UpdateAdminItemQty` AFTER INSERT ON `purchaseitem` FOR EACH ROW update adminitem set TotalQty=(TotalQty+New.Quantity),BalanceQty=(BalanceQty+New.Quantity) where ItemId=New.ItemId
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -335,12 +349,13 @@ CREATE TABLE `rationallotment` (
 --
 
 INSERT INTO `rationallotment` (`AllotmentId`, `CategoryId`, `ItemId`, `Quantity`, `Rate`, `date`) VALUES
-(17, 5, 6, 7, 1, '12-02-2018'),
-(18, 5, 10, 7, 1, '12-02-2018'),
-(19, 5, 6, 7, 1, '12-02-2018'),
-(21, 7, 10, 4, 10, '12-02-2018'),
-(22, 7, 7, 3, 16, '12-02-2018'),
-(23, 8, 6, 5, 8, '12-02-2018');
+(24, 5, 6, 2, 4, '12-02-2018'),
+(25, 5, 7, 2, 3, '12-02-2018'),
+(26, 5, 8, 5, 5, '12-02-2018'),
+(27, 6, 6, 2, 2.5, '12-02-2018'),
+(28, 6, 9, 5, 5.99, '12-02-2018'),
+(29, 7, 12, 5, 5, '12-02-2018'),
+(30, 8, 13, 2, 3, '12-02-2018');
 
 -- --------------------------------------------------------
 
@@ -386,13 +401,6 @@ CREATE TABLE `sales` (
   `DateOfSale` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `sales`
---
-
-INSERT INTO `sales` (`SalesId`, `CustomerId`, `Status`, `DateOfSale`) VALUES
-('SALE0372115', 7, '1', '2018-11-15 13:54:02.105828');
-
 -- --------------------------------------------------------
 
 --
@@ -407,28 +415,6 @@ CREATE TABLE `salesitem` (
   `Rate` float NOT NULL,
   `TotalAmount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `salesitem`
---
-
-INSERT INTO `salesitem` (`SalesItemId`, `SalesId`, `Quantity`, `ItemId`, `Rate`, `TotalAmount`) VALUES
-(1, 'SALE083546', 2, 6, 221, 442),
-(2, 'SALE0835464', 2, 6, 221, 442),
-(3, 'SALE0835464', 2, 6, 221, 442),
-(4, 'SALE0588294', 1, 6, 21, 21),
-(5, 'SALE0588294', 4, 8, 34, 136),
-(6, 'SALE0137698', 1, 6, 21, 21),
-(7, 'SALE0397302', 1, 8, 21, 21),
-(8, 'SALE0556625', 5, 7, 25, 125),
-(9, 'SALE068856', 2, 10, 21, 42),
-(10, 'SALE0003919', 2, 7, 221, 442),
-(11, 'SALE0679219', 12, 6, 21, 252),
-(12, 'SALE0545354', 12, 7, 21, 252),
-(13, 'SALE0221556', 2, 7, 21, 42),
-(14, 'SALE0372115', 1, 8, 12, 12),
-(15, 'SALE0714262', 22, 6, 12, 264),
-(16, 'SALE0186757', 35, 10, 5, 175);
 
 -- --------------------------------------------------------
 
@@ -456,7 +442,8 @@ CREATE TABLE `shopownerregistration` (
 --
 
 INSERT INTO `shopownerregistration` (`ShopOwnerId`, `Password`, `ARDNumber`, `Name`, `Address`, `DateOfBirth`, `Gender`, `Contact`, `Email`, `Locationid`, `PinCode`, `Status`) VALUES
-(12, 'admin', '1738055', 'Afsal', 'Pazhamthottam P.o\r\nPazhamthottam', '2018-11-08', 'Male', '9874589622', 'afsal@gmail.com', 12, '683565', '1');
+(12, 'admin', '1738055', 'Afsal', 'Pazhamthottam P.o\r\nPazhamthottam', '2018-11-08', 'Male', '9874589622', 'afsal@gmail.com', 12, '683565', '1'),
+(13, '123456', '4567897', 'Vijaya', 'Vaikom PO,Kottayam', '2018-11-08', 'Male', '9656761101', 'vijaya@gmail.com', 11, '686141', '1');
 
 -- --------------------------------------------------------
 
@@ -470,8 +457,24 @@ CREATE TABLE `stockassign` (
   `itemId` int(10) NOT NULL,
   `quota` int(10) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
-  `month` date NOT NULL
+  `month` varchar(100) NOT NULL,
+  `CreatedDate` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stockassign`
+--
+
+INSERT INTO `stockassign` (`stockassignId`, `shopownerId`, `itemId`, `quota`, `amount`, `month`, `CreatedDate`) VALUES
+(1, 'afsal@gmail.com', 6, 14, '16', '2018-11-15', '2018-11-25 07:25:01.401404');
+
+--
+-- Triggers `stockassign`
+--
+DELIMITER $$
+CREATE TRIGGER `DecreseQouta` AFTER INSERT ON `stockassign` FOR EACH ROW update adminitem set BalanceQty=(BalanceQty-New.quota) where ItemId=New.itemId
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -500,6 +503,12 @@ INSERT INTO `supplier` (`supplierid`, `suppliername`, `supplieraddress`, `contac
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `adminitem`
+--
+ALTER TABLE `adminitem`
+  ADD PRIMARY KEY (`AdminItemId`);
 
 --
 -- Indexes for table `category`
@@ -615,6 +624,12 @@ ALTER TABLE `supplier`
 --
 
 --
+-- AUTO_INCREMENT for table `adminitem`
+--
+ALTER TABLE `adminitem`
+  MODIFY `AdminItemId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
@@ -654,25 +669,25 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `LoginId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `LoginId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `NotificationId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `NotificationId` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `purchaseitem`
 --
 ALTER TABLE `purchaseitem`
-  MODIFY `PurchaseItemId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `PurchaseItemId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `rationallotment`
 --
 ALTER TABLE `rationallotment`
-  MODIFY `AllotmentId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `AllotmentId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `registration`
@@ -690,19 +705,19 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT for table `salesitem`
 --
 ALTER TABLE `salesitem`
-  MODIFY `SalesItemId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `SalesItemId` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `shopownerregistration`
 --
 ALTER TABLE `shopownerregistration`
-  MODIFY `ShopOwnerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ShopOwnerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `stockassign`
 --
 ALTER TABLE `stockassign`
-  MODIFY `stockassignId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `stockassignId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `supplier`

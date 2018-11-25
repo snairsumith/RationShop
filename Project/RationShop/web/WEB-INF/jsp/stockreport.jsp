@@ -4,6 +4,8 @@
     Author     : MinusBugspc1
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="LiibraryFunction.DBFunctions"%>
 <jsp:include page="inc/admin_top.jsp" /> 
 <section>
     <jsp:include page="inc/adminsidebar.jsp" />
@@ -21,53 +23,54 @@
                             <h4 class="panel-title">Stock Report</h4>
                             <p>View Reports Here</p>
                         </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <input type="text" placeholder="From" id="txtfromdate" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="To" id="txttodate" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="View" id="txtview" class="form-control" />
-                            </div>
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table nomargin">
-                                        <thead>
-                                            <tr>
+                                   <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table nomargin">
+                                    <thead>
+                                        <tr>
 
-                                                <th>Item Id</th>
-                                                <th>Item Name</th>
-                                                <th>Quantity</th>
+                                            <th>Item Name</th>
+                                            <th>Total Quantity</th>
+                                            <th>Available Quantity</th>
+                                            <th></th>
 
 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            DBFunctions db = new DBFunctions();
+                                            String sql = "select adminitem.*,item.ItemName from adminitem inner join item on item.ItemId=adminitem.ItemId ";
+
+                                            ResultSet rs = db.SelectQuery(sql);
+
+                                            while (rs.next()) {
+                                               
+                                        %>
+                                        <tr>
+                                           
+                                            <td><%= rs.getString("ItemName")%></td>   
+                                            <td><%= rs.getString("TotalQty")%></td>   
+                                            <td><%= rs.getString("BalanceQty")%></td> 
+                                             
 
 
+                                        </tr>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                          
+                                        <%
+                                             
 
+                                            }
+                                        %>
+                                    </tbody>
 
-
-                                            </tr>
-                                        </tbody>
-
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-9 col-sm-offset-3">
-                                <button class="btn btn-success btn-quirk btn-wide mr5">Submit</button>
-                                <button type="reset" class="btn btn-quirk btn-wide btn-default">Reset</button>
+                                </table>
                             </div>
                         </div>
-                        </section>
-                        </body>
-                        </html>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

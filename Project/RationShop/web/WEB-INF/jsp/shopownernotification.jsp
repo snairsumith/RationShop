@@ -26,7 +26,6 @@
                             <div class="form-group">
                                  <select id="cmbRole" class="form-control" onchange="showChooseOptionForFeedBack()">
                                     <option value=0>Choose Role Type</option>
-                                    <option value=2>Admin</option>
                                      <option value=6>Antyodaya Anna Yojana (AYY)</option>
                                      <option value=7>Non Priority Subsidy</option>
                                       <option value=8>Non-Priority </option>

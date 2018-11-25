@@ -291,10 +291,9 @@ function quotasetting_add() {
             if (result == 1) {
                 alert("Quota Settings Allowed")
                 window.location.href = "quotalist"
-            }else if(result==3){
-                 alert("Item already added in this group");
-            } 
-            else {
+            } else if (result == 3) {
+                alert("Item already added in this category");
+            } else {
                 alert("Error occured.Please try again after some time ");
             }
         }});
@@ -413,16 +412,18 @@ function insertstockassing() {
     var itemId = $("#cmbItem").val();
     var quota = $("#txtassignedquota").val();
     var amount = $("#txtamount").val();
-    var month = "12-12-2018";
+    var today = new Date();
+    var month = today.toLocaleDateString();
     var url = baseurl + "/insertstockassing?shopownerId=" + shopownerId + "&itemId=" + itemId + "&quota=" + quota + "&amount=" + amount + "&month=" + month;
     $.ajax({url: url, success: function (result) {
             if (result == 1) {
                 alert("Quota Assigned Sucessfully")
                 window.location.reload()
-            }else if(result==3){
+            } else if (result == 3) {
                 alert("You don't have enough stock.Please purchase new stock");
-            }
-            else {
+            } else if (result == 4) {
+                alert("This item already added in this month");
+            } else {
                 alert("Error occured.Please try again after some time ");
             }
         }});
@@ -590,7 +591,7 @@ function getAllItemsByCategoryId(categoryId) {
         }});
 
 }
-    function checkDate() {
+function checkDate() {
     var dateString = $("#txtInvoiceDueDate").val();
     var myDate = new Date(dateString);
     var today = new Date();
@@ -660,9 +661,9 @@ function getItemPriceAndQtyByCategory() {
 
 function supplierByPurchaseReport() {
     var SupplierId = $("#cmbSupplier").val();
-    
-    
-    var url = baseurl + "/getPurchaseReportBySupplier?SupplierId=" + SupplierId ;
+
+
+    var url = baseurl + "/getPurchaseReportBySupplier?SupplierId=" + SupplierId;
     $("#tlist").html("");
     $.ajax({url: url, success: function (result) {
             $.each(result, function (key, val) {
@@ -670,3 +671,26 @@ function supplierByPurchaseReport() {
             });
         }});
 }
+
+function bindDeatilsForUpdate(AllotMentId, Rate, Qty) {
+    $("#txtQuantity").val(Qty);
+    $("#txtRate").val(Rate);
+    $("#hdAllotementId").val(AllotMentId);
+
+}
+
+function updateAllotement() {
+    var allotementId = $("#hdAllotementId").val();
+    var rate = $("#txtRate").val();
+    var Qty = $("#txtQuantity").val();
+     var url = baseurl + "/updateAllotmet?AllotMentId=" + allotementId+"&Rate="+rate+"&Qty="+Qty;
+   
+    $.ajax({url: url, success: function (result) {
+             if (result == "1") {
+                alert("Updated  Sucessfully")
+                window.location.reload()
+            } else {
+                alert("Error occured.Please try again after some time ");
+            }
+    }}); 
+}     

@@ -95,6 +95,10 @@
                         <a href="shopownerfeedback"><i class="fa fa-check-square"></i> <span>Feedbacks</span></a>
 
                     </li>
+                    <li >
+                        <a href="stockReport"><i class="fa fa-check-square"></i> <span>Stock Report</span></a>
+
+                    </li>
 
                    
                 </ul>
