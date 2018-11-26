@@ -410,14 +410,7 @@ function getAllPurchaseReport() {
 function getAllSalesReport() {
     var to = $("#txttodate").val();
     var from = $("#txtfromdate").val();
-    $("#tlist").html("");
-    var url = baseurl + "/getSalesReport?PurchaseFrom=" + from + "&PurchaseTo=" + to;
-    $("#tblItem").html("");
-    $.ajax({url: url, success: function (result) {
-            $.each(result, function (key, val) {
-                $("#tlist").append("<tr><td>" + val.purchaseId + "</td><td>" + val.supplierName + "</td><td>" + val.purcahseDate + "</td><td>" + val.totalAmount + "</td>");
-            });
-        }});
+    window.location.href="salesreport?toDate="+to+"&fromDate="+from;
 }
 function insertstockassing() {
     var shopownerId = $("#txtselectshopowner").val();
