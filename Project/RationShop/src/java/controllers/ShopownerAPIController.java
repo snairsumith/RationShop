@@ -301,7 +301,7 @@ public class ShopownerAPIController {
             @RequestParam("CategoryId") int CategoryId) throws SQLException {
         List<SalesItemModel> pur_item = new ArrayList<SalesItemModel>();
        
-        String sql = "select item.ItemName,rationallotment.AllotmentId,rationallotment.Quantity as AllotedQty,rationallotment.Rate as allotedPrice  from rationallotment inner join item on item.ItemId=rationallotment.ItemId  where rationallotment.CategoryId="+CategoryId+"";
+        String sql = "select item.ItemName,rationallotment.AllotmentId,item.ItemId,rationallotment.Quantity as AllotedQty,rationallotment.Rate as allotedPrice  from rationallotment inner join item on item.ItemId=rationallotment.ItemId  where rationallotment.CategoryId="+CategoryId+"";
        
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
@@ -322,7 +322,7 @@ public class ShopownerAPIController {
             @RequestParam("AllotmentId") int AllotmentId) throws SQLException {
         List<SalesItemModel> pur_item = new ArrayList<SalesItemModel>();
        
-        String sql = "select item.ItemName,rationallotment.AllotmentId,rationallotment.Quantity as AllotedQty,rationallotment.Rate as allotedPrice  from rationallotment inner join item on item.ItemId=rationallotment.ItemId  where rationallotment.AllotmentId="+AllotmentId+"";
+        String sql = "select item.ItemName,item.ItemId,rationallotment.AllotmentId,rationallotment.Quantity as AllotedQty,rationallotment.Rate as allotedPrice  from rationallotment inner join item on item.ItemId=rationallotment.ItemId  where rationallotment.AllotmentId="+AllotmentId+"";
        
         DBFunctions db = new DBFunctions();
         ResultSet rs = db.SelectQuery(sql);
@@ -330,7 +330,7 @@ public class ShopownerAPIController {
             int qty=rs.getInt("AllotedQty");
             int amount=rs.getInt("allotedPrice");
             int Total=qty*amount;
-            pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("AllotedQty"), rs.getInt("allotedPrice"), Total,rs.getString("AllotmentId")));
+            pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("AllotedQty"), rs.getInt("allotedPrice"), Total,rs.getString("ItemId")));
         }
 
         return pur_item;

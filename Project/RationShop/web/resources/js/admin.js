@@ -407,6 +407,18 @@ function getAllPurchaseReport() {
             });
         }});
 }
+function getAllSalesReport() {
+    var to = $("#txttodate").val();
+    var from = $("#txtfromdate").val();
+    $("#tlist").html("");
+    var url = baseurl + "/getSalesReport?PurchaseFrom=" + from + "&PurchaseTo=" + to;
+    $("#tblItem").html("");
+    $.ajax({url: url, success: function (result) {
+            $.each(result, function (key, val) {
+                $("#tlist").append("<tr><td>" + val.purchaseId + "</td><td>" + val.supplierName + "</td><td>" + val.purcahseDate + "</td><td>" + val.totalAmount + "</td>");
+            });
+        }});
+}
 function insertstockassing() {
     var shopownerId = $("#txtselectshopowner").val();
     var itemId = $("#cmbItem").val();
@@ -698,4 +710,27 @@ function updateAllotement() {
                 alert("Error occured.Please try again after some time ");
             }
     }}); 
-}     
+}    
+
+
+function insertSalesItemCustomer() {
+//    var itemid = $("#cmbItem").val();
+//    var price = $("#txtPrice").val();
+//    var qty = $("#txtQuantity").val();
+//    var purchaseid = $("#txtInvoiceNumber").val();
+//    var url = baseurl + "/insertsalseItem?itemId=" + itemid + "&price=" + price + "&qty=" + qty + "&purchaseid=" + purchaseid;
+//    $.ajax({url: url, success: function (result) {
+//            if (result == "1") {
+//                $("#isItemInsert").val("1");
+//                getAllSalesItem();
+//                 $("#cmbItem").val("0");
+//                $("#txtPrice").val("");
+//                $("#txtQuantity").val("");
+//            } else {
+//                alert("Error occured.Please try again after some time ");
+//            }
+//        }});
+
+alert("Sucessfully Purchase");
+window.location.reload();
+}

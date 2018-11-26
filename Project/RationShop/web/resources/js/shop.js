@@ -92,7 +92,7 @@ function getcustomerBYId() {
 }
 
 function insertSalesItem() {
-    var itemid = $("#cmbItem").val();
+    var itemid = $("#txtItemId").val();
     var price = $("#txtPrice").val();
     var qty = $("#txtQuantity").val();
     var purchaseid = $("#txtInvoiceNumber").val();
@@ -299,6 +299,7 @@ function getItemByAllotement() {
             $.each(result, function (key, val) {
                 $("#txtPrice").val(val.rate);
                 $("#txtQuantity").val(val.quantity);
+                $("#txtItemId").val(val.date);
                 
             });
         }});

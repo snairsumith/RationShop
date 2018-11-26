@@ -338,6 +338,25 @@ public class AdminAPIController {
         return feed;
 
     }
+    
+    @RequestMapping(value = "/getSalesReport", method = RequestMethod.GET)
+    public @ResponseBody
+    List<PurchaseModel> getSalesReport(
+            @RequestParam("PurchaseFrom") String PurchaseFrom,
+            @RequestParam("PurchaseTo") String PurchaseTo) throws SQLException {
+        List<PurchaseModel> feed = new ArrayList<PurchaseModel>();
+
+        String sql = "select sales.*,customer.CustomerName from sales inner join customer on customer.CustomerId=sales.CustomerId where sales.DateOfSale between '" + PurchaseFrom + "' and '" + PurchaseTo + "'";
+        DBFunctions db = new DBFunctions();
+        ResultSet rs = db.SelectQuery(sql);
+        while (rs.next()) {
+
+            feed.add(new PurchaseModel(rs.getString("SalesId"), rs.getString("CustomerName"), rs.getString("DateOfSale"), "400"));
+        }
+
+        return feed;
+
+    }
 
     @RequestMapping(value = "/getsuserbyid", method = RequestMethod.GET)
     public @ResponseBody

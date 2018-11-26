@@ -89,6 +89,7 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
+                                        <input type="hidden" id="txtItemId"/>
                                         <input type="text" placeholder="Enter Price" id="txtPrice" class="form-control" />
                                     </div>
                                 </div>
