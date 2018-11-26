@@ -368,7 +368,7 @@ public class AdminAPIController {
         ResultSet rs = db.SelectQuery(sql);
         while (rs.next()) {
 
-            pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), 400, rs.getString("date")));
+            pur_item.add(new SalesItemModel(rs.getString("ItemName"), rs.getInt("Quantity"), rs.getInt("Rate"), rs.getInt("AllotmentId"), rs.getString("date")));
 
         }
 

@@ -585,11 +585,16 @@ function getAllItemsByCategoryId(categoryId) {
     var url = baseurl + "/getAllPurchaseItemByCustomer?categoryId=" + categoryId;
     $.ajax({url: url, success: function (result) {
             $.each(result, function (key, val) {
-                $("#tblist").append("<tr><td>" + val.itemName + "</td><td>" + val.rate + "</td><td>" + val.quantity + "</td><td>" + val.date + "</td><td><a href='#'>Buy Now</a></td></tr>");
+                $("#tblist").append("<tr><td>" + val.itemName + "</td><td>" + val.rate + "</td><td>" + val.quantity + "</td><td>" + val.date + "</td><td><a href='#' onClick='UpdateSalesCustomer("+val.totalAmount+","+val.quantity+")' data-toggle='modal' data-target='#myModal'>Buy Now</a></td></tr>");
 
             });
         }});
 
+}
+
+function UpdateSalesCustomer(AllotMentId,Qty){
+    $("#txtQuantity").val(Qty);
+    $("#hdAllotementId").val(AllotMentId);
 }
 function checkDate() {
     var dateString = $("#txtInvoiceDueDate").val();
